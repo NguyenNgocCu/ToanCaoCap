@@ -1,0 +1,611 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script><meta charset="UTF-8">
+
+ 
+    <style type="text/css">            
+        .abc{
+           font-weight: normal;
+        }
+        .bold{
+           font-weight: bold;  
+        }
+    </style> 
+
+
+
+
+
+<title>1. Dựng trung điểm </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="rc-common.js"></script>
+<script type="application/javascript"></script>
+
+ <script>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+  // Point objects, fields x,y,label
+  var r = 2;
+  
+
+   var a = new Object;  a.x = -1.0; a.y = 0.0 ; a.label = "A";
+   var b = new Object;  b.x = 1.0; b.y = 0.0 ; b.label = "B";
+
+   var a1 = new Object;  a1.x = 0.0; a1.y = -1.732 ; a1.label = "M";
+   var b1 = new Object;  b1.x = 2.0; b1.y = -1.732 ; b1.label = "N";
+
+   var c = new Object;  c.x = -0.5; c.y = -1.936 ; c.label = "C";
+
+  var d = new Object;  d.x = -0.5; d.y = 1.936 ; d.label = "D";
+  var e = new Object;  e.x = 3.0; e.y = 0.0 ; e.label = "E";
+  
+  var o = new Object;  o.x = 0.0; o.y = 0.0 ; o.label = "O";
+
+  var c1 = new Object;  // circles
+  var c2 = new Object;
+
+
+
+
+  
+  //var movable_pts = [a,b];
+  
+  function calc_points()
+  { r = 2;
+     //dist(a,b)*2/3; 
+  //  c1.r = r; c1.x = a.x; c1.y = a.y;
+	//c2.r = r; c2.x = b.x; c2.y = b.y;
+	//circle_circle(c1,c2,c,d)
+  }
+  
+ 
+  function reset()
+  { a.x = -1.0; a.y = 0.0;
+    b.x = 1.0; b.y = 0.0;
+
+  
+  }
+	
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+
+    ctx.font = "0.50px Verdana"; 
+
+    
+    
+   // ctx.font="0.15px Verdana";
+	
+    calc_points();
+	
+    draw_point(a,"red",S);
+    draw_point(b,"red",S);
+
+    draw_segment(a,b);
+    
+   
+    
+   
+   
+
+    if ( draw_stage == 0 ) return;
+
+
+    if ( draw_stage == 1 ) return;
+
+var angle = -3.14/3;
+ 
+
+draw_arc(a,r,angle-0.2,angle+0.2);
+
+if ( draw_stage == 2 ) return;
+
+draw_arc(b,r,3.14-angle-0.2,3.14-angle+0.2);
+
+if ( draw_stage == 3 ) return;
+
+
+
+DrawDottedLine(a1,a,20);
+DrawDottedLine(a1,b,20);
+   // DrawDottedLine(a,c,20);
+    //draw_segment(a,c,20);
+    draw_point(a1,"black",N);
+
+if ( draw_stage == 4 ) return;
+
+
+    draw_arc(a1,r,-0.2,0.2);
+    draw_arc(b,r,-3.14/3-0.2,-3.14/3+0.2);
+    //draw_segment(d,c);
+    draw_point(b1,"black",N);
+   // draw_segment(d,b);
+   DrawDottedLine(b1,a1,20)
+   DrawDottedLine(b,b1,20)
+
+   if ( draw_stage == 5 ) return;
+
+draw_arc(b1,r,3.14/3-0.2,3.14/3+0.2);
+draw_arc(b,r,-0.2,0.2);
+
+DrawDottedLine(b1,e,20)
+
+DrawDottedLine(e,b,20);
+ draw_point(e,"red",S);
+    
+  
+
+
+
+
+
+ if ( draw_stage == 6 ) return;
+
+
+
+
+
+
+
+  
+
+    if ( draw_stage == 7 ) return;
+
+    var r1 = 4;
+
+    draw_arc(e,r1,3.14-1.2,3.14+1.2);
+
+    if ( draw_stage == 8 ) return;
+
+    draw_arc(a,r,-1.5,+1.5);
+  
+   
+    if ( draw_stage == 9 ) return;
+
+    draw_point(c,"black",N);
+
+    draw_point(d,"black",S);
+
+  
+    
+ 
+
+    
+
+
+    if ( draw_stage == 10 ) return;
+
+    draw_arc(c,r,Math.PI/2-0.5,Math.PI/2+0.5);
+
+    if ( draw_stage == 11 ) return;
+    draw_arc(d,r,-Math.PI/2-0.5,-Math.PI/2+0.5);
+
+    if ( draw_stage == 12 ) return;
+
+    draw_point(o,"black",S);
+    //draw_point(o);
+    if ( draw_stage == 13 ) return;
+
+    DrawDottedLine(c,a,20)
+
+
+    draw_segmentWh(a1,a,"white");
+    draw_segmentWh(a1,b,"white");
+    draw_segmentWh(b,b1,"white");
+    draw_segmentWh(a1,b1,"white");
+
+    //draw_segment(c,o);
+
+   // draw_segment(c,e);
+    DrawDottedLine(c,o,20);
+    DrawDottedLine(c,e,35);
+
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 600; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, 0.06, -0.15, -0.17, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+  // swap coordinates of points
+  function swap(d,e)
+  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
+  
+ 
+ 
+  
+  function draw_point(pt,color,offset)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.03;
+    ctx.arc(pt.x,pt.y,point_radius,0,2*Math.PI,true);
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+  
+  
+
+  function draw_p1(pt,color,offset)   
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.003;      
+    ctx.arc(pt.x,pt.y,point_radius-0.01,0,2*Math.PI,true); 
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+
+
+
+
+  function DrawDottedLine(pt,qt,dotCount){
+          var dx = qt.x-pt.x;
+          var dy = qt.y-pt.y;
+          var spaceX = dx/(dotCount-1);
+          var spaceY = dy/(dotCount-1);
+          var newX = pt.x;
+          var newY = pt.y;
+          var mm = new Object; mm.x = newX; mm.y = newY;
+          for (var i=0; i < dotCount; i++){
+                  draw_p1(mm,"black");
+                  newX = newX + spaceX;
+                  newY = newY + spaceY;  
+                  mm.x = newX; 
+                  mm.y = newY;            
+           }
+           ctx.stroke(); 
+        }
+        
+
+
+
+//ctx.setLineDash(segments);
+
+
+
+
+
+
+
+  function draw_segment(pt,qt, color="black")   
+  {
+
+ 
+
+ 
+
+ var ctx = canvas.getContext('2d');
+
+ 
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+  
+  function draw_segmentWh(pt,qt, color="white")   // Để che các đoạn thẳng đã có trước
+  {
+
+ 
+ var ctx = canvas.getContext('2d');
+
+
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+  
+    ctx.lineWidth = 0.05;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+
+
+
+
+  
+
+  function draw_arc(pt,radius,start_angle,end_angle)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+radius*Math.cos(start_angle),pt.y+radius*Math.sin(start_angle));
+    ctx.arc(pt.x,pt.y,radius,start_angle,end_angle,false);
+    ctx.stroke();
+  }
+
+  
+
+  function ddraw(stage) { draw_stage = stage; draw(); }
+  
+/*****************************************************************************************************/
+
+  function handleMouseDown(event)
+  {
+    var rect = canvas.getBoundingClientRect();
+    if ( event.button == 0 ) // left button
+    {
+	  // Translate to world coordinates
+      var x = (event.clientX-rect.left)/scale - xtrans;
+      var y = (event.clientY-rect.top)/scale - ytrans;
+
+	  // see if mouse is sufficiently near one of the movable points
+	  moving_point = null;
+	  for ( var n = 0 ; n < movable_pts.length ; n++ )
+	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
+		  { moving_point = movable_pts[n];
+	        mouse_down_flag = true;
+	        break;
+		  }	  
+	  }
+     
+    }
+    else if ( event.button == 2 )  // right button
+    {
+    }
+  }
+/*****************************************************************************************************/
+
+ function handleMouseUp(event)
+ {
+   mouse_down_flag = false;
+ }
+/*************************************************************************************************/
+
+  function handleMouseMove(event)   // event.target is the canvas.
+  {
+
+    if (!mouse_down_flag || moving_point==null)
+    {
+      return;
+    }
+
+    var rect = canvas.getBoundingClientRect();
+	
+	// Translate to world coordinates
+    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
+    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
+
+ 
+    draw();
+ }
+
+// ket thuc pham ma them vao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="../html/index.html" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 25px; margin-left:20px;">HocToanOnline</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mục lục
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Lý thuyết</a>
+            <a class="dropdown-item" href="#">Bài tập và giải bài tập</a>
+              
+        </li>
+  
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0 " type="submit">Tìm kiếm</button>
+      </form>
+    </div>
+  </nav> 
+<H3>Dựng hình chỉ dùng Compass<br>
+Dựng trung điểm đoạn thẳng AB.  </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+  <tr>
+  <td>
+    <p class="bold"> Bắt đầu:</p>
+    Bước 1, dựng đoạn có độ dài gấp đôi đoạn thẳng cho trước.<br> 
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">   Cho 2 điểm A, B. Kí hiệu độ dài đoạn AB là R.<br>
+ <input type="radio" name="step" onclick="ddraw(2)" value="0"> 1. Dựng cung tròn tâm A bán kính R.<br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="0"> 2. Dựng cung tròn tâm B bán kính R. <br>
+ <input type="radio" name="step" onclick="ddraw(4)" value="0"  id="start">3. Giao của chúng là M. Tam giác MAB là tam giác đều.<br>
+ <input type="radio" name="step" onclick="ddraw(5)" value="0"  id="start">4. Tương tự dựng điểm N để tam giác MBN đều.<br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="0"  id="start">5. Tương tự dựng điểm E để tam giác EBN đều.  Đoạn AE=2R<br>
+ 
+ <br>
+ 
+ Bước 2, dựng trung điểm đoạn thẳng cho trước.<br> 
+
+ 
+
+
+ 
+ 
+ <input type="radio" name="step" onclick="ddraw(8)" value="0"  id="start">6. Dựng cung tròn tâm E bán kính 2R.  <br>
+
+ <input type="radio" name="step" onclick="ddraw(9)" value="0"  id="start">7. Dựng cung tròn tâm A bán kính R.<br>
+
+
+ <input type="radio" name="step" onclick="ddraw(10)" value="0"  id="start">8. Giao của chúng là các điểm C, D.<br>
+
+
+ <input type="radio" name="step" onclick="ddraw(11)" value="0"  id="start">9. Dựng đường tròn tâm C bán kính R.<br>
+
+ <input type="radio" name="step" onclick="ddraw(12)" value="0"  id="start">10. Dựng đường tròn tâm D bán kính R.<br>
+
+
+ <input type="radio" name="step" onclick="ddraw(13)" value="0"  id="start">11. Giao điểm O của chúng là trung điểm đoạn AB cho trước.<br>
+
+
+
+<br>
+
+ <input type="radio" name="step" onclick="ddraw(14)" value="0">  CHỨNG MINH. Hai tam giác cân CAO và ECA đồng dạng.  <br>
+
+ Từ tỉ số đồng dạng suy ra R=AB=2AO.
+
+ <br>
+
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+
+</script>
+
+
+</html>
