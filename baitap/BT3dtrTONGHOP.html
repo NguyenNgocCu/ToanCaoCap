@@ -1,0 +1,1048 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> Dựng đường tròn tiếp xúc với 3 đường tròn cho trước. </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="rc-common.js"></script>
+
+ <script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Point objects, fields x,y,label
+  
+  
+
+   var a = new Object;  a.x = -1.0; a.y = 0.0 ; a.label = "A";
+   var b = new Object;  b.x = 3.0; b.y = 0.0 ; b.label = "B";
+
+   var c = new Object;  c.x = 0.0; c.y = 2.0 ; c.label = "C";
+
+  
+  // var d = new Object;  d.x = 2.0; d.y = -1.732 ; d.label = "4";
+ // var e = new Object;  e.x = 3.0; e.y = 0.0 ; e.label = "E";
+ 
+
+  var c1 = new Object;  // circles
+  var c2 = new Object;
+  var c3 = new Object;
+
+  var d1 = new Object;  // circles
+  var d2 = new Object;
+  var d3 = new Object;
+  var d4 = new Object;
+
+
+  var u1 = new Object;  u1.x = 0.0; u1.y = 0.0 ; u1.label = "U1";
+   var v1 = new Object;  v1.x = 0.0; v1.y = 0.0 ; v1.label = "V1";
+
+   var u2 = new Object;  u2.x = 0.0; u2.y = 0.0 ; u2.label = "U2";
+   var v2 = new Object;  v2.x = 0.0; v2.y = 0.0 ; v2.label = "V2";
+
+   var p1 = new Object; p1.x = 0.0; p1.y = 0.0 ; p1.label = "P1";
+   var p2 = new Object;  p2.x = 0.0; p2.y = 0.0 ; p2.label = "P2";
+   var p3 = new Object; p3.x = 0.0; p3.y = 0.0 ; p3.label = "P3";
+   var p4 = new Object;  p4.x = 0.0; p4.y = 0.0 ; p4.label = "P4";
+
+   var q1 = new Object; q1.x = 0.0; q1.y = 0.0 ; q1.label = "Q1";
+   var q2 = new Object; q2.x = 0.0; q2.y = 0.0 ; q2.label = "Q2";
+
+   var t = new Object; t.x=0.0; t.y=0.0;  t.label = "T";
+  
+  function calc_points()
+  { var r;
+    c1.r = 1; c1.x = a.x; c1.y = a.y;
+	c2.r = 1.5; c2.x = b.x; c2.y = b.y;
+  c3.r = 2.5; c3.x = c.x; c3.y = c.y;
+	circle_circle(c1,c3,u1,v1);
+  circle_circle(c2,c3,u2,v2);
+
+  
+
+	
+
+ 
+ 
+var L1 = new Object; L1.x1 = a.x; L1.y1 = a.y; L1.x2 = c.x; L1.y2 = c.y;
+var L2 = new Object; L2.x1 = b.x; L2.y1 = b.y; L2.x2 = c.x; L2.y2 = c.y;
+
+//var q1 = new Object; var q2 = new Object;
+  
+
+line_circle(L1,c1,p1,p2);   line_circle(L2,c2,p3,p4);  
+inversion(p1,c3,q1); inversion(p3,c3,q2);
+
+
+//perp_to_line(a,b,L)
+
+
+
+
+
+
+  }
+  
+  function reset()
+  { a.x = -1.0; a.y = 0.0;
+    b.x = 3.0; b.y = 0.0;
+c.x=0; c.y=2.0;
+   
+  }
+	
+
+
+
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+  
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+    
+   //ctx.font="0.15px Verdana";
+     ctx.font="0.5px Verdana";
+    //ctx.fillText("A", a.x, a.y);  
+	
+    calc_points();
+	
+    draw_point(a,"red",N);
+    draw_point(b,"red",N);
+    draw_point(c,"red",N);
+
+    draw_arc_color(a,1.+0.3,0,2*3.14,"blue");
+    draw_arc_color(b,1.5+0.3,0,2*3.14,"blue");
+    draw_arc_color(c,+0.3,0,2*3.14,"blue");
+
+    
+   
+
+    if ( draw_stage == 0 ) return;
+   
+
+    if ( draw_stage == 1 ) return;
+
+   
+    
+   var t1 = new Object; var vt1 = new Object;    var qq2 = new Object;//
+    DtronColorWhite(u1,v1,q1); t1 = t; vt1.x=v1.x-t1.x; vt1.y=v1.y-t1.y;  // t1 la tam cua dtron di qua Q1 
+
+    draw_point(t,"white",N); 
+
+    
+
+  
+    DtronColorWhite(u2,v2,q2); qq2.x=t.x+vt1.x; qq2.y=t.y+vt1.y;
+
+    draw_point(t,"white",N);  
+
+ 
+
+    //draw_segment(qq2,t);  // t bay gio la tam cua dtron di qua Q2
+var n1 = new Object; var n2 = new Object;
+    var L3 = new Object; L3.x1 = t.x; L3.y1 = t.y; L3.x2 = qq2.x; L3.y2 = qq2.y;
+    d1.r = dist(t,q2); d1.x = t.x; d1.y = t.y;
+    line_circle(L3,d1,n1,n2); 
+var L4 = new Object; L4.x1 = v1.x; L4.y1 = v1.y; L4.x2 = n1.x; L4.y2 = n1.y;
+var L5 = new Object; L5.x1 = t1.x; L5.y1 = t1.y; L5.x2 = t.x; L5.y2 = t.y;
+ line_line(L4,L5,n2);   
+  d2.r=dist(t1,n2)/2; d2.x = (t1.x+n2.x)/2; d2.y = (t1.y+n2.y)/2;// k = dist(d2,t1); d3.r = k; d3.x=d2.x; d3.y=d2.y;
+ var m1 = new Object; var m2 = new Object; m2.x=0;m2.y=0;m2.label="M";
+ d3.r=dist(t1,v1); d3.x=t1.x;d3.y=t1.y;
+circle_circle(d2,d3,m1,m2);           
+//draw_point(m2,"black",N);
+
+var k = new Object; k.r=dist(t,m2)/2; k.x=(t.x+m2.x)/2;k.y=(t.y+m2.y)/2;
+var k1 = new Object; var k2 = new Object; k1.x=0;k1.y=0;k1.label="N";
+circle_circle(k,d1,k1,k2); 
+
+//draw_point(k1,"black",N);
+//draw_segment(m2,k1);
+
+//DrawDottedLine(m2,k1,40);
+
+
+
+
+
+var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="M'"; t2.x=0;t2.y=0;t2.label="N'";
+inversion(m2,c3,t1); inversion(k1,c3,t2); 
+
+
+DtronColorWhite(t1,t2,c);  
+   var o = new Object; o.x=t.x;o.y=t.y;o.label="O"; 
+
+
+//draw_point(o,"black",N);
+
+draw_arc_color(o,dist(o,c)-0.3,0,2*3.14,"green");
+
+if ( draw_stage == 2 ) return;
+
+
+
+var t1 = new Object; var vt1 = new Object;    var qq2 = new Object;//
+    DtronColorWhite(u1,v1,q1); t1 = t; vt1.x=v1.x-t1.x; vt1.y=v1.y-t1.y;  // t1 la tam cua dtron di qua Q1 
+
+    draw_point(t,"white",N); 
+
+    DtronColorWhite(u2,v2,q2); qq2.x=t.x+vt1.x; qq2.y=t.y+vt1.y;
+
+    draw_point(t,"white",N);  
+
+   
+var n1 = new Object; var n2 = new Object;
+    var L3 = new Object; L3.x1 = t.x; L3.y1 = t.y; L3.x2 = qq2.x; L3.y2 = qq2.y;
+    d1.r = dist(t,q2); d1.x = t.x; d1.y = t.y;
+    line_circle(L3,d1,n1,n2); 
+var L4 = new Object; L4.x1 = v1.x; L4.y1 = v1.y; L4.x2 = n1.x; L4.y2 = n1.y;
+var L5 = new Object; L5.x1 = t1.x; L5.y1 = t1.y; L5.x2 = t.x; L5.y2 = t.y;
+ line_line(L4,L5,n2);   
+  d2.r=dist(t1,n2)/2; d2.x = (t1.x+n2.x)/2; d2.y = (t1.y+n2.y)/2;// k = dist(d2,t1); d3.r = k; d3.x=d2.x; d3.y=d2.y;
+ var m1 = new Object; var m2 = new Object; m2.x=0;m2.y=0;m2.label="M";
+ d3.r=dist(t1,v1); d3.x=t1.x;d3.y=t1.y;
+circle_circle(d2,d3,m2,m1);           
+
+
+var k = new Object; k.r=dist(t,m2)/2; k.x=(t.x+m2.x)/2;k.y=(t.y+m2.y)/2;
+var k1 = new Object; var k2 = new Object; k1.x=0;k1.y=0;k1.label="N";
+circle_circle(k,d1,k2,k1); 
+
+//draw_point(k1,"black",N);
+//draw_segment(m2,k1);
+//DrawDottedLine(m2,k1,40);
+
+ 
+
+
+
+var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="M'"; t2.x=0;t2.y=0;t2.label="N'";
+inversion(m2,c3,t1); inversion(k1,c3,t2); 
+
+
+DtronColorWhite(t1,t2,c);  
+   var o = new Object; o.x=t.x;o.y=t.y;o.label="O"; 
+
+
+
+//draw_point(o,"black",N); draw_point(c,"red",N);
+
+draw_arc_color(o,dist(o,c)+0.3,0,2*3.14,"purple");
+
+
+if ( draw_stage == 3 ) return;
+
+
+c1.r = 1; c1.x = a.x; c1.y = a.y;
+	c2.r = 1.5+0.6; c2.x = b.x; c2.y = b.y;
+  c3.r = 2.5; c3.x = c.x; c3.y = c.y;
+	circle_circle(c1,c3,u1,v1);
+  circle_circle(c2,c3,u2,v2);
+
+   
+ 
+var L1 = new Object; L1.x1 = a.x; L1.y1 = a.y; L1.x2 = c.x; L1.y2 = c.y;
+var L2 = new Object; L2.x1 = b.x; L2.y1 = b.y; L2.x2 = c.x; L2.y2 = c.y;
+
+
+line_circle(L1,c1,p1,p2);   line_circle(L2,c2,p3,p4);  
+inversion(p1,c3,q1); inversion(p3,c3,q2);
+
+var t1 = new Object; var vt1 = new Object;    var qq2 = new Object;
+    DtronColorWhite(u1,v1,q1); t1 = t; vt1.x=v1.x-t1.x; vt1.y=v1.y-t1.y;  // t1 la tam cua dtron di qua Q1. Bỏ vẽ bằng vẽ màu trắng
+
+   
+  
+    DtronColorWhite(u2,v2,q2); qq2.x=t.x-vt1.x; qq2.y=t.y-vt1.y; // Bỏ vẽ bằng vẽ màu trắng
+
+    
+
+    //draw_segment(qq2,t);  // t bay gio la tam cua dtron di qua Q2
+var n1 = new Object; var n2 = new Object;
+    var L3 = new Object; L3.x1 = t.x; L3.y1 = t.y; L3.x2 = qq2.x; L3.y2 = qq2.y;
+    d1.r = dist(t,q2); d1.x = t.x; d1.y = t.y;
+    line_circle(L3,d1,n2,n1);  
+var L4 = new Object; L4.x1 = v1.x; L4.y1 = v1.y; L4.x2 = n1.x; L4.y2 = n1.y;
+var L5 = new Object; L5.x1 = t1.x; L5.y1 = t1.y; L5.x2 = t.x; L5.y2 = t.y;
+ line_line(L4,L5,n1);    
+  d2.r=dist(t1,n1)/2; d2.x = (t1.x+n1.x)/2; d2.y = (t1.y+n1.y)/2;// k = dist(d2,t1); d3.r = k; d3.x=d2.x; d3.y=d2.y;
+ var m1 = new Object; var m2 = new Object; m2.x=0;m2.y=0;m2.label="M";
+ d3.r=dist(t1,v1); d3.x=t1.x;d3.y=t1.y;
+circle_circle(d2,d3,m1,m2);           
+//draw_point(m2,"black",N);
+
+var k = new Object; k.r=dist(t,m2)/2; k.x=(t.x+m2.x)/2;k.y=(t.y+m2.y)/2;
+var k1 = new Object; var k2 = new Object; k1.x=0;k1.y=0;k1.label="N";
+circle_circle(k,d1,k2,k1);   
+
+//draw_point(k1,"black",N);
+//draw_segment(m2,k1);
+
+//DrawDottedLine(m2,k1,20);
+
+
+
+
+
+var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="M'"; t2.x=0;t2.y=0;t2.label="N'";
+inversion(m2,c3,t1); inversion(k1,c3,t2); 
+
+
+
+
+
+DtronColorWhite(t1,t2,c);  
+   var o = new Object; o.x=t.x;o.y=t.y;o.label="O"; 
+
+
+
+
+draw_point(c,"red",N);// Ve laij diem C. 
+
+draw_arc_color(o,dist(o,c)-0.3+0.02,0,2*3.15,"green");
+draw_arc_color(o,dist(o,c)-0.3,0,2*3.15,"green");
+draw_arc_color(o,dist(o,c)-0.3-0.02,0,2*3.15,"green");
+
+
+
+if ( draw_stage == 4 ) return;
+
+c1.r = 1; c1.x = a.x; c1.y = a.y;
+	c2.r = 1.5+0.6; c2.x = b.x; c2.y = b.y;
+  c3.r = 2.5; c3.x = c.x; c3.y = c.y;
+	circle_circle(c1,c3,u1,v1);
+  circle_circle(c2,c3,u2,v2);
+
+  
+
+	
+
+ 
+ 
+var L1 = new Object; L1.x1 = a.x; L1.y1 = a.y; L1.x2 = c.x; L1.y2 = c.y;
+var L2 = new Object; L2.x1 = b.x; L2.y1 = b.y; L2.x2 = c.x; L2.y2 = c.y;
+
+//var q1 = new Object; var q2 = new Object;
+  
+
+line_circle(L1,c1,p1,p2);   line_circle(L2,c2,p3,p4);  
+inversion(p1,c3,q1); inversion(p3,c3,q2);
+
+var t1 = new Object; var vt1 = new Object;    var qq2 = new Object;
+    DtronColorWhite(u1,v1,q1); t1 = t; vt1.x=v1.x-t1.x; vt1.y=v1.y-t1.y;  // t1 la tam cua dtron di qua Q1 
+
+   // draw_point(t,"white",N); 
+
+   
+
+  
+    DtronColorWhite(u2,v2,q2); qq2.x=t.x-vt1.x; qq2.y=t.y-vt1.y; // draw_point(qq2,"black",N);  
+
+    draw_point(t,"white",N);  
+
+    //draw_arc(b,1.5+0.6,0,2*3.14);   // Vẽ đè lên tâm của đường tròn nghịch đảo
+
+   
+    
+    //draw_segment(qq2,t);  // t bay gio la tam cua dtron di qua Q2
+var n1 = new Object; var n2 = new Object;      
+    var L3 = new Object; L3.x1 = t.x; L3.y1 = t.y; L3.x2 = qq2.x; L3.y2 = qq2.y;
+    d1.r = dist(t,q2); d1.x = t.x; d1.y = t.y;
+    line_circle(L3,d1,n2,n1);                //  draw_point(n1,"black",N);  
+var L4 = new Object; L4.x1 = v1.x; L4.y1 = v1.y; L4.x2 = n1.x; L4.y2 = n1.y; // draw_point(n1,"black",N);  
+var L5 = new Object; L5.x1 = t1.x; L5.y1 = t1.y; L5.x2 = t.x; L5.y2 = t.y;
+ line_line(L4,L5,n1);   // draw_point(n1,"black",N);      //    draw_line(t1,t);      
+  d2.r=dist(t1,n1)/2; d2.x = (t1.x+n1.x)/2; d2.y = (t1.y+n1.y)/2;// var x2 = new Object; x2.x=d2.x; x2.y=d2.y; draw_point(x2,"black",N);
+ var m1 = new Object; var m2 = new Object; m2.x=0;m2.y=0;m2.label="M";
+ d3.r=dist(t1,v1); d3.x=t1.x;d3.y=t1.y;
+circle_circle(d2,d3,m2,m1);           
+//draw_point(m2,"black",N);
+
+var k = new Object; k.r=dist(t,m2)/2; k.x=(t.x+m2.x)/2;k.y=(t.y+m2.y)/2;
+var k1 = new Object; var k2 = new Object; k1.x=0;k1.y=0;k1.label="N";
+circle_circle(k,d1,k1,k2);   
+
+//draw_point(k1,"black",N);
+
+
+//DrawDottedLine(m2,k1,20);
+
+
+
+
+
+var t1 = new Object;  t1.x=0;t1.y=0;t1.label="M'"; var t2 = new Object; t2.x=0;t2.y=0;t2.label="N'";
+inversion(m2,c3,t1); inversion(k1,c3,t2);
+
+
+
+//draw_point(t1,"black",S); draw_point(t2,"black",N);
+
+
+
+
+
+DtronColorWhite(t1,t2,c);  
+   var o = new Object; o.x=t.x;o.y=t.y;o.label="O"; 
+//draw_point(o,"black",N);
+
+draw_point(c,"red",N);
+
+
+draw_arc_color(o,dist(o,c)+0.3+0.02,0,2*3.15,"green");
+draw_arc_color(o,dist(o,c)+0.3,0,2*3.15,"green");
+draw_arc_color(o,dist(o,c)+0.3-0.02,0,2*3.15,"green");
+
+if ( draw_stage == 5 ) return;
+
+c1.r = 1.6; c1.x = a.x; c1.y = a.y;
+	c2.r = 2.1; c2.x = b.x; c2.y = b.y;
+  c3.r = 2.5; c3.x = c.x; c3.y = c.y;
+	circle_circle(c1,c3,u1,v1);
+  circle_circle(c2,c3,u2,v2);
+
+  
+
+	
+
+ 
+ 
+var L1 = new Object; L1.x1 = a.x; L1.y1 = a.y; L1.x2 = c.x; L1.y2 = c.y;
+var L2 = new Object; L2.x1 = b.x; L2.y1 = b.y; L2.x2 = c.x; L2.y2 = c.y;
+
+//var q1 = new Object; var q2 = new Object;
+  
+
+line_circle(L1,c1,p1,p2);   line_circle(L2,c2,p3,p4);  
+inversion(p1,c3,q1); inversion(p3,c3,q2);
+
+
+var t1 = new Object; var vt1 = new Object;    var qq2 = new Object;//
+    DtronColorWhite(u1,v1,q1); t1 = t; vt1.x=v1.x-t1.x; vt1.y=v1.y-t1.y;  // t1 la tam cua dtron di qua Q1 
+
+    draw_point(t,"white",N); 
+
+    
+  
+    DtronColorWhite(u2,v2,q2); qq2.x=t.x+vt1.x; qq2.y=t.y+vt1.y;
+
+    draw_point(t,"white",N);  
+
+   
+var n1 = new Object; var n2 = new Object;
+    var L3 = new Object; L3.x1 = t.x; L3.y1 = t.y; L3.x2 = qq2.x; L3.y2 = qq2.y;
+    d1.r = dist(t,q2); d1.x = t.x; d1.y = t.y;
+    line_circle(L3,d1,n1,n2); 
+var L4 = new Object; L4.x1 = v1.x; L4.y1 = v1.y; L4.x2 = n1.x; L4.y2 = n1.y;
+var L5 = new Object; L5.x1 = t1.x; L5.y1 = t1.y; L5.x2 = t.x; L5.y2 = t.y;
+ line_line(L4,L5,n2);   
+  d2.r=dist(t1,n2)/2; d2.x = (t1.x+n2.x)/2; d2.y = (t1.y+n2.y)/2;// k = dist(d2,t1); d3.r = k; d3.x=d2.x; d3.y=d2.y;
+ var m1 = new Object; var m2 = new Object; m2.x=0;m2.y=0;m2.label="M";
+ d3.r=dist(t1,v1); d3.x=t1.x;d3.y=t1.y;
+circle_circle(d2,d3,m1,m2);           
+
+
+var k = new Object; k.r=dist(t,m2)/2; k.x=(t.x+m2.x)/2;k.y=(t.y+m2.y)/2;
+var k1 = new Object; var k2 = new Object; k1.x=0;k1.y=0;k1.label="N";
+circle_circle(k,d1,k1,k2); 
+
+
+var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="M'"; t2.x=0;t2.y=0;t2.label="N'";
+inversion(m2,c3,t1); inversion(k1,c3,t2); 
+
+DtronColorWhite(t1,t2,c);  
+   var o = new Object; o.x=t.x;o.y=t.y;o.label="O"; 
+
+   draw_point(c,"red",N);
+draw_arc_color(o,dist(o,c)+0.3,0,2*3.14,"red");
+
+
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 700; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, -0.05, -0.15, -0.67, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.2, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  // Distance between two points
+  function dist(pt,qt)
+  { return Math.sqrt((pt.x-qt.x)*(pt.x-qt.x)+(pt.y-qt.y)*(pt.y-qt.y));
+  }
+  	
+  // swap coordinates of points
+  function swap(d,e)
+  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
+  
+  // Calculations of intersections
+  function line_line(a,b,p)
+  {
+    det = (a.x1-a.x2)*(b.y2-b.y1) - (a.y1-a.y2)*(b.x2-b.x1);
+    if ( det == 0 ) { p.x = null; p.y = null; return; }
+    lambda = ((b.x2-a.x2)*(b.y2-b.y1) - (b.x2-b.x1)*(b.y2-a.y2))/det;
+    p.x = lambda*a.x1 + (1-lambda)*a.x2; 
+    p.y = lambda*a.y1 + (1-lambda)*a.y2; 
+  }
+
+  function line_circle(a,c,p1,p2)  // a is line, c is circle
+  {
+    if ( Math.abs(a.y2-a.y1) < Math.abs(a.x2-a.x1) )
+    {
+      var m = (a.y2-a.y1)/(a.x2-a.x1);
+      var b = a.y1 - m*a.x1;
+      var bb = (c.x-m*b+c.y*m);
+      discr = bb*bb - (1+m*m)*(c.x*c.x + b*b - 2*c.y*b + c.y*c.y - c.r*c.r);
+      if ( discr < 0.0 ) { p1.x = null; p1.y = null; p2.x = null; p2.y = null; return; }
+      p1.x = (bb + Math.sqrt(discr))/(1+m*m);
+      p1.y = m*p1.x + b;
+      p2.x = (bb - Math.sqrt(discr))/(1+m*m);
+      p2.y = m*p2.x + b;
+    }
+    else
+    {
+      var m = (a.x2-a.x1)/(a.y2-a.y1);
+      var b = a.x1 - m*a.y1;
+      var bb = (c.y-m*b+c.x*m);
+      discr = bb*bb - (1+m*m)*(c.y*c.y + b*b - 2*c.x*b + c.x*c.x - c.r*c.r);
+      if ( discr < 0.0 ) { p1.x = null; p1.y = null; p2.x = null; p2.y = null; return; }
+      p1.y = (bb + Math.sqrt(discr))/(1+m*m);
+      p1.x = m*p1.y + b;
+      p2.y = (bb - Math.sqrt(discr))/(1+m*m);
+      p2.x = m*p2.y + b;
+    }
+  }
+
+  function circle_circle(a,b,p1,p2)
+  {
+    var d = Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
+    if ( (d==0) || (d > a.r+b.r) || (d < Math.abs(a.r-b.r)) ) { p1.x = null; p1.y = null; p2.x = null; p2.y = null; return; }
+    var aa = (a.r*a.r - b.r*b.r + d*d)/2/d;
+    var h = Math.sqrt(a.r*a.r - aa*aa);
+    p1.x = a.x + aa/d*(b.x-a.x) + h/d*(b.y-a.y);
+    p1.y = a.y + aa/d*(b.y-a.y) - h/d*(b.x-a.x);
+    p2.x = a.x + aa/d*(b.x-a.x) - h/d*(b.y-a.y);
+    p2.y = a.y + aa/d*(b.y-a.y) + h/d*(b.x-a.x);
+      
+  }    
+
+  function perp_to_line(a,b,L)  // perp at point a; b is other point on line; L is output line
+  {
+    L.x1 = a.x; L.y1 = a.y;
+    L.x2 = a.x + (b.y-a.y); L.y2 = a.y - (b.x-a.x);
+  }
+
+  function off_perp_to_line(a,LA,LB)  // perp through point a to line LA; LB is output
+  { LB.x1 = a.x; LB.y1 = a.y;
+    LB.x2 = a.x+(LA.y2-LA.y1);
+    LB.y2 = a.y-(LA.x2-LA.x1);
+  }
+
+  function inversion(p,c,q)  // inversion of point p in circle c, result q
+  { q.x = c.x + (p.x-c.x)*c.r*c.r/dist(p,c)/dist(p,c);
+    q.y = c.y + (p.y-c.y)*c.r*c.r/dist(p,c)/dist(p,c);
+  }
+  
+  function draw_point(pt,color,offset)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.03;
+    ctx.arc(pt.x,pt.y,point_radius,0,2*Math.PI,true);
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+
+
+  
+  function draw_p1(pt,color,offset)   // Vẽ điểm với độ đậm 0.003
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.003;      // Vẽ điểm với độ đậm 0.003
+    ctx.arc(pt.x,pt.y,point_radius,0,2*Math.PI,true);
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+
+
+  function Dtron(pt1,pt2,pt3)
+  {
+
+    var m1 = new Object;
+    var m2 = new Object;
+    var ta = new Object; ta.x = 0.0; ta.y = 0.0 ; ta.label = " "; // để trống tên của tâm d tròn
+    //var dt1 = new Object; dt1.x1 = pt1.x; dt1.y1 = pt1.y; dt1.x2 = pt2.x; dt1.y2 = pt2.y;
+var td1 = new Object; td1.x = (pt1.x+pt2.x)/2;  td1.y = (pt1.y+pt2.y)/2;
+perp_to_line(td1,pt1,m1);
+
+//var dt2 = new Object; dt2.x1 = pt1.x; dt2.y1 = pt1.y; dt2.x2 = pt3.x; dt2.y2 = pt3.y;
+var td2 = new Object; td2.x = (pt1.x+pt3.x)/2;  td2.y = (pt1.y+pt3.y)/2;
+perp_to_line(td2,pt1,m2);
+  
+
+line_line(m1,m2,ta);
+draw_point(ta,"black",N);
+
+var bk = dist(ta,pt1);
+          draw_arc(ta,bk,0,2*3.14);
+           ctx.stroke(); t=ta;
+        }
+
+        function DtronColor(pt1,pt2,pt3)
+  {
+
+    var m1 = new Object;
+    var m2 = new Object;
+    var ta = new Object; ta.x = 0.0; ta.y = 0.0 ; ta.label = " "; // để trống tên của tâm d tròn
+    //var dt1 = new Object; dt1.x1 = pt1.x; dt1.y1 = pt1.y; dt1.x2 = pt2.x; dt1.y2 = pt2.y;
+var td1 = new Object; td1.x = (pt1.x+pt2.x)/2;  td1.y = (pt1.y+pt2.y)/2;
+perp_to_line(td1,pt1,m1);
+
+//var dt2 = new Object; dt2.x1 = pt1.x; dt2.y1 = pt1.y; dt2.x2 = pt3.x; dt2.y2 = pt3.y;
+var td2 = new Object; td2.x = (pt1.x+pt3.x)/2;  td2.y = (pt1.y+pt3.y)/2;
+perp_to_line(td2,pt1,m2);
+  
+
+line_line(m1,m2,ta);
+draw_point(ta,"black",N);
+
+var bk = dist(ta,pt1);
+          draw_arc_color(ta,bk,0,2*3.14,"red");
+           ctx.stroke(); t=ta;
+        }
+
+        function DtronColorWhite(pt1,pt2,pt3)
+  {
+
+    var m1 = new Object;
+    var m2 = new Object;
+    var ta = new Object; ta.x = 0.0; ta.y = 0.0 ; ta.label = " "; // để trống tên của tâm d tròn
+    //var dt1 = new Object; dt1.x1 = pt1.x; dt1.y1 = pt1.y; dt1.x2 = pt2.x; dt1.y2 = pt2.y;
+var td1 = new Object; td1.x = (pt1.x+pt2.x)/2;  td1.y = (pt1.y+pt2.y)/2;
+perp_to_line(td1,pt1,m1);
+
+//var dt2 = new Object; dt2.x1 = pt1.x; dt2.y1 = pt1.y; dt2.x2 = pt3.x; dt2.y2 = pt3.y;
+var td2 = new Object; td2.x = (pt1.x+pt3.x)/2;  td2.y = (pt1.y+pt3.y)/2;
+perp_to_line(td2,pt1,m2);
+  
+
+line_line(m1,m2,ta);
+draw_point(ta,"white",N);
+
+var bk = dist(ta,pt1);
+          draw_arc_color(ta,bk,0,2*3.14,"white");
+           ctx.stroke(); t=ta;
+        }
+
+
+
+  function DrawDottedLine(pt,qt,dotCount){
+          var dx = qt.x-pt.x;
+          var dy = qt.y-pt.y;
+          var spaceX = dx/(dotCount-1);
+          var spaceY = dy/(dotCount-1);
+          var newX = pt.x;
+          var newY = pt.y;
+          var mm = new Object; mm.x = newX; mm.y = newY;
+          for (var i=0; i < dotCount; i++){
+                  draw_p1(mm,"black");
+                  newX = newX + spaceX;
+                  newY = newY + spaceY;  
+                  mm.x = newX; 
+                  mm.y = newY;            
+           }
+           ctx.stroke(); 
+        }
+
+
+  function draw_segment(pt,qt, color="black")
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+
+ function draw_line(pt,qt) // to beyond boundaries of canvas; point-point version
+ { var y_right;
+   var y_left;
+   var x_top;
+   var x_left;
+   var found = false;
+   var lambda1;
+   var lambda2;
+   lambda_high = 1e10;
+   lambda_low = -1e10;
+   if ( qt.x != pt.x )
+   { lambda_right = (xright - pt.x)/(qt.x-pt.x);
+     lambda_left = (xleft - pt.x)/(qt.x-pt.x); 
+	 if ( lambda_right > lambda_left ) { lambda_high = lambda_right; lambda_low = lambda_left;}
+	 else { lambda_high = lambda_left; lambda_low = lambda_right;}
+   }
+   if ( qt.y != pt.y )
+   { lambda_top = (ytop - pt.y)/(qt.y-pt.y);
+     x_top = lambda_top*pt.x + (1-lambda_top)*qt.x;
+     if ( x_top > xleft && x_top < xright ) { if ( found ) lambda2 = lambda_top; else {lambda1 = lambda_top; found=true; }}
+     lambda_bottom = (ybottom - pt.y)/(qt.y-pt.y);
+     x_bottom = lambda_bottom*pt.x + (1-lambda_bottom)*qt.x;
+     if ( x_bottom > xleft && x_bottom < xright ) { if ( found ) lambda2 = lambda_top; else {lambda1 = lambda_top; found=true; }}
+	 
+	 if ( lambda_top > lambda_bottom )
+	 { if ( lambda_top < lambda_high ) lambda_high = lambda_top;
+       if ( lambda_bottom > lambda_low ) lambda_low = lambda_bottom;
+	 }
+	 else
+	 { if ( lambda_bottom < lambda_high ) lambda_high = lambda_bottom;
+       if ( lambda_top > lambda_low ) lambda_low = lambda_top;
+	 }
+		 
+   }
+   if ( lambda_high < lambda_low ) return;
+   
+   ctx.beginPath();
+   ctx.strokeStyle="black";
+   ctx.lineWidth = 0.02;
+   ctx.moveTo(pt.x+lambda_high*(qt.x-pt.x),pt.y+lambda_high*(qt.y-pt.y));
+   ctx.lineTo(pt.x+lambda_low*(qt.x-pt.x),pt.y+lambda_low*(qt.y-pt.y));
+   ctx.stroke();
+ }
+
+
+ function draw_line_L(L) // to beyond boundaries of canvas. Line object version
+ {
+   lambda_high = 1e10;
+   lambda_low = -1e10;
+   if ( L.x2 != L.x1 )
+   { lambda_right = (xright - L.x1)/(L.x2-L.x1);
+     if ( lambda_right >= 0 && lambda_right < lambda_high ) lambda_high = lambda_right;
+     if ( lambda_right <= 0 && lambda_right > lambda_low ) lambda_low = lambda_right;
+     lambda_left = (xleft - L.x1)/(L.x2-L.x1);
+     if ( lambda_left >= 0 && lambda_left < lambda_high ) lambda_high = lambda_left;
+     if ( lambda_left <= 0 && lambda_left > lambda_low ) lambda_low = lambda_left;
+   }
+   if ( L.y2 != L.y1 )
+   { lambda_top = (ytop - L.y1)/(L.y2-L.y1);
+     if ( lambda_top >= 0 && lambda_top < lambda_high ) lambda_high = lambda_top;
+     if ( lambda_top <= 0 && lambda_top > lambda_low ) lambda_low = lambda_top;
+     lambda_bottom = (ybottom - L.y1)/(L.y2-L.y1);
+     if ( lambda_bottom >= 0 && lambda_bottom < lambda_high ) lambda_high = lambda_bottom;
+     if ( lambda_bottom <= 0 && lambda_bottom > lambda_low ) lambda_low = lambda_bottom;
+   }
+   ctx.beginPath();
+   ctx.strokeStyle="black";
+   ctx.lineWidth = 0.02;
+   ctx.moveTo(L.x1+lambda_high*(L.x2-L.x1),L.y1+lambda_high*(L.y2-L.y1));
+   ctx.lineTo(L.x1+lambda_low*(L.x2-L.x1),L.y1+lambda_low*(L.y2-L.y1));
+   ctx.stroke();
+ }
+
+  function draw_ray(pt,qt) // to beyond boundaries of canvas, pt is tail
+  {found = false;
+   lambda_high = 1e10;
+   lambda_low = -1e10;
+   if ( qt.x != pt.x )
+   { lambda_right = (xright - pt.x)/(qt.x-pt.x);
+     lambda_left = (xleft - pt.x)/(qt.x-pt.x); 
+	 if ( lambda_right > lambda_left ) { lambda_high = lambda_right; lambda_low = lambda_left;}
+	 else { lambda_high = lambda_left; lambda_low = lambda_right;}
+   }
+   if ( qt.y != pt.y )
+   { lambda_top = (ytop - pt.y)/(qt.y-pt.y);
+     x_top = lambda_top*pt.x + (1-lambda_top)*qt.x;
+     if ( x_top > xleft && x_top < xright ) { if ( found ) lambda2 = lambda_top; else {lambda1 = lambda_top; found=true; }}
+     lambda_bottom = (ybottom - pt.y)/(qt.y-pt.y);
+     x_bottom = lambda_bottom*pt.x + (1-lambda_bottom)*qt.x;
+     if ( x_bottom > xleft && x_bottom < xright ) { if ( found ) lambda2 = lambda_top; else {lambda1 = lambda_top; found=true; }}
+	 
+	 if ( lambda_top > lambda_bottom )
+	 { if ( lambda_top < lambda_high ) lambda_high = lambda_top;
+       if ( lambda_bottom > lambda_low ) lambda_low = lambda_bottom;
+	 }
+	 else
+	 { if ( lambda_bottom < lambda_high ) lambda_high = lambda_bottom;
+       if ( lambda_top > lambda_low ) lambda_low = lambda_top;
+	 }
+		 
+   }
+
+   if ( lambda_low < 0.0 ) lambda_low = 0.0;
+   if ( lambda_high < lambda_low ) return;
+
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+lambda_high*(qt.x-pt.x),pt.y+lambda_high*(qt.y-pt.y));
+    ctx.lineTo(pt.x,pt.y);
+    ctx.stroke();
+  }
+
+  function draw_arc(pt,radius,start_angle,end_angle)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+radius*Math.cos(start_angle),pt.y+radius*Math.sin(start_angle));
+    ctx.arc(pt.x,pt.y,radius,start_angle,end_angle,false);
+    ctx.stroke();
+  }
+
+  function draw_arc_color(pt,radius,start_angle,end_angle,c)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=c;
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+radius*Math.cos(start_angle),pt.y+radius*Math.sin(start_angle));
+    ctx.arc(pt.x,pt.y,radius,start_angle,end_angle,false);
+    ctx.stroke();
+  }
+
+  function ddraw(stage) { draw_stage = stage; draw(); }
+  
+/*****************************************************************************************************/
+
+  function handleMouseDown(event)
+  {
+    var rect = canvas.getBoundingClientRect();
+    if ( event.button == 0 ) // left button
+    {
+	  // Translate to world coordinates
+      var x = (event.clientX-rect.left)/scale - xtrans;
+      var y = (event.clientY-rect.top)/scale - ytrans;
+
+	  // see if mouse is sufficiently near one of the movable points
+	  moving_point = null;
+	  for ( var n = 0 ; n < movable_pts.length ; n++ )
+	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
+		  { moving_point = movable_pts[n];
+	        mouse_down_flag = true;
+	        break;
+		  }	  
+	  }
+     
+    }
+    else if ( event.button == 2 )  // right button
+    {
+    }
+  }
+/*****************************************************************************************************/
+
+ function handleMouseUp(event)
+ {
+   mouse_down_flag = false;
+ }
+/*************************************************************************************************/
+
+  function handleMouseMove(event)   // event.target is the canvas.
+  {
+
+    if (!mouse_down_flag || moving_point==null)
+    {
+      return;
+    }
+
+    var rect = canvas.getBoundingClientRect();
+	
+	// Translate to world coordinates
+    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
+    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
+
+ 
+    draw();
+ }
+
+// ket thuc pham ma them vao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+<H3>Sử dụng Compass và thước kẻ<br>
+Dựng đường tròn tiếp xúc với 3 đường tròn cho trước.  </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="850" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+ 
+
+    <body style="margin: 0px;">
+      <div>
+          <p style="margin:25px;font-size: 30px;font-style: bold;font-weight: bold;">Cách dựng</p>
+      </div>
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"> Bắt đầu: cho trước 3 đường tròn (A), (B), (C). <br>
+ 
+
+ <input type="radio" name="step" onclick="ddraw(2)" value="3"> 1. Vẽ đường tròn 1. <br>
+ 
+ 
+ <input type="radio" name="step" onclick="ddraw(3)" value="3"> 2. Vẽ đường tròn 2. <br>
+ 
+ 
+ <input type="radio" name="step" onclick="ddraw(4)" value="3"> 3. Vẽ đường tròn 3. <br>
+ 
+ 
+ <input type="radio" name="step" onclick="ddraw(5)" value="3"> 4. Vẽ đường tròn 4. <br>
+ 
+
+ <input type="radio" name="step" onclick="ddraw(6)" value="3"> 5. Vẽ đường tròn 5. <br>
+ 
+<input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">
+ <tr><td> 
+
+
+
+
+</table>
+
+
+</table>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d'); 
+   draw(10);
+
+  
+</script>
+
+
+<div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"><a target="_blank" title="www.susqu.edu" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/">Susquehanna University</a> assumes no responsibility for the content of this personal website.  Please read the <a target="_blank" title="http://www.susqu.edu//about-su/policies#disclaimer" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/about-su/policies#disclaimer">disclaimer</a>.</div></body>
+</html>
