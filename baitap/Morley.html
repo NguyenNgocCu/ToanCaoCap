@@ -1,0 +1,603 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  
+ 
+    <style type="text/css">            
+        .abc{
+           font-weight: normal;
+        }
+        .bold{
+           font-weight: bold;  
+        }
+    </style> 
+
+
+
+
+
+<title>1. Định lí Morley </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="rc-common.js"></script>
+<script type="application/javascript"></script>
+
+ <script>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+  // Point objects, fields x,y,label
+  var r = 2;
+  
+
+   var a = new Object;  a.x = -2.0; a.y = 2.0 -0.6 ; a.label = "A";
+   var b = new Object;  b.x = 3.0; b.y = 2.0 -0.6 ; b.label = "B";
+
+  // var a1 = new Object;  a1.x = 0.0; a1.y = -1.732 ; a1.label = "M";
+  // var b1 = new Object;  b1.x = 2.0; b1.y = -1.732 ; b1.label = "N";
+
+   var c = new Object;  c.x = -0.9434; c.y = -1.9434 -0.6 ; c.label = "C";
+
+  var m = new Object;  m.x = -0.1754; m.y = 2.0-0.8508 -0.6 ; m.label = "X";
+  var n = new Object;  n.x = -0.7303; n.y = 2.0-1.5127 -0.6 ; n.label = "Y";
+  
+  var p = new Object;  p.x = 0.1201; p.y = 2.0-1.6627 -0.6; p.label = "Z";
+  var m1 = new Object;  m1.x = -1.5947; m1.y = 2.0 -1.5127 -0.6 ; m1.label = "Z'";
+  var m2 = new Object;  m2.x = -1.4789; m2.y = 2.0 -1.9447 -0.6 ; m2.label = "X'";
+
+  var p1 = new Object;  p1.x = -0.1754+0.16; p1.y = 2.0 -0.6 ; p1.label = " ";
+  var p2 = new Object;  p2.x = -0.1754-0.16; p2.y = 2.0 -0.6; p2.label = " ";
+
+  var q1 = new Object;  q1.x = 0.7466-0.09; q1.y = -0.8534-0.09 ; q1.label = " ";
+  var q2 = new Object;  q2.x = 0.7466+0.09; q2.y = -0.8534+0.09; q2.label = " ";
+
+  var c1 = new Object;  // circles
+  var c2 = new Object;
+
+
+
+
+  
+  //var movable_pts = [a,b];
+  
+  function calc_points()
+  { //r = 2;
+     //dist(a,b)*2/3; 
+  //  c1.r = r; c1.x = a.x; c1.y = a.y;
+	//c2.r = r; c2.x = b.x; c2.y = b.y;
+	//circle_circle(c1,c2,c,d)
+  }
+  
+ 
+  function reset()
+  { m.x = -0.1754; m.y = 1.1492 -0.6;
+    n.x = -0.7303; n.y = 0.4873 -0.6;
+    p.x = 0.1201; p.y = 0.3373 -0.6;
+  
+  }
+	
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+
+    ctx.font = "0.50px Verdana"; 
+
+    
+    
+   // ctx.font="0.15px Verdana";
+	
+    calc_points();
+	
+    draw_point(m,"red",S);
+    draw_point(n,"red",S);
+    draw_point(p,"red",N);
+
+    draw_segment(m,n);
+    
+    draw_segment(n,p);
+    
+    draw_segment(m,p);
+   
+
+    if ( draw_stage == 0 ) return;
+
+
+    if ( draw_stage == 1 ) return;
+
+    draw_point(a,"black",S);   // a.label="a";       draw_point(a,"black",NE);  
+
+draw_segment(m,a);
+
+draw_segment(n,a);
+
+if ( draw_stage == 2 ) return;
+
+
+draw_point(b,"black",S);
+
+draw_segment(m,b);
+
+draw_segment(b,p);
+
+if ( draw_stage == 3 ) return;
+
+
+draw_point(c,"black",S);
+
+draw_segment(p,c);
+
+draw_segment(n,c);
+
+
+if ( draw_stage == 4 ) return;
+
+draw_point(m1,"black",W);
+
+    
+
+   if ( draw_stage == 5 ) return;
+
+   draw_point(m2,"black",W);
+
+//DrawDottedLine(b1,e,20)
+
+//DrawDottedLine(e,b,20);
+ //draw_point(e,"red",S);
+    
+  
+
+
+
+
+
+ if ( draw_stage == 6 ) return;
+
+ draw_segment(c,m2);
+
+
+
+
+
+  
+
+    if ( draw_stage == 7 ) return;
+
+    DrawDottedLine(m1,m2,10);
+
+    if ( draw_stage == 8 ) return;
+
+    DrawDottedLine(m1,n,15);
+  
+    DrawDottedLine(m2,n,15);
+    if ( draw_stage == 9 ) return;
+
+    DrawDottedLine(m1,a,15);
+
+  
+    
+ 
+
+    
+
+
+    if ( draw_stage == 10 ) return;
+
+    draw_point(p1,"black",S);
+    DrawDottedLine(p1,m,15);
+    
+
+    if ( draw_stage == 11 ) return;
+    
+    draw_point(p2,"black",S);
+    
+    DrawDottedLine(p2,m,15);
+    
+
+    if ( draw_stage == 12 ) return;
+    
+    draw_segment(a,b);
+    if ( draw_stage == 13 ) return;
+
+    draw_segment(c,b);
+   
+
+    draw_point(q1,"black",S);
+
+    draw_point(q2,"black",S);
+    
+    DrawDottedLine(q2,p,15);
+    DrawDottedLine(q1,p,15);
+
+   // draw_segment(c,e);
+    //DrawDottedLine(c,o,20);
+   // DrawDottedLine(c,e,35);
+
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 600; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.3,  0.07,  -0.05, 0.06,  -0.45,  0.05, -0.13];
+  var offy = [-0.15,  -0.3,  0.05,  -0.15,  0.27,  0.05,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+  // swap coordinates of points
+  function swap(d,e)
+  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
+  
+ 
+ 
+  
+  function draw_point(pt,color,offset)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.03;
+    ctx.arc(pt.x,pt.y,point_radius,0,2*Math.PI,true);
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+  
+  
+
+  function draw_p1(pt,color,offset)   
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.003;      
+    ctx.arc(pt.x,pt.y,point_radius-0.01,0,2*Math.PI,true); 
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+
+
+
+
+  function DrawDottedLine(pt,qt,dotCount){
+          var dx = qt.x-pt.x;
+          var dy = qt.y-pt.y;
+          var spaceX = dx/(dotCount-1);
+          var spaceY = dy/(dotCount-1);
+          var newX = pt.x;
+          var newY = pt.y;
+          var mm = new Object; mm.x = newX; mm.y = newY;
+          for (var i=0; i < dotCount; i++){
+                  draw_p1(mm,"black");
+                  newX = newX + spaceX;
+                  newY = newY + spaceY;  
+                  mm.x = newX; 
+                  mm.y = newY;            
+           }
+           ctx.stroke(); 
+        }
+        
+
+
+
+//ctx.setLineDash(segments);
+
+
+
+
+
+
+
+  function draw_segment(pt,qt, color="black")   
+  {
+
+ 
+
+ 
+
+ var ctx = canvas.getContext('2d');
+
+ 
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+  
+  function draw_segmentWh(pt,qt, color="white")   // Để che các đoạn thẳng đã có trước
+  {
+
+ 
+ var ctx = canvas.getContext('2d');
+
+
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+  
+    ctx.lineWidth = 0.05;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+
+
+
+
+  
+
+  function draw_arc(pt,radius,start_angle,end_angle)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+radius*Math.cos(start_angle),pt.y+radius*Math.sin(start_angle));
+    ctx.arc(pt.x,pt.y,radius,start_angle,end_angle,false);
+    ctx.stroke();
+  }
+
+  
+
+  function ddraw(stage) { draw_stage = stage; draw(); }
+  
+/*****************************************************************************************************/
+
+  function handleMouseDown(event)
+  {
+    var rect = canvas.getBoundingClientRect();
+    if ( event.button == 0 ) // left button
+    {
+	  // Translate to world coordinates
+      var x = (event.clientX-rect.left)/scale - xtrans;
+      var y = (event.clientY-rect.top)/scale - ytrans;
+
+	  // see if mouse is sufficiently near one of the movable points
+	  moving_point = null;
+	  for ( var n = 0 ; n < movable_pts.length ; n++ )
+	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
+		  { moving_point = movable_pts[n];
+	        mouse_down_flag = true;
+	        break;
+		  }	  
+	  }
+     
+    }
+    else if ( event.button == 2 )  // right button
+    {
+    }
+  }
+/*****************************************************************************************************/
+
+ function handleMouseUp(event)
+ {
+   mouse_down_flag = false;
+ }
+/*************************************************************************************************/
+
+  function handleMouseMove(event)   // event.target is the canvas.
+  {
+
+    if (!mouse_down_flag || moving_point==null)
+    {
+      return;
+    }
+
+    var rect = canvas.getBoundingClientRect();
+	
+	// Translate to world coordinates
+    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
+    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
+
+ 
+    draw();
+ }
+
+// ket thuc pham ma them vao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+<H3>Định lí Morley và một cách chứng minh đẹp.  </H3>
+<br>
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+  <tr>
+  <td>
+     Đề bài:
+    Cho tam giác ABC. Chia mỗi góc thành 3 phần bằng nhau bởi các tia như hình bên. Các góc của tam giác ABC lần lượt bằng 3a, 3b, 3c. Chứng minh tam giác XYZ được tạo thành là tam giác đều (xem hình vẽ). <br> 
+    Ta sẽ cm bằng pp ngược. Giả sử tam giác XYZ đều. Kí hiệu a<sup>*</sup>=a+60<sup>0</sup>,  b<sup>*</sup>=b+60<sup>0</sup>, c<sup>*</sup>=c+60<sup>0</sup>.<br>
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">   Tam giác XYZ là tam giác đều có cạnh tùy ý. <br>
+ <input type="radio" name="step" onclick="ddraw(2)" value="0"> 1. Dựng tam giác AXY với các góc lần lượt a, b<sup>*</sup>, c<sup>*</sup>.<br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="0"> 2. Dựng tam giác BZX với các góc lần lượt b, c<sup>*</sup>, a<sup>*</sup>. <br>
+ <input type="radio" name="step" onclick="ddraw(4)" value="0"  id="start"> 3. Dựng tam giác CYZ với các góc lần lượt c, a<sup>*</sup>, b<sup>*</sup>.<br>
+ <input type="radio" name="step" onclick="ddraw(5)" value="0"  id="start"> 4. Z' là điểm đối xứng với Z qua CY.<br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="0"  id="start"> 5. X' là điểm đối xứng với X qua AY.  <br>
+ 
+ 
+
+ 
+
+
+ 
+ 
+ <input type="radio" name="step" onclick="ddraw(8)" value="0"  id="start"> 6. Ba điểm C, X', Z' thẳng hàng.  <br>
+
+ <input type="radio" name="step" onclick="ddraw(9)" value="0"  id="start"> 7. Thật vậy, xét các góc tam giác CYX' ta được:<br>
+
+ <br>
+ 
+ Góc ngoài X' bằng tổng 2 góc trong. Suy ra  đ.p.c.m.<br> 
+
+ <br>
+ <input type="radio" name="step" onclick="ddraw(10)" value="0"  id="start"> 8. Tương tự 3 điểm A, Z', X' cũng thẳng hàng.<br>
+
+
+ <input type="radio" name="step" onclick="ddraw(11)" value="0"  id="start"> 9. Dựng điểm đối xứng với Y qua AX.<br>
+
+ <input type="radio" name="step" onclick="ddraw(12)" value="0"  id="start"> 10. Dựng điểm đối xứng với Z qua BX.<br>
+
+
+ <input type="radio" name="step" onclick="ddraw(13)" value="0"  id="start"> 11. Các điểm vừa dựng nằm trên cạnh AB.<br>
+
+
+
+<br>
+
+ <input type="radio" name="step" onclick="ddraw(14)" value="0"> Tương tự như thế với cạnh BC, ta hoàn thành việc  CHỨNG MINH:   <br>
+
+ <br>
+ 
+ Các góc của tam giác ABC lần lượt bằng 3a, 3b, 3c.
+
+ <br>
+
+ <br>
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(20);
+
+</script>
+
+
+<div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"><a target="_blank" title="www.susqu.edu" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/">Susquehanna University</a> assumes no responsibility for the content of this personal website.  Please read the <a target="_blank" title="http://www.susqu.edu//about-su/policies#disclaimer" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/about-su/policies#disclaimer">disclaimer</a>.</div></body>
+</html>
+
+
+
+
+
+
