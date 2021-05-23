@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script><meta charset="UTF-8">
+
+  
+ 
+    <style type="text/css">            
+        .abc{
+           font-weight: normal;
+        }
+        .bold{
+           font-weight: bold;  
+        }
+    </style> 
+
+
+
+
+
+<title>1. Dựng tiếp tuyến </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="rc-common.js"></script>
+<script type="application/javascript"></script>
+
+ <script>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+  // Point objects, fields x,y,label
+  var a = new Object;  a.x = -1.0; a.y = 0.0 ; a.label = "A";
+   var b = new Object;  b.x = 2.0; b.y = 0.0 ; b.label = "B";
+
+   var c = new Object;  c.x = 0.0; c.y = 0.0 ; c.label = "C";
+
+  var d = new Object;  d.x = 0.0; d.y = 0.0 ; d.label = "D";
+  var e = new Object;  e.x = 0.0; e.y = 0.0 ; e.label = "E";
+  var m = new Object;  m.x = 0.0; m.y = 0.0 ; m.label = "M";
+
+  var n = new Object;  n.x = 0.0; n.y = 0.0 ; n.label = "N";
+
+  var c1 = new Object;  // circles
+  var c2 = new Object;
+  var d1 = new Object;  // circles
+  var d2 = new Object;
+  var k1 = new Object;  // circles
+  var k2 = new Object;
+
+  var u = new Object;  u.x = 0.0; u.y = 0.0 ; u.label = "U";
+   var v = new Object;  v.x = 0.0; v.y = 0.0 ; v.label = "V";
+
+   var o = new Object;  o.x = 0.0; o.y = 0.0 ; o.label = "O";
+  // var v2 = new Object;  v2.x = 0.0; v2.y = 0.0 ; v2.label = "V";
+
+  var p = new Object;  p.x = 0.0; p.y = 0.0 ; p.label = "P";
+  var q = new Object;  q.x = 0.0; q.y = 0.0 ; q.label = "Q";
+  
+  function calc_points()
+  { r = 1.0;  
+    c1.r = 1.0; c1.x = a.x; c1.y = a.y;
+	
+	  draw_arc(a,1,0,2*3.15);
+
+
+  }
+ 
+  function reset()
+  { a.x = -1.0; a.y = 0.0;
+    b.x = 2.0; b.y = 0.0;
+  
+  
+  }
+	
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+
+    ctx.font = "0.50px Verdana"; 
+
+    
+    
+   // ctx.font="0.15px Verdana";
+	
+    calc_points();
+	
+    draw_point(a,"black",S);
+    draw_point(b,"red",S);
+
+    //draw_segment(a,b);
+    
+   
+    
+   
+   
+
+    if ( draw_stage == 0 ) return;
+
+
+    if ( draw_stage == 1 ) return;
+
+  
+
+var h = 3.14-0.2;  c.x = b.x + Math.cos(h); c.y = b.y + Math.sin(h); //  draw_point(c,"black",S);
+ 
+draw_ray(b,c);
+ 
+    
+     var L1 = new Object;
+     L1.x1 = c.x; L1.y1 = c.y; L1.x2 = b.x; L1.y2 = b.y; 
+line_circle(L1,c1,u,v);
+
+draw_point(u,"black",S); draw_point(v,"black",S);
+
+if ( draw_stage == 2 ) return;
+
+var h1 = -(3.14-0.3);  d.x = b.x + Math.cos(h1); d.y = b.y + Math.sin(h1);  // draw_point(d,"black",S);
+ 
+draw_ray(b,d);
+ 
+    
+     var L2 = new Object;
+     L2.x1 = d.x; L2.y1 = d.y; L2.x2 = b.x; L2.y2 = b.y; 
+line_circle(L2,c1,m,n);
+
+draw_point(m,"black",S); draw_point(n,"black",S);
+
+
+if ( draw_stage == 3 ) return;
+
+draw_ray(v,n);  draw_segment(m,u); 
+draw_ray(u,m);    draw_segment(n,v); 
+var L3 = new Object; 
+L3.x1 = u.x; L3.y1 = u.y; L3.x2 = m.x; L3.y2 = m.y; 
+var L4 = new Object; 
+L4.x1 = v.x; L4.y1 = v.y; L4.x2 = n.x; L4.y2 = n.y; 
+line_line(L3,L4,d); draw_point(d,"black",S);
+
+if ( draw_stage == 4 ) return;
+var L5 = new Object; 
+L5.x1 = u.x; L5.y1 = u.y; L5.x2 = n.x; L5.y2 = n.y; 
+
+var L6 = new Object; 
+L6.x1 = v.x; L6.y1 = v.y; L6.x2 = m.x; L6.y2 = m.y; 
+
+draw_segment(n,u);  draw_segment(m,v); 
+
+line_line(L5,L6,e); draw_point(e,"black",S);
+
+
+   if ( draw_stage == 5 ) return;
+   var L7 = new Object; 
+L7.x1 = d.x; L7.y1 = d.y; L7.x2 = e.x; L7.y2 = e.y; 
+
+//DrawDottedLine(d,e,20)
+
+line_circle(L7,c1,p,q); draw_point(p,"black",S); draw_point(q,"black",N);
+    
+draw_segment(d,p); 
+
+
+if ( draw_stage == 6 ) return;
+draw_segment(b,p,"blue"); draw_segment(b,q,"blue"); 
+ 
+
+
+
+
+
+  
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 600; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, 0.06, -0.15, -0.17, -0.23];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.15];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+  // swap coordinates of points
+  function swap(d,e)
+  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
+  
+ 
+  function dist(pt,qt)
+  { return Math.sqrt((pt.x-qt.x)*(pt.x-qt.x)+(pt.y-qt.y)*(pt.y-qt.y));
+  }
+  
+  function draw_point(pt,color,offset)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.03;
+    ctx.arc(pt.x,pt.y,point_radius,0,2*Math.PI,true);
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+  
+  
+
+  function draw_p1(pt,color,offset)   
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.003;      
+    ctx.arc(pt.x,pt.y,point_radius-0.01,0,2*Math.PI,true); 
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+
+
+
+
+  function DrawDottedLine(pt,qt,dotCount){
+          var dx = qt.x-pt.x;
+          var dy = qt.y-pt.y;
+          var spaceX = dx/(dotCount-1);
+          var spaceY = dy/(dotCount-1);
+          var newX = pt.x;
+          var newY = pt.y;
+          var mm = new Object; mm.x = newX; mm.y = newY;
+          for (var i=0; i < dotCount; i++){
+                  draw_p1(mm,"black");
+                  newX = newX + spaceX;
+                  newY = newY + spaceY;  
+                  mm.x = newX; 
+                  mm.y = newY;            
+           }
+           ctx.stroke(); 
+        }
+        
+
+
+
+//ctx.setLineDash(segments);
+
+
+function draw_ray(pt,qt) // to beyond boundaries of canvas, pt is tail
+  {found = false;
+   lambda_high = 1e10;
+   lambda_low = -1e10;
+   if ( qt.x != pt.x )
+   { lambda_right = (xright - pt.x)/(qt.x-pt.x);
+     lambda_left = (xleft - pt.x)/(qt.x-pt.x); 
+	 if ( lambda_right > lambda_left ) { lambda_high = lambda_right; lambda_low = lambda_left;}
+	 else { lambda_high = lambda_left; lambda_low = lambda_right;}
+   }
+   if ( qt.y != pt.y )
+   { lambda_top = (ytop - pt.y)/(qt.y-pt.y);
+     x_top = lambda_top*pt.x + (1-lambda_top)*qt.x;
+     if ( x_top > xleft && x_top < xright ) { if ( found ) lambda2 = lambda_top; else {lambda1 = lambda_top; found=true; }}
+     lambda_bottom = (ybottom - pt.y)/(qt.y-pt.y);
+     x_bottom = lambda_bottom*pt.x + (1-lambda_bottom)*qt.x;
+     if ( x_bottom > xleft && x_bottom < xright ) { if ( found ) lambda2 = lambda_top; else {lambda1 = lambda_top; found=true; }}
+	 
+	 if ( lambda_top > lambda_bottom )
+	 { if ( lambda_top < lambda_high ) lambda_high = lambda_top;
+       if ( lambda_bottom > lambda_low ) lambda_low = lambda_bottom;
+	 }
+	 else
+	 { if ( lambda_bottom < lambda_high ) lambda_high = lambda_bottom;
+       if ( lambda_top > lambda_low ) lambda_low = lambda_top;
+	 }
+		 
+   }
+
+   if ( lambda_low < 0.0 ) lambda_low = 0.0;
+   if ( lambda_high < lambda_low ) return;
+
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+lambda_high*(qt.x-pt.x),pt.y+lambda_high*(qt.y-pt.y));
+    ctx.lineTo(pt.x,pt.y);
+    ctx.stroke();
+  }
+
+
+
+
+  function draw_segment(pt,qt, color="black")   
+  {
+
+ 
+
+ 
+
+ var ctx = canvas.getContext('2d');
+
+ 
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+  
+  function draw_segmentWh(pt,qt, color="white")   // Để che các đoạn thẳng đã có trước
+  {
+
+ 
+ var ctx = canvas.getContext('2d');
+
+
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+  
+    ctx.lineWidth = 0.05;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
+
+
+  function line_line(a,b,p)
+  {
+    det = (a.x1-a.x2)*(b.y2-b.y1) - (a.y1-a.y2)*(b.x2-b.x1);
+    if ( det == 0 ) { p.x = null; p.y = null; return; }
+    lambda = ((b.x2-a.x2)*(b.y2-b.y1) - (b.x2-b.x1)*(b.y2-a.y2))/det;
+    p.x = lambda*a.x1 + (1-lambda)*a.x2; 
+    p.y = lambda*a.y1 + (1-lambda)*a.y2; 
+  }
+
+  function line_circle(a,c,p1,p2)  // a is line, c is circle
+  {
+    if ( Math.abs(a.y2-a.y1) < Math.abs(a.x2-a.x1) )
+    {
+      var m = (a.y2-a.y1)/(a.x2-a.x1);
+      var b = a.y1 - m*a.x1;
+      var bb = (c.x-m*b+c.y*m);
+      discr = bb*bb - (1+m*m)*(c.x*c.x + b*b - 2*c.y*b + c.y*c.y - c.r*c.r);
+      if ( discr < 0.0 ) { p1.x = null; p1.y = null; p2.x = null; p2.y = null; return; }
+      p1.x = (bb + Math.sqrt(discr))/(1+m*m);
+      p1.y = m*p1.x + b;
+      p2.x = (bb - Math.sqrt(discr))/(1+m*m);
+      p2.y = m*p2.x + b;
+    }
+    else
+    {
+      var m = (a.x2-a.x1)/(a.y2-a.y1);
+      var b = a.x1 - m*a.y1;
+      var bb = (c.y-m*b+c.x*m);
+      discr = bb*bb - (1+m*m)*(c.y*c.y + b*b - 2*c.x*b + c.x*c.x - c.r*c.r);
+      if ( discr < 0.0 ) { p1.x = null; p1.y = null; p2.x = null; p2.y = null; return; }
+      p1.y = (bb + Math.sqrt(discr))/(1+m*m);
+      p1.x = m*p1.y + b;
+      p2.y = (bb - Math.sqrt(discr))/(1+m*m);
+      p2.x = m*p2.y + b;
+    }
+  }
+
+  function circle_circle(a,b,p1,p2)
+  {
+    var d = Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
+    if ( (d==0) || (d > a.r+b.r) || (d < Math.abs(a.r-b.r)) ) { p1.x = null; p1.y = null; p2.x = null; p2.y = null; return; }
+    var aa = (a.r*a.r - b.r*b.r + d*d)/2/d;
+    var h = Math.sqrt(a.r*a.r - aa*aa);
+    p1.x = a.x + aa/d*(b.x-a.x) + h/d*(b.y-a.y);
+    p1.y = a.y + aa/d*(b.y-a.y) - h/d*(b.x-a.x);
+    p2.x = a.x + aa/d*(b.x-a.x) - h/d*(b.y-a.y);
+    p2.y = a.y + aa/d*(b.y-a.y) + h/d*(b.x-a.x);
+      
+  }    
+
+  
+
+  function draw_arc(pt,radius,start_angle,end_angle)
+  {
+    ctx.beginPath();
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 0.02;
+    ctx.moveTo(pt.x+radius*Math.cos(start_angle),pt.y+radius*Math.sin(start_angle));
+    ctx.arc(pt.x,pt.y,radius,start_angle,end_angle,false);
+    ctx.stroke();
+  }
+
+  
+
+  function ddraw(stage) { draw_stage = stage; draw(); }
+  
+/*****************************************************************************************************/
+
+  function handleMouseDown(event)
+  {
+    var rect = canvas.getBoundingClientRect();
+    if ( event.button == 0 ) // left button
+    {
+	  // Translate to world coordinates
+      var x = (event.clientX-rect.left)/scale - xtrans;
+      var y = (event.clientY-rect.top)/scale - ytrans;
+
+	  // see if mouse is sufficiently near one of the movable points
+	  moving_point = null;
+	  for ( var n = 0 ; n < movable_pts.length ; n++ )
+	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
+		  { moving_point = movable_pts[n];
+	        mouse_down_flag = true;
+	        break;
+		  }	  
+	  }
+     
+    }
+    else if ( event.button == 2 )  // right button
+    {
+    }
+  }
+/*****************************************************************************************************/
+
+ function handleMouseUp(event)
+ {
+   mouse_down_flag = false;
+ }
+/*************************************************************************************************/
+
+  function handleMouseMove(event)   // event.target is the canvas.
+  {
+
+    if (!mouse_down_flag || moving_point==null)
+    {
+      return;
+    }
+
+    var rect = canvas.getBoundingClientRect();
+	
+	// Translate to world coordinates
+    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
+    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
+
+ 
+    draw();
+ }
+
+// ket thuc pham ma them vao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="../html/index.html" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 25px; margin-left:20px;">HocToanOnline</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mục lục
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Lý thuyết</a>
+            <a class="dropdown-item" href="#">Bài tập và giải bài tập</a>
+              
+        </li>
+  
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0 " type="submit">Tìm kiếm</button>
+      </form>
+    </div>
+  </nav> 
+
+
+
+
+<H3>Dựng tiếp tuyến từ một điểm tới đường tròn<br>
+Dựng hình chỉ dùng thước kẻ</H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+  <tr>
+  <td>
+    <p class="bold"> Bắt đầu:</p>
+    
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">   Cho đường tròn tâm A và một điểm B nằm ngoài.<br>
+ <input type="radio" name="step" onclick="ddraw(2)" value="0"> 1. Dựng nửa đường thẳng bất kì đi qua B, nó cắt đường tròn tại U, V.<br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="0"> 2.  Dựng nửa đường thẳng bất kì khác đi qua B, nó cắt đường tròn tại M, N. <br>
+ <input type="radio" name="step" onclick="ddraw(4)" value="0"  id="start"> 3. Hai đường thẳng MU, NV cắt nhau tại D.<br>
+ <input type="radio" name="step" onclick="ddraw(5)" value="0"  id="start"> 4. Hai đoạn thẳng MV, NU cắt nhau tại E.<br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="0"  id="start"> 5. Đường thẳng DE cắt đường tròn tại P, Q <br>
+
+ 
+ 
+ <input type="radio" name="step" onclick="ddraw(7)" value="0"  id="start"> 6. BP và BQ là các tiếp tuyến kẻ từ B tới đường tròn.  <br>
+
+ 
+ <br>
+
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(13);
+
+</script>
+
+
+<div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"><a target="_blank" title="www.susqu.edu" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/">Susquehanna University</a> assumes no responsibility for the content of this personal website.  Please read the <a target="_blank" title="http://www.susqu.edu//about-su/policies#disclaimer" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/about-su/policies#disclaimer">disclaimer</a>.</div></body>
+</html>
