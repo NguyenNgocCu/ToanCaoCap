@@ -189,7 +189,8 @@ if ( draw_stage == 6 ) return;
 draw_segment(b,p,"blue"); draw_segment(b,q,"blue"); 
  
 
-
+if ( draw_stage == 7 ) return;
+draw_segment(d,p,"red");
 
 
 
@@ -609,8 +610,9 @@ Dựng hình chỉ dùng thước kẻ</H3>
  
  
  <input type="radio" name="step" onclick="ddraw(7)" value="0"  id="start"> 6. BP và BQ là các tiếp tuyến kẻ từ B tới đường tròn.  <br>
-
- 
+<br>
+	  
+ <input type="radio" name="step" onclick="ddraw(8)" value="0"  id="start"> 7. CHỨNG MINH. Do B là điểm cực và DE là đường cực của B, suy ra BP, BQ là các tiếp tuyến kẻ từ B tới đường tròn.
  <br>
 
  <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"  id="start">
