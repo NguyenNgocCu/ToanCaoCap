@@ -1,106 +1,227 @@
 <!DOCTYPE html>
-<html lang="en" style="margin: 0px;padding: 0px;">
-<head>
+	<html lang="en">
+	<head>
+	   <meta charset="UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script><meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Học toán</title>
+	</head>
+	<body>
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	    <a class="navbar-brand" href="#" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 25px; margin-left:20px;">HocToanOnline</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	  
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      
+	      <ul class="navbar-nav mr-auto">
+	
 
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	            Mục lục
+	          </a>
+	          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <a class="dropdown-item" href="#">Lý thuyết</a>
+	            <a class="dropdown-item" href="#">Bài tập và giải bài tập</a>
+	              
+	        </li>
+	  
+	      </ul>
+	      <form class="form-inline my-2 my-lg-0">
+	        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	        <button class="btn btn-outline-light my-2 my-sm-0 " type="submit">Tìm kiếm</button>
+	      </form>
+	    </div>
+	  </nav> 
+	  <div id="app">
+	    <div class="main-container">
+	        <div class="container" >
+	            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: bold;margin-top: 20px;">Lý thuyết</h2>
+	            <table class="table table-hover">
+	              <thead>
+	                <tr>
+	                  <th>Tiêu đề</th>
+	                  <th>Mô tả</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	              
+	                <tr>
+	                    <td>          <a href="../lythuyet/GTDaiSo.pdf" style="color: black;"> 
+	                                       
+	                      Giáo trình đại số </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
-    
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-</head>
-<body>
-   
+	                </tr>
+	                <tr>
+	                     <td>          <a href="../lythuyet/GiaiTich1.pdf" style="color: black;"> 
+	                                                                 
+	                      Giáo trình giải tích I </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	
 
+	                </tr>
+	                
+	                 <tr>
+	                     <td>          <a href="../lythuyet/GiaiTich2.pdf" style="color: black;"> 
+	                      
+	                      
+	                      
+	                      Giáo trình giải tích II </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	
 
+	                </tr>
+	                 <tr>
+	                     <td>          <a href="../lythuyet/XacSuatThongKe.pdf" style="color: black;"> 
+	                      
+	                      
+	                      
+	                      Lí thuyết xác suất và Thống kê toán </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	
 
- 
-<div   id="banner">   
-    <img src="../css/Banner1.png"/>
-</div>  
-<div id="main">
-    <div id="left">  
-        <ul>
-            <li>
-                <h2 Các giáo trình cơ bản 
-                    Đại số, Giải tích I, Giải tích II, Lí thuyết xác suất và Thống kê Toán. <br> <em> Cuối mỗi chương có nhiều bài tập đa dạng để thực hành.</em>
-                <br>
-                Và các vấn đề khác. </h2>
-              <img src="xacsuat.png" width="90" height="120"  />
-              <h3 class="center"><a style="text-decoration: none" href="../lythuyet/XacSuatThongKe.pdf" class="header"> 
-               Lí thuyết xác suất và Thống kê toán </a> </h3>
+	                </tr>
+	                 <tr>   <td>          <a href="../lythuyet/HinhHocPhiOclit.pdf" style="color: black;"> 
+	                                                                  
+	                     Hình học Bolyai-Lobasepxki </a></td>
+	                    <td>Tóm tắt hình học xạ ảnh và phép biến đổi xuyên tâm.<br> Các mô hình hình học Bolyai-Lobasepxki. </td>
+	                 </tr>
+	                  <tr>
+	                    <td><a  href="../lythuyet/DinhLiEuler_DaDienDeu.pdf" style="color: black;"> Định lí Euler và một chứng minh đẹp.</a></td>
+	                    <td>Các loại đa diện đều. Khái niệm đa diện gần đều.
+	                    </td>
+	                </tr>
+	                                
+	              </tbody>
+	            </table>
+	          </div>
+	        <div class="container" >
+	            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: bold;margin-top: 20px;">Bài tập</h2>
+	         <table class="table table-hover">
+	           
+	   
+	              
+	              <thead>     <td style='width: 500px'>
+	                <tr>
+	                  <th>Tiêu đề
+	                  </th>
+	                  <th>Mô tả</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                
+	               
+	                 <tr>         
+	                    <td>      <a href="../baitap/BaiTapDaiSo.pdf" style="color: black;"> 
+	                      
+	                      
+	                      
+	                      Bài tập đại số </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	                   
+	
 
-              <img src="gtich.png"  width="90" height="120"  />
-                <h3 class="center"><a style="text-decoration: none" href="../lythuyet/GiaiTich2.pdf" " class="header"> Giáo trình Giải tích II  </a> </h3>
+	                </tr> 
+	                
+	                <tr>
+	                    <td>          <a href="../baitap/BaiTapGT1.pdf" style="color: black;"> 
+	                      
+	                      
+	                      
+	                      Bài tập giải tích I </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	
 
-               
-            </li>
+	                </tr> 
+	             
+	                
+	                
+	                
+	                  <tr>
+	                    <td>          <a href="../baitap/BaiTapGiaiTich2.pdf" style="color: black;"> 
+	                      
+	                      
+	                      
+	                      Bài tập giải tích II </a></td>
+	                    <td>Dành cho sinh viên các trường kĩ thuật</td>
+	
 
-            <li>
-                <img src="gtich.png"  width="90" height="120"  />
-                <h2 class="center"><a style="text-decoration: none" href="../baitap/BaiTapDaiSo.pdf" " class="header">  Các giáo trình bài tập </a> </h2>
-  
-                Các giáo trình bài tập thực hành. <br> <em> Có hướng dẫn, lời giải và đáp số.</em>
-                <br>
-                Và các vấn đề khác.
-  
-  
-  
-              </li>
+	                </tr> 
+	                
+	                <tr>
+	                  <td><a  href="../baitap/TrungDiemN1.html" style="color: black;">Dựng trung điểm một đoạn thẳng. <br> Chỉ sử dụng compa (không dùng thước kẻ).</a> </td>
+	                  <td>Toán dựng hình. </td>
+	                  
+	                </tr>
+	                <tr>
+	                  <td><a  href="../baitap/DTronQua3Diem.html" style="color: black;">Dựng đường tròn đi qua 3 điểm. <br> Chỉ sử dụng compa (không dùng thước kẻ).  </a> </td>
+	                  <td>Toán dựng hình. 
+	                  Qua việc giải bài tập này tôi đã chứng minh định lí Mohr - Mascheroni: Bất kỳ điểm nào dựng được bằng thước kẻ và compa thì cũng có thể dựng được bằng việc chỉ dùng compa. </td>
+	                  
+	                </tr>
+	                <tr>
+	                  <td><a  href="../baitap/TiepTuyen.html" style="color: black;">Dựng tiếp tuyến với đường tròn. <br> Chỉ sử dụng thước kẻ (không dùng compa). </a> </td>
+	                  <td>Toán dựng hình. 
+	                  
+	                </tr>
+	                <tr>
+	                                    <td><a  href="../baitap/BT3dtron.html" style="color: black;"> Dựng đường tròn tiếp xúc với 3 đường tròn </a> </td>
+	                  <td>Toán dựng hình. Bài toán Apollonius. Bài toán có nhiều lời giải.</td>
+	
 
-              <li>
-                <img src="an1.png" width="90" height="120" />
-                <h2 class="center"><a style="text-decoration: none" href="../lythuyet/HinhHocPhiOclit.pdf" class="header"> Hình học hyperbolic (Bolyai-Lobasepxki) </a> </h2>
-  
-                Các mô hình hình học hyperbolic. <br>
-                <br> Các định lí Pitago, định lí hàm số sin, định lí hàm số cos trong hình học hyperbolic.
-  
-  
-  
-              </li>
+	
 
+	                </tr>
+	                
+	                
+	                <tr>
+	                    <td><a  href="../baitap/BT3dtrTONGHOP.html" style="color: black;"> Một vài nghiệm của bài toán Apollonius</a> </td>
+	                    <td>Bài toán có tối đa 8 nghiệm. Ở đây ta chỉ ra 5 nghiệm.</td>
+	
 
+	                </tr>
+	                <tr>
+	                    <td><a  href="../baitap/Morley.html" style="color: black;"> Định lí Morley và một chứng minh đẹp.</a></td>
+	                    <td>Đưa việc chứng minh về bài toán dựng hình.</td>
+	
 
-              <li>
-                <img src="an1.png" width="90" height="120" />
-                <h2 class="center"><a style="text-decoration: none" href="https://nguyenngoccu.github.io/ToanCaoCap/lythuyet/HinhHocPhiOclit.pdf" target="_blank">  Hình học hyperbolic (Bolyai-Lobasepxki) </a> </h2>
-  
-                Các mô hình hình học hyperbolic. <br>
-                <br> Các định lí Pitago, định lí hàm số sin, định lí hàm số cos trong hình học hyperbolic.
-  
-  
-  
-              </li>
-
-             
-
-        </ul> 
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    </div>
- 
-    <div id="right">     
-      <div class="menu_right"> 
-        <h3> Các bài toán dựng hình </h3>
-            <ul>
-                <li> <a href="">  Menu item 1 </a> </li>
-                <li> <a href="">  Menu item 2 </a> </li>
-                <li> <a href="">  Menu item 3 </a> </li>
-            </ul>
-    
-    </div>
-
-</div>
-<div    id="footer"> <br> Nguyễn Ngọc Cừ Bộ môn Toán <br> Đại học Xây dựng (NUCE)  </div>
-
-
-</body>
-</html> 
+	                </tr>
+	              </tbody>
+	            </table>
+	          </div>
+	                       <div class="container" >
+	                           <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 40px; font-weight: bold;margin-top: 20px;"> Tải xuống  </h2>
+	                             <table class="table table-hover">
+	           
+	   
+	              
+	                              <thead>     <td style='width: 500px'>
+	                                   <tr>
+	                             <th>Tiêu đề  </th>
+	                                <th>Mô tả</th>
+	                                   </tr>           </thead>
+	                               <tbody>
+	                                      <tr>    <td>      <a href="../lythuyet/luu/taixuong.html" style="color: black;"> Kho lưu trữ</td>
+	                                    <td> Dùng để xem và tải xuống các file có ở đây. <br>
+	                                       Có một số bải viết về các nhà khoa học Hungary đầu thế kỉ XX, những người từng được xem là NGƯỜI SAO HỎA.  </td>
+	                                  </tr>                               
+	                                <tr>    <td>      <a href="../lythuyet/luu/MorleyN.html" style="color: black;"> Định lí Morley - vẽ hình</td>
+	                                    <td> Dùng hình giải tích để vẽ góc chia ba. Compa và thước kẻ không chia ba một góc được.  </td>
+	                                  </tr>  
+	                            </tbody>
+	                          </table>
+	                         </div>
+	                                   
+	                                
+	 </div>
+	</div>
+	</body>
+	</html>
