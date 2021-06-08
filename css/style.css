@@ -1,0 +1,92 @@
+
+	
+
+	body {
+	  background-color: #3e3e3e;
+	  color: #444;
+	  font-family: Arial; 
+          font-size: 20px; 
+            width: 1200px; 
+           margin: 0px auto;
+	}
+	
+
+	#banner {background: ;
+          height: auto;
+	  width:1200px;  }
+	
+
+	#main #left {
+	  width: 900px;
+	  margin: 0 auto;
+	  background-color: #fff;
+	  float: left;
+  min-height: 600px;
+   
+	}
+	
+
+	
+	#main #right {
+	  float: left;
+          width: 300px;
+	  min-height: 650px;
+            background: #FFF;
+	}
+	
+
+	#footer {
+        background-color: #ccc;
+	  width: 1200px;
+	  height: 80px;
+      float: left;
+     text-align: center;
+clear: left;
+   
+	}
+	
+        #banner img{
+	width: 1200px;
+          }
+
+#main #left ul {
+margin: 0px;
+padding: 0px;
+}
+     #main #left ul li {
+list-style: none;
+border-bottom:2px solid #ccc;
+clear: left;
+padding-bottom: 20px;
+}
+
+    #main #left ul li img{
+float: left;
+margin-right: 10px; 
+margin-bottom: 20px;
+}
+
+
+#main #right .menu_right ul{
+	  margin: 0px;
+          padding: 0px;  }
+
+ #main #right .menu_right ul li {
+list-style: none;    }
+
+#main #right .menu_right ul li a {
+display: block;
+text-decoration: none;
+line-height: 40px;
+text-indent: 40px;
+background: url(icon1.png) no-repeat 1px;
+font-size: 14px;
+}
+
+#main #right .menu_right h3 {
+background: blue;
+	  margin-top: 0px; 
+	  height: 40px;
+      font-size: 20px;
+     text-align: center;   color: #FFF; line-height:40px;        }
+
