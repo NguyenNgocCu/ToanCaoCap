@@ -5,7 +5,7 @@
 	  background-color: #3e3e3e;
 	  color: #444;
 	  font-family: Arial; 
-          font-size: 16px; 
+          font-size: 14px; 
             width: 1200px; 
            margin: 0px auto;
 	}
@@ -73,7 +73,7 @@ margin-bottom: 20px;
 
  #main #right .menu_right ul li {
 list-style: none;  
-font-size: 14px;    }
+font-size: 12px;    }
 
 #main #right .menu_right ul li a {
 display: block;
