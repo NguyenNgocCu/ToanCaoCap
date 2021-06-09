@@ -30,7 +30,7 @@
 	#main #right {
 	  float: left;
           width: 300px;
-	  min-height: 650px;
+	  min-height: 500px;
             background: #FFF;
 	}
 	
@@ -93,6 +93,6 @@ background: blue;
 
 #main #right ul img{
 margin-top: 20px;
-float: left;
+float: right;
 margin-right: 10px; 
 	margin-bottom: 10px;      }
