@@ -88,6 +88,7 @@ font-size: 14px;
 
 #main #right .menu_right h3 {
 background: blue;
+	margin-right: 5px;
 	  margin-top: 0px; 
 	  height: 40px;
       font-size: 20px;
@@ -116,7 +117,7 @@ color: #FFF;
    font-size: 14px;
    border: none;
 text-align: center; 
-width: 300px;
+width: 290px;
  }
 /* Thiết lập vị trí cho thẻ div với class dropdown*/
  .dropdown {
