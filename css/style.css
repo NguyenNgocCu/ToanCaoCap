@@ -15,7 +15,7 @@ body {
 	  font-family: Arial; 
           font-size: 14px; 
             width: 1200px; 
-           margin: 0px auto;
+           margin: 0px auto; text-align: justify;
 	}
 	
 
@@ -158,4 +158,19 @@ width: 290px;
 /* Thay đổi màu background cho nút khi được hover */
  .dropdown:hover .nut_dropdown {background-color: #00bfff;}
 
+
+#main {  background-color: #fff; 
+}
+
+#main ul {  background-color: #fff;
+ float: left;  padding-right:20px;
+}
+
+  #main ul img{
+float: left;
+  margin-top: 25px; 
+
+margin-right: 50px; 
+margin-bottom: 20px;
+}
 
