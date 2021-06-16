@@ -1,5 +1,5 @@
 
-	HR{ clear: both;
+HR{ clear: both;
 	border-bottom : 2px solid #666666;
 	border-left : 0px none #656565;
 	border-right : 0px none #656565;
@@ -8,8 +8,8 @@
 	padding : 0px 0px 0px 0px;
 	height : 4px;
 }
-
-	body {
+	
+body {
 	  background-color: #ccc;
 	  color: #444;
 	  font-family: Arial; 
@@ -42,11 +42,11 @@
             background: #FFF;
 	}
 	
-
+   /* mau #ccc    #666666*/
 	#footer {
-        background-color: #ccc;
+        background-color: #f1f1f1;  color: #356283;
 	  width: 1200px;
-	  height: 80px;
+	  height: 50px;
       float: left;
      text-align: center;
 clear: left;
@@ -157,4 +157,5 @@ width: 290px;
  .dropdown:hover .noidung_dropdown {display: block;}
 /* Thay đổi màu background cho nút khi được hover */
  .dropdown:hover .nut_dropdown {background-color: #00bfff;}
-    
+
+
