@@ -24,7 +24,7 @@
 <title>1. Dựng trung điểm </title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-<script type="text/javascript" src="rc-common.js"></script>
+<script type="text/javascript" src="../baitap/XDN.js"></script>
 <script type="application/javascript"></script>
 
  <script>
@@ -232,265 +232,10 @@ DrawDottedLine(e,b,20);
 
 
 
-
-
-
-
 // Them vao 
-// var height = 600; 
-  var height = 800; 
-  var width  = 600; 
-  var scale = 100;  // scale factor world-to-pixel
-  var xtrans = 3;   // translation for origin
-  var ytrans = 3;
-  // canvas world bounds
-  var xright = 3.0;
-  var xleft = -3.0;
-  var ytop = 3.0;
-  var ybottom = -3.0;
 
-  var point_radius = 0.025;
-  var moving_point = null;
-  var moving_pt_count = 0;
-  var mouse_down_flag = false;
-  var draw_stage = 100;
-  
-  // Point label offset choices
-  //           N      NE      E     SE     S      SW      W     NW
-  var offx = [-0.04,  0.05,  0.07,  0.05, 0.06, -0.15, -0.17, -0.13];
-  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.05];
-  var N = 0;
-  var NE = 1;
-  var E = 2;
-  var SE = 3;
-  var S = 4;
-  var SW = 5;
-  var W = 6;
-  var NW = 7;
-  
-  
-  // swap coordinates of points
-  function swap(d,e)
-  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
-  
- 
- 
-  
-  function draw_point(pt,color,offset)
-  {
-    ctx.beginPath();
-    ctx.strokeStyle=color;
-	ctx.fillStyle=color;
-    ctx.lineWidth = 0.03;
-    ctx.arc(pt.x,pt.y,point_radius,0,2*Math.PI,true);
-    ctx.fill();
-	ctx.stroke();
-	
-	ctx.beginPath();
-chrome_flag = false;
-	if ( chrome_flag )
-	{
-      ctx.strokeStyle="black";
-	  ctx.lineWidth = 0.005;
-	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
-	}
-	else 
-	{
-	  ctx.fillStyle="black";
-      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
-	}
-
-	ctx.stroke();
-  }
-
-  
-  
-
-  function draw_p1(pt,color,offset)   
-  {
-    ctx.beginPath();
-    ctx.strokeStyle=color;
-	ctx.fillStyle=color;
-    ctx.lineWidth = 0.003;      
-    ctx.arc(pt.x,pt.y,point_radius-0.01,0,2*Math.PI,true); 
-    ctx.fill();
-	ctx.stroke();
-	
-	ctx.beginPath();
-chrome_flag = false;
-	if ( chrome_flag )
-	{
-      ctx.strokeStyle="black";
-	  ctx.lineWidth = 0.005;
-	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
-	}
-	else 
-	{
-	  ctx.fillStyle="black";
-      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
-	}
-
-	ctx.stroke();
-  }
-
-
-
-
-
-  function DrawDottedLine(pt,qt,dotCount){
-          var dx = qt.x-pt.x;
-          var dy = qt.y-pt.y;
-          var spaceX = dx/(dotCount-1);
-          var spaceY = dy/(dotCount-1);
-          var newX = pt.x;
-          var newY = pt.y;
-          var mm = new Object; mm.x = newX; mm.y = newY;
-          for (var i=0; i < dotCount; i++){
-                  draw_p1(mm,"black");
-                  newX = newX + spaceX;
-                  newY = newY + spaceY;  
-                  mm.x = newX; 
-                  mm.y = newY;            
-           }
-           ctx.stroke(); 
-        }
-        
-
-
-
-//ctx.setLineDash(segments);
-
-
-
-
-
-
-
-  function draw_segment(pt,qt, color="black")   
-  {
-
- 
-
- 
-
- var ctx = canvas.getContext('2d');
-
- 
-    ctx.beginPath();
-    ctx.strokeStyle=color;
-    
-    ctx.lineWidth = 0.02;
-    ctx.moveTo(pt.x,pt.y);
-    ctx.lineTo(qt.x,qt.y);
-    ctx.stroke();
-  }
-
-  
-  function draw_segmentWh(pt,qt, color="white")   // Để che các đoạn thẳng đã có trước
-  {
-
- 
- var ctx = canvas.getContext('2d');
-
-
-    ctx.beginPath();
-    ctx.strokeStyle=color;
-  
-    ctx.lineWidth = 0.05;
-    ctx.moveTo(pt.x,pt.y);
-    ctx.lineTo(qt.x,qt.y);
-    ctx.stroke();
-  }
-
-
-
-
-
-  
-
-  function draw_arc(pt,radius,start_angle,end_angle)
-  {
-    ctx.beginPath();
-    ctx.strokeStyle="black";
-    ctx.lineWidth = 0.02;
-    ctx.moveTo(pt.x+radius*Math.cos(start_angle),pt.y+radius*Math.sin(start_angle));
-    ctx.arc(pt.x,pt.y,radius,start_angle,end_angle,false);
-    ctx.stroke();
-  }
-
-  
-
-  function ddraw(stage) { draw_stage = stage; draw(); }
-  
-/*****************************************************************************************************/
-
-  function handleMouseDown(event)
-  {
-    var rect = canvas.getBoundingClientRect();
-    if ( event.button == 0 ) // left button
-    {
-	  // Translate to world coordinates
-      var x = (event.clientX-rect.left)/scale - xtrans;
-      var y = (event.clientY-rect.top)/scale - ytrans;
-
-	  // see if mouse is sufficiently near one of the movable points
-	  moving_point = null;
-	  for ( var n = 0 ; n < movable_pts.length ; n++ )
-	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
-		  { moving_point = movable_pts[n];
-	        mouse_down_flag = true;
-	        break;
-		  }	  
-	  }
-     
-    }
-    else if ( event.button == 2 )  // right button
-    {
-    }
-  }
-/*****************************************************************************************************/
-
- function handleMouseUp(event)
- {
-   mouse_down_flag = false;
- }
-/*************************************************************************************************/
-
-  function handleMouseMove(event)   // event.target is the canvas.
-  {
-
-    if (!mouse_down_flag || moving_point==null)
-    {
-      return;
-    }
-
-    var rect = canvas.getBoundingClientRect();
-	
-	// Translate to world coordinates
-    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
-    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
-
- 
-    draw();
- }
 
 // ket thuc pham ma them vao
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -501,32 +246,10 @@ chrome_flag = false;
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="../html/index.html" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 25px; margin-left:20px;">HocToanOnline</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Mục lục
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Lý thuyết</a>
-            <a class="dropdown-item" href="#">Bài tập và giải bài tập</a>
-              
-        </li>
-  
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0 " type="submit">Tìm kiếm</button>
-      </form>
-    </div>
-  </nav> 
+	<div id="banner"/>
+	<img src="Dunghinh3.png"/>    </div>
+	<hr>    <hr>
+ <br>
 <H3>&emsp; Dựng hình chỉ dùng Compass<br>
 &emsp; Dựng trung điểm đoạn thẳng AB.  </H3>
 
@@ -609,3 +332,27 @@ NHẬN XÉT: điểm O chính là ảnh nghịch đảo của E qua đường tr
 
 
 </html>
+	  
+	  	
+<style>
+	body {background-color: #c0c0c0;}
+  
+HR{ clear: both;
+	border-bottom : 2px solid #666666;
+	border-left : 0px none #656565;
+	border-right : 0px none #656565;
+	border-top : 2px solid #FFFFFF;
+	margin : 5px 0px 5px 0px;
+	padding : 0px 0px 0px 0px;
+	height : 4px; 
+}
+	
+#banner {background: ;
+          height: auto;
+	  width:auto;  }
+	#banner img{
+width: 1350px;
+  }
+
+
+</style>
