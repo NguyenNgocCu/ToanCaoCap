@@ -195,6 +195,22 @@ chrome_flag = false;
     ctx.lineTo(qt.x,qt.y);
     ctx.stroke();
   }
+  
+  function draw_segmentWh(pt,qt, color="white")   // Để che các đoạn thẳng đã có trước
+  {
+
+ 
+ var ctx = canvas.getContext('2d');
+
+
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+  
+    ctx.lineWidth = 0.05;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
 
 
  function draw_line(pt,qt) // to beyond boundaries of canvas; point-point version
