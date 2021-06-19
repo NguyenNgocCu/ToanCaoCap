@@ -36,9 +36,9 @@ body {
 
 	
 	#main #right {
-		padding-right: 0px;
+	
 	  float: right;
-          width: 290px;
+          width: 300px;
 	  min-height: 450px;
             background: #FFF;
 	}
