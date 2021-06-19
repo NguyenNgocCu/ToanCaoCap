@@ -25,7 +25,7 @@ body {
 	
 
 	#main #left {
-	  width: 800px;
+	  width: 880px;
 	  margin: 0 auto;
 	  background-color: #fff;
 	  float: left;
@@ -36,7 +36,7 @@ body {
 
 	
 	#main #right {
-	  float: left;
+	  float: right;
           width: 300px;
 	  min-height: 450px;
             background: #FFF;
