@@ -36,7 +36,7 @@ body {
 
 	
 	#main #right {
-	  float: left;
+	  float: right;
           width: 300px;
 	  min-height: 450px;
             background: #FFF;
