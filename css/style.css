@@ -36,8 +36,8 @@ body {
 
 	
 	#main #right {
-	  float: left;
-          width: 300px;
+	  float: right;
+          width: 290px;
 	  min-height: 450px;
             background: #FFF;
 	}
