@@ -110,32 +110,51 @@
 	          <!-- main-->
 	      
 	<div id="right">  
-<ul>
-	<h3> &emsp; &emsp; Tin tức bổ sung </h3>
-		
-			<p> <a href="">  Menu item 1 </a> </p>
-			<p> <a href="">  Menu item 2 </a> </p>
-			<p> <a href="">  Menu item 3 </a> </p>
-</ul>
+<div class="dropdown">
+			<h3> <button class="nut_dropdown"> &emsp;<b> Tin tức bổ sung </b></button>   </h3>
+
+
+			 <div class="noidung_dropdown">
+			   <a > 
+				&bullet; <b>  A legyes feladat (Bài toán con ruồi). </b> Két vonat 200 mérföld távolságról indulva megy egymás felé, 50 mérföldes óránkénti sebességgel. Elindul egy légy az egyiknek az elejéről, és oda-vissza repül köztük 75 mérföldes óránkénti sebességgel. Ezt egészen addig folytatja, amíg halálra nem zúzza a két összeütköző vonat. Összesen mekkora távolságot repült be a légy? (<em> Nguyên bản tiếng Hung </em>)
+				</a>
+				<a> &bullet; Nghe bài hát yêu thích. <br>  <br>
+
+					<iframe>
+					frameborder=”0″
+					width=”220″    
+					height=”400″
+					 
+				  
+					src="https://drive.google.com/file/d/1r3HyEuTyYyDiq2v16rLgVPhanFk9XyxP/preview?usp=sharing" target="_blank" > 
+				  
+				  </iframe>
+             </a>
+
+			   </div>
+		  </div>
+
 		<ul>
-			<br>
+			
 			<h3> Các bản nhạc yêu thích </h3>
-			Elmegyek (magyarul)
+			
+	
+	<!--			Cứ chữa view thành preview và dùng iframe là OK 
 			<p> <audio controls>   
-		
-				<source src="https://drive.google.com/file/d/1ZeSrjuNCNmvreo6Gdw4drmPpGig71thK/preview?usp=sharing" type="audio/mpeg">
+	<source src="https://drive.google.com/file/d/1ZeSrjuNCNmvreo6Gdw4drmPpGig71thK/preview?usp=sharing" type="audio/mpeg">
+			</source>
 			</audio> </p>
+		-->		
 			
 			The last waltz (Richard Clayderman)
 			<p> <audio controls>   
 		
-				<source src="https://drive.google.com/file/d/1r3HyEuTyYyDiq2v16rLgVPhanFk9XyxP/view?usp=sharing" type="audio/mpeg">
+				<source src="F:/MP3IPhone/Lastwaltz.mp3" type="audio/mpeg">
 			</audio> </p>
 			Love story (Andy Williams)
-			<p> <audio controls="controls">   
+			<p> <audio controls>   
 		
-				<source src="https://googledrive.com/host/1sJcanakFqj9mIpkKfJGaH8AcahDmGdt_" type="audio/mpeg">
-				</source>   <embed height=”80px” width=”250px”> </embed>
+				<source src="F:/MP3IPhone/Lovestory.mp3" type="audio/mpeg">
 			</audio> </p>
 		</ul>
 	
@@ -262,5 +281,48 @@ margin-right: 5px;
 margin-bottom: 20px;
 }
 
+
+/* Nút Dropdown*/
+.nut_dropdown {
+   background-color: #0080ff;
+   color: white;
+   padding: 12px;
+   font-size: 16px;
+   border: none;
+text-align: left; 
+width: 290px;
+ }
+/* Thiết lập vị trí cho thẻ div với class dropdown*/
+ .dropdown {
+   position: relative;
+   display: inline-block;
+ }
+/* Nội dung Dropdown */
+ .noidung_dropdown {
+   /*Ẩn nội dung các đường dẫn*/
+   display: none;
+   position: absolute;
+   background-color: #f1f1f1;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+ }
+/* Thiết kế style cho các đường dẫn trong Dropdown */
+ .noidung_dropdown a {
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+
+
+
+
+/* thay đổi màu background khi hover vào đường dẫn */
+ .noidung_dropdown a:hover {background-color: #ddd;}
+/* hiển thị nội dung dropdown khi hover */
+ .dropdown:hover .noidung_dropdown {display: block;}
+/* Thay đổi màu background cho nút khi được hover */
+ .dropdown:hover .nut_dropdown {background-color: #00bfff;}
 
 	</style>
