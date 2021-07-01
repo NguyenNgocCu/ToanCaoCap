@@ -140,7 +140,7 @@ width: 290px;
    border: none;
 text-align: left; 
 width: 290px;
-	 
+	 height: 25px; 
  }
 /* Thiết lập vị trí cho thẻ div với class dropdown*/
  .dropdown {
