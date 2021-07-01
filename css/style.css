@@ -123,11 +123,11 @@ color: #FFF;
  .nut_dropdown {
    background-color: #0080ff;
    color: white;
-   padding-top: 15px;
+   padding-top: 10px;
 	/* margin-top: 15px; */
    font-size: 16px;
    border: none;
-text-align: center; 
+text-align: left; 
 width: 290px;
 	 height : 50px;
  }
