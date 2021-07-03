@@ -20,7 +20,7 @@ body {
 	
 
 	#banner {background: url(../css/Banner2.png);
-          height: 230px;
+          height: auto;
 	  width:1200px;  }
 	
 
