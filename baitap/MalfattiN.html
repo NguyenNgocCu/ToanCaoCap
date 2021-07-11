@@ -162,6 +162,10 @@ circle_circle(c1,c2,V,U); // draw_point(U,"blue",N);
 
 draw_ray(E3,U);
 
+
+
+if ( draw_stage == 8 ) return;
+
 phangiac(a,b,c,z6);; phangiac(b,E3,U,z7); line_line(z6,z7,O2);
 z5.x1 = b.x; z5.y1 = b.y; z5.x2 = a.x; z5.y2 = a.y;  var T3=new Object;
 off_perp_to_line(O2,z5,z4); line_line(z4,z5,T3); 
@@ -170,6 +174,12 @@ draw_arc_color(O2,dist(O2,T3),0,6.29,"blue");    draw_point(O2,"blue",N);
 z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;  
 z4.x1 = E3.x; z4.y1 = E3.y; z4.x2 = U.x; z4.y2 = U.y; var n=new Object; n.label="n";
 line_line(z4,z5,n); draw_point(n,"blue",W);
+if ( draw_stage == 9 ) return;
+draw_arc_color(K2,dist(K2,E2),0,6.29,"silver");  draw_arc_color(K1,dist(K1,E1),0,6.29,"silver");
+draw_arc_color(K3,dist(K3,E3),0,6.29,"silver");
+
+
+draw_segment(O,a); draw_segment(O,b); draw_segment(O,c);  // Vẽ đè lên các đoạn cũ
 
   }
 
@@ -259,8 +269,9 @@ line_line(z4,z5,n); draw_point(n,"blue",W);
 
  <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Dựng đường tròn tâm 7 tiếp xúc với các cạnh AC, AB và 5U. <br>
  <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Dựng tiếp tuyến 6n với đường tròn (1). <br>
- Cuối cùng dựng đường tròn tâm 8 tiếp xúc với các cạnh AB, BC và 6n.<br>  <br>
- Ba đường tròn màu xanh tâm 7, 8, 9 là 3 đường tròn cần dựng.
+<input type="radio" name="step" onclick="ddraw(9)" value="4"  id="start"> 8. Cuối cùng dựng đường tròn tâm 8 tiếp xúc với các cạnh AB, BC và 6n.<br>  <br>
+ <input type="radio" name="step" onclick="ddraw(10)" value="4"  id="start"> 9. Ba đường tròn màu xanh tâm 7, 8, 9 là 3 đường tròn cần dựng. <br>  <br>
+
 
  <br>
 
