@@ -44,6 +44,19 @@
   { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
   
   // Calculations of intersections
+
+
+
+function phangiac(a,b,c,L)  // Vẽ phân giác 
+{var d1=Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y)); var q5 = new Object; q5.x=0, q5.y=0;
+    q5.x=(a.x-b.x)/d1; q5.y=(a.y-b.y)/d1;
+  var d2=Math.sqrt((c.x-b.x)*(c.x-b.x) + (c.y-b.y)*(c.y-b.y));   var q6 = new Object; q6.x=0, q6.y=0;
+  q6.x=(c.x-b.x)/d2; q6.y=(c.y-b.y)/d2;
+  var q7 = new Object; q7.x=0, q7.y=0;  q7.x=b.x+q5.x+q6.x; q7.y=b.y+q5.y+q6.y;  
+  L.x1 = b.x; L.y1 = b.y; L.x2 = q7.x; L.y2 = q7.y; 
+}
+
+
   function line_line(a,b,p)
   {
     det = (a.x1-a.x2)*(b.y2-b.y1) - (a.y1-a.y2)*(b.x2-b.x1);
