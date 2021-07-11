@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> Bài toán Malfatti. </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="G:/web1/XDN_Style/XDN.js"></script>
+
+ <script>
+
+  // Point objects, fields x,y,label
+
+
+   var a = new Object;  a.x = -2.6; a.y = 1.5 ; a.label = "A";
+   var b = new Object;  b.x = 3.0; b.y = 0.0 ; b.label = "B";
+
+   var c = new Object;  c.x = 0.0; c.y = -2.7 ;  c.label = "C"; // Nếu thay đổi tọa độ các điểm A, B, C ở đây thì phải thay ở function reset!
+
+ // var m = new Object;  m.x = 0.0; m.y = 0.0 ; m.label = "m";
+ // var n = new Object;  n.x = 0.0; n.y = 0.0 ; n.label = "n";
+ 
+
+  var c1 = new Object;  // circles
+  var c2 = new Object;
+
+
+  var O = new Object ; O.label = "O";     // O để vẽ thêm tâm đường tròn nội tiếp tam giác ABC, dùng hàm phangiac
+  var z6 = new Object;    var z7 = new Object; var z8 = new Object; var z9 = new Object; var z4 = new Object;    var z5 = new Object; 
+  var K1 = new Object;  K1.label = "1";
+   var K2 = new Object; K2.label = "2";
+
+   var K3 = new Object;  K3.label = "3"; 
+  
+  function calc_points()
+  { var r;
+
+
+  }
+  
+  function reset()
+  { a.x = -2.6; a.y = 1.5;
+    b.x = 3.0; b.y = 0.0;
+    c.x = 0.0; c.y = -2.7;    // Có thể thay đổi tọa độ các điểm A, B, C ở đây!
+   
+  }
+	
+
+
+
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+  
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+    
+   //ctx.font="0.15px Verdana";
+     ctx.font="0.5px Verdana";
+    //ctx.fillText("A", a.x, a.y);  
+	
+    calc_points();
+	
+    draw_point(a,"red",N);
+    draw_point(b,"red",S);
+    draw_point(c,"red",S);
+    draw_segment(a,b);
+    draw_segment(a,c);
+    draw_segment(c,b);
+    
+
+   
+   
+
+    if ( draw_stage == 0 ) return;
+
+
+
+    if ( draw_stage == 1 ) return;
+
+phangiac(a,c,b,z6); phangiac(b,a,c,z7); line_line(z6,z7,O);
+
+draw_point(O,"black",N);
+
+draw_segment(O,a); draw_segment(O,b); draw_segment(O,c);
+
+
+
+
+
+
+    if ( draw_stage == 2 ) return;
+
+    
+    phangiac(O,a,b,z4); phangiac(a,b,O,z5); phangiac(c,b,O,z8); phangiac(b,c,O,z9); line_line(z4,z5,K3);
+     line_line(z8,z9,K1);          phangiac(O,a,c,z4); phangiac(O,c,a,z5);
+
+    draw_point(K1,"red",N);    draw_point(K3,"red",N); line_line(z4,z5,K2);  draw_point(K2,"red",N);
+
+
+if ( draw_stage == 3 ) return;
+
+var E2=new Object; E2.x=0;E2.y=0; E2.label = "5";
+z5.x1 = a.x; z5.y1 = a.y; z5.x2 = c.x; z5.y2 = c.y;    
+
+off_perp_to_line(K2,z5,z4); line_line(z4,z5,E2); draw_point(E2,"black",N); 
+draw_arc_color(K2,dist(K2,E2),0,6.29,"red");
+
+var E3=new Object; E3.x=0;E3.y=0; E3.label = "6";
+z5.x1 = a.x; z5.y1 = a.y; z5.x2 = b.x; z5.y2 = b.y;  
+
+off_perp_to_line(K3,z5,z4); line_line(z4,z5,E3); draw_point(E3,"black",N); 
+draw_arc_color(K3,dist(K3,E3),0,6.29,"red");
+
+
+var E1=new Object; E1.x=0;E1.y=0; E1.label = "4";
+z5.x1 = c.x; z5.y1 = c.y; z5.x2 = b.x; z5.y2 = b.y;  
+
+off_perp_to_line(K1,z5,z4); line_line(z4,z5,E1); draw_point(E1,"black",N); 
+draw_arc_color(K1,dist(K1,E1),0,6.29,"red");
+
+
+    if ( draw_stage == 4 ) return;
+    var U=new Object; U.x=0;U.y=0; U.label="U";    var V=new Object; V.x=0;V.y=0; V.label="V";
+    c1.r = dist(K3,E3); c1.x = K3.x; c1.y = K3.y;
+    c2.r = dist(K3,E2)/2; c2.x = (K3.x+E2.x)/2; c2.y = (K3.y+E2.y)/2;
+circle_circle(c1,c2,V,U);  draw_point(U,"black",N);  
+
+draw_ray(E2,U);
+
+    if ( draw_stage == 5 ) return;
+var O3=new Object; O3.label = "9";
+   
+    phangiac(a,c,b,z6); phangiac(c,E2,U,z7); line_line(z6,z7,O3);
+
+draw_point(O3,"blue",N);
+
+z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;  
+var T2=new Object;
+off_perp_to_line(O3,z5,z4); line_line(z4,z5,T2); 
+draw_arc_color(O3,dist(O3,T2),0,6.29,"blue");
+
+
+
+if ( draw_stage == 6 ) return;
+var O1=new Object; O1.label = "7"; var T1=new Object;
+phangiac(c,a,b,z6);; phangiac(a,E2,U,z7); line_line(z6,z7,O1);
+off_perp_to_line(O1,z5,z4); line_line(z4,z5,T1); 
+draw_arc_color(O1,dist(O1,T1),0,6.29,"blue");
+draw_point(O1,"blue",N);
+ 
+if ( draw_stage == 7 ) return;
+var O2=new Object; O2.label = "8";
+
+c1.r = dist(K1,E1); c1.x = K1.x; c1.y = K1.y;
+    c2.r = dist(K1,E3)/2; c2.x = (K1.x+E3.x)/2; c2.y = (K1.y+E3.y)/2;
+circle_circle(c1,c2,V,U); // draw_point(U,"blue",N);  
+
+draw_ray(E3,U);
+
+phangiac(a,b,c,z6);; phangiac(b,E3,U,z7); line_line(z6,z7,O2);
+z5.x1 = b.x; z5.y1 = b.y; z5.x2 = a.x; z5.y2 = a.y;  var T3=new Object;
+off_perp_to_line(O2,z5,z4); line_line(z4,z5,T3); 
+draw_arc_color(O2,dist(O2,T3),0,6.29,"blue");    draw_point(O2,"blue",N);
+
+z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;  
+z4.x1 = E3.x; z4.y1 = E3.y; z4.x2 = U.x; z4.y2 = U.y; var n=new Object; n.label="n";
+line_line(z4,z5,n); draw_point(n,"blue",W);
+
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 700; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, -0.05, -0.15, -0.37, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+
+
+// ket thuc pham ma them vao
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <hr>
+	<div id="banner"/>
+	<img src="Dunghinh3.png"/>    </div>
+	<hr>    <hr>
+ <br>
+ <H3> &emsp; &emsp; Dựng hình<br>
+  &emsp; &emsp; Bài toán Malfatti.  </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+ 
+
+    <body style="margin: 0px;">
+      <div>
+          <p style="margin:25px;font-size: 30px;font-style: bold;font-weight: bold;">Đề bài</p>
+        <b> Hãy dựng 3 đường tròn vào trong tam giác ABC cho trước sao cho mỗi đường tròn tiếp xúc với 2 đường tròn kia
+           và tiếp xúc với 2 cạnh tam giác. </b>  <br>  <br>
+      </div>
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"> Bắt đầu: cho tam giác ABC.<br>
+ <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Dựng giao điểm O của 3 phân giác trong của tam giác. <br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="3">  2. Dựng  tâm 3 đường tròn nội tiếp các tam giác BOC, COA và AOB. <br>
+
+ <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Dựng các các đường tròn nội tiếp đó với các tiếp điểm 4, 5, 6 tương ứng trên các cạnh tam giác ABC. <br>
+  
+ <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4.   Từ 5 dựng tiếp tuyến 5U với đường tròn (1).  <br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Dựng đường tròn tâm 9 tiếp xúc với các cạnh BC, C5 và 5U.<br>
+
+ <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Dựng đường tròn tâm 7 tiếp xúc với các cạnh AC, AB và 5U. <br>
+ <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Dựng tiếp tuyến 6n với đường tròn (1). <br>
+ Cuối cùng dựng đường tròn tâm 8 tiếp xúc với các cạnh AB, BC và 6n.<br>  <br>
+ Ba đường tròn màu xanh tâm 7, 8, 9 là 3 đường tròn cần dựng.
+
+ <br>
+
+ 
+
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+</script>
+</body>
+</html>
+
+<style>
+		
+	  body {background-color: #c0c0c0;}
+		
+	HR{ clear: both;
+		border-bottom : 2px solid #666666;
+		border-left : 0px none #656565;
+		border-right : 0px none #656565;
+		border-top : 2px solid #FFFFFF;
+		margin : 5px 0px 5px 0px;
+		padding : 0px 0px 0px 0px;
+		height : 4px; 
+	}
+		
+	#banner {background: white ;
+	          height: auto;
+		  width:auto;  }
+		#banner img{
+	width: 1350px;
+	  }
+	
+
+	
+
+	</style>
+
