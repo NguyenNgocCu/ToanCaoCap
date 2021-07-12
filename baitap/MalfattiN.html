@@ -174,6 +174,7 @@ draw_arc_color(O2,dist(O2,T3),0,6.29,"blue");    draw_point(O2,"blue",N);
 z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;  
 z4.x1 = E3.x; z4.y1 = E3.y; z4.x2 = U.x; z4.y2 = U.y; var n=new Object; n.label="n";
 line_line(z4,z5,n); draw_point(n,"blue",W);
+	  
 if ( draw_stage == 9 ) return;
 draw_arc_color(K2,dist(K2,E2),0,6.29,"silver");  draw_arc_color(K1,dist(K1,E1),0,6.29,"silver");
 draw_arc_color(K3,dist(K3,E3),0,6.29,"silver");
@@ -181,6 +182,7 @@ draw_arc_color(K3,dist(K3,E3),0,6.29,"silver");
 
 draw_segment(O,a); draw_segment(O,b); draw_segment(O,c);  // Vẽ đè lên các đoạn cũ
 
+	   if ( draw_stage == 10 ) return;
   }
 
 
@@ -272,7 +274,7 @@ draw_segment(O,a); draw_segment(O,b); draw_segment(O,c);  // Vẽ đè lên các
  <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Dựng tiếp tuyến 6n với đường tròn (1). <br>
 <input type="radio" name="step" onclick="ddraw(9)" value="4"  id="start"> 8. Cuối cùng dựng đường tròn tâm 8 tiếp xúc với các cạnh AB, BC và 6n.<br>  <br>
  <input type="radio" name="step" onclick="ddraw(10)" value="4"  id="start"> 9. Ba đường tròn màu xanh tâm 7, 8, 9 là 3 đường tròn cần dựng. <br>  <br>
-
+<input type="radio" name="step" onclick="ddraw(11)" value="4"  id="start"> 10. <em> Lịch sử vài toán </em>: Glovanni Malfatti (nhà toán học Ý, 1731-1807) nêu bài toán: tìm 3 đường tròn đôi một không chồng lên nhau trong tam giác ABC sao cho tổng diện tích chúng lớn nhất. Ông dự đoán (không chứng minh) các đường tròn 7, 8, 9 vừa dựng trên là đáp án cần tìm. Năm 1929, Richmond chỉ ra điều đó không đúng khi tam giác ABC là tam giác đều. Năm 1967 Michel Goldberg chứng minh dự đoán Glovanni Malfatti không đúng  trong bất kì tam giác nào cả. Cách dựng trên là của Steiner cuối thế kỉ 19.
 
  <br>
 
