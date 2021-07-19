@@ -166,7 +166,9 @@ circle_circle(c1,c2,V,U); // draw_point(U,"blue",N);
 
 draw_ray(E3,U);
 
-
+z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;  
+z4.x1 = E3.x; z4.y1 = E3.y; z4.x2 = U.x; z4.y2 = U.y; var n=new Object; n.label="n";
+line_line(z4,z5,n); draw_point(n,"blue",W);
 
 if ( draw_stage == 8 ) return;
 
@@ -175,9 +177,7 @@ z5.x1 = b.x; z5.y1 = b.y; z5.x2 = a.x; z5.y2 = a.y;  var T3=new Object;
 off_perp_to_line(O2,z5,z4); line_line(z4,z5,T3); 
 draw_arc_color(O2,dist(O2,T3),0,6.29,"blue");    draw_point(O2,"blue",N);
 
-z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;  
-z4.x1 = E3.x; z4.y1 = E3.y; z4.x2 = U.x; z4.y2 = U.y; var n=new Object; n.label="n";
-line_line(z4,z5,n); draw_point(n,"blue",W);
+
 	  
 if ( draw_stage == 9 ) return;
 draw_arc_color(K2,dist(K2,E2),0,6.29,"silver");  draw_arc_color(K1,dist(K1,E1),0,6.29,"silver");
