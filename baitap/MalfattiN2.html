@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	
+	<!-- Cái dòng dưới đây làm cho font đẹp hơn giống như fonr Courier    -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<title> Bài toán Malfatti. </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript"     src="G:/web1/XDN_Style/XDN.js"></script>    	<!-- src="../baitap/XDN.js"></script>  -->
+
+ <script>
+
+  // Point objects, fields x,y,label
+
+
+  var a = new Object;  a.x = -2.0; a.y = 1.0 ; a.label = "A";
+   var b = new Object;  b.x = 4.0; b.y = 1.0 ; b.label = "B";
+
+   var c = new Object;  c.x = 0.0; c.y = -2.0 ; c.label = "C";
+
+ 
+ // var e = new Object;  e.x = 3.0; e.y = 0.0 ; e.label = "5";
+ 
+ var r1 = new Object;  
+  var r2 = new Object;  // cac canh tam giac
+  var r3 = new Object;
+  var p = new Object;   // nua chu vi
+
+
+
+  
+  function calc_points()
+  { r1 = dist(b,c);  r2 = dist(a,c); r3 = dist(b,a); p=(r1+r2+r3)/2;
+  //  c1.r = r; c1.x = a.x; c1.y = a.y;
+//	c2.r = r; c2.x = b.x; c2.y = b.y;
+//	circle_circle(c1,c2,c,d)
+  }
+  
+  function reset()
+  { a.x = -2.0; a.y = 1.0;
+    b.x = 4.0; b.y = 1.0;
+    c.x = 0.0; c.y=-2.0
+   
+  }
+	
+
+
+
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+  
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+    
+   //ctx.font="0.15px Verdana";
+     ctx.font="0.5px Verdana";
+    //ctx.fillText("A", a.x, a.y);  
+	
+    calc_points();
+	
+    draw_point(a,"red",N);
+    draw_point(b,"red",S);
+    draw_point(c,"red",N);
+    draw_segment(a,b);    draw_segment(a,c);    draw_segment(c,b);
+    
+    
+
+    if ( draw_stage == 0 ) return;
+
+
+
+   // if ( draw_stage == 1 ) return;
+
+
+    // draw_arc(b,r1,0,6);          thu
+    var v1 = new Object;   var v2 = new Object;   var v3 = new Object; 
+    v1 = Math.asin(Math.sqrt(r1/p));     v2 = Math.asin(Math.sqrt(r2/p));     v3 = Math.asin(Math.sqrt(r3/p));
+
+  
+    var u = new Object;   var v = new Object;   var t = new Object; 
+   u=(v2+v3-v1)/2;  v=(v1+v3-v2)/2;  t=(v2+v1-v3)/2;
+
+var x = Math.sin(u)*Math.sin(u)*p;
+var y = Math.sin(v)*Math.sin(v)*p;
+var z = Math.sin(t)*Math.sin(t)*p;
+
+    if ( draw_stage == 1 ) return;
+
+    draw_arc(a,x,0,6.29);
+    var L1 = new Object;   var L2 = new Object;   var c1 = new Object; var t1 = new Object; var t2 = new Object; 
+                                                                       t1.label="t1"
+L1.x1=a.x; L1.y1=a.y;  L1.x2=b.x; L1.y2=b.y;   L2.x1=a.x; L2.y1=a.y;  L2.x2=c.x; L2.y2=c.y; 
+c1.r = x; c1.x = a.x; c1.y = a.y;              
+ line_circle(L1,c1,t1,t2);    draw_point(t1,"black",E);    var t3 = new Object; var t4 = new Object; t3.label="t3";
+ line_circle(L2,c1,t4,t3);    draw_point(t3,"black",E);
+
+    if ( draw_stage == 2 ) return;
+    var L3 = new Object;   var L4 = new Object;  var O1 = new Object; O1.label="o1";
+    perp_to_line(t1,a,L3) ;// L3.x1=t1.x; L3.y1=t1.y; L3.x2=t1.x+(a.y-t1.y); L3.y2=t1.y+(t1.x-a.x);
+   perp_to_line(t3,a,L4) ; line_line(L3,L4,O1); 
+
+
+    
+     draw_ray(t1,O1);    draw_ray(t3,O1);
+
+    //draw_segment(c,b);
+
+    if ( draw_stage == 3 ) return;
+
+    draw_point(O1,"black",E);  var r7 = dist(O1,t1);   // draw_arc(O1,r7,0,6.29);
+
+    draw_arc_color(O1,r7,0,2*3.15,"green");
+
+    if ( draw_stage == 4 ) return;
+
+    draw_arc(b,y,0,6.29);
+    var L1 = new Object;   var L2 = new Object;   var c1 = new Object; var t1 = new Object; var t2 = new Object; 
+                                                                       t1.label=" "
+L1.x1=a.x; L1.y1=a.y;  L1.x2=b.x; L1.y2=b.y;   L2.x1=b.x; L2.y1=b.y;  L2.x2=c.x; L2.y2=c.y; 
+c1.r = y; c1.x = b.x; c1.y = b.y;              
+ line_circle(L1,c1,t2,t1);    draw_point(t1,"black",E);    var t3 = new Object; var t4 = new Object; t3.label=" ";
+ line_circle(L2,c1,t4,t3);    draw_point(t3,"black",E);
+
+ if ( draw_stage == 5 ) return;
+
+ perp_to_line(t1,b,L3) ;  var O2 = new Object; O2.label="o2";   // L3.x1=t1.x; L3.y1=t1.y; L3.x2=t1.x+(a.y-t1.y); L3.y2=t1.y+(t1.x-a.x);
+   perp_to_line(t3,b,L4) ; line_line(L3,L4,O2); 
+   draw_point(O2,"black",E);  var r7 = dist(O2,t1);// draw_arc(O2,r7,0,6.29);
+
+   draw_arc_color(O2,r7,0,2*3.15,"green");
+   DrawDottedLine(O2,t1,10);    DrawDottedLine(O2,t3,10);
+
+   if ( draw_stage == 6 ) return;
+   draw_arc(c,z,0,6.29);
+    var L1 = new Object;   var L2 = new Object;   var c1 = new Object; var t1 = new Object; var t2 = new Object; 
+                                                                       t1.label=" "
+L2.x1=a.x; L2.y1=a.y;  L2.x2=c.x; L2.y2=c.y;   L1.x1=b.x; L1.y1=b.y;  L1.x2=c.x; L1.y2=c.y; 
+c1.r = z; c1.x = c.x; c1.y = c.y;              
+ line_circle(L1,c1,t1,t2);    draw_point(t1,"black",E);    var t3 = new Object; var t4 = new Object; t3.label=" ";
+ line_circle(L2,c1,t3,t4);    draw_point(t3,"black",E);
+
+ if ( draw_stage == 7 ) return;
+
+ perp_to_line(t1,c,L3) ;  var O3 = new Object; O3.label="o3";   // L3.x1=t1.x; L3.y1=t1.y; L3.x2=t1.x+(a.y-t1.y); L3.y2=t1.y+(t1.x-a.x);
+   perp_to_line(t3,c,L4) ; line_line(L3,L4,O3); 
+   draw_point(O3,"black",E);  var r7 = dist(O3,t1); // draw_arc(O3,r7,0,6.29);
+
+   draw_arc_color(O3,r7,0,2*3.15,"green");
+   DrawDottedLine(O3,t1,8);    DrawDottedLine(O3,t3,8);
+
+
+  }
+
+
+
+//draw_arc_color(ta,bk,0,2*3.14,"white");
+
+
+
+
+// Them vao 
+// var height = 600; 
+var height = 800; 
+  var width  = 700; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, -0.05, -0.15, -0.37, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+
+
+// ket thuc pham ma them vao
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <hr>
+	<div   id="banner">   
+   <br>   <br>  <br>   <br>  <br>   <br> <br>   <br>  <br>
+   <span style="font-size: 25px"> <font color="yellow">  <marquee scrollamount="10" direction="right"> DỰNG HÌNH - BÀI TOÁN MALFATTI </marquee> </font> </span>
+   </div> 
+	                          <!--  <div id="banner"/>
+	                            <img src="Dunghinh3.png"/>    </div>    -->
+	<hr>    <hr>
+ <br>
+ <H3> &emsp; &emsp; Dựng hình<br>
+  &emsp; &emsp; Bài toán Malfatti.  </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="750" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+ 
+
+    <body style="margin: 0px;">
+      <div>
+          <p style="margin:25px;font-size: 24px;font-style: bold;font-weight: bold;">Cách thứ hai dựng các đường tròn Malfatti</p>
+        <b> Cách này dựa vào các biểu thức biểu diễn độ dài các đoạn thẳng mà
+          chúng có thể dựng được bằng compa và thước kẻ. </b>  <br>  <br>
+      </div>
+      <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0">  Bắt đầu: cho tam giác ABC.<br>
+      <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ cung tròn tâm A bán kính bằng <em> x. </em> Nó cắt các cạnh tam giác tại  <em> t1, t3. </em>  <br> (Các đoạn
+      thẳng  <em> x, y, z </em> có độ dài được tính theo các công thức (4)-(7), xem <br> trong bài <a style="text-decoration: none" href="../baitap/MalfattiCach2.pdf" target="_blank" style="color: black;">
+        Cách thứ hai dựng các đường tròn Malfatti</a>) <br>
+      <input type="radio" name="step" onclick="ddraw(3)" value="3"> 2. Vẽ các đường vuông góc với các cạnh tam giác tại <em> t1, t3. </em> <br>
+      <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Các đường vuông góc này cắt nhau tại <em> O1. </em> Vẽ đường tròn tâm <em> O1, </em> bán kính
+      <em> o1t1. </em> Đây là đường tròn Malfatti thứ nhất.<br>
+      <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ cung tròn tâm B bán kính bằng <em> y. </em><br>
+      <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Tương tự ta dựng đường tròn Malfatti thứ hai tâm <em> o2. </em>. <br>
+      <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Vẽ cung tròn tâm C bán kính bằng <em> z. </em> <br>
+      <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Tương tự như các lần trước, ta dựng đường tròn Malfatti thứ ba tâm <em> o3. </em> <br>
+      <input type="radio" name="step" onclick="ddraw(9)" value="4"  id="start"> 8.  
+     
+      
+ <br>
+
+ 
+
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+	
+</table>
+&emsp; &emsp; &emsp; <a style="text-decoration: none" href="../baitap/MalfattiCach2.pdf" target="_blank" style="color: black;"> Xem thêm một cách dựng khác các đường tròn Malfatti.
+     </a>
+
+<hr>
+<br>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+</script>
+</body>
+</html>
+
+<style>
+		
+  body {background-color: #c0c0c0;}
+  
+HR{ clear: both;
+  border-bottom : 2px solid #666666;
+  border-left : 0px none #656565;
+  border-right : 0px none #656565;
+  border-top : 2px solid #FFFFFF;
+  margin : 5px 0px 5px 0px;
+  padding : 0px 0px 0px 0px;
+  height : 4px; 
+}
+  
+/*        #banner {background: white ;
+          height: auto;
+    width:auto;  }   */
+#banner img{
+width: 1350px;
+  }
+
+ 
+
+    #banner {background-image:url(G:/web1/XDN_Style/Dunghinh5.png);
+          height: 190px; width: 1350px;
+	   }   
+
+	</style>
+
