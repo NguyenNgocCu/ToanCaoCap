@@ -136,7 +136,7 @@ c1.r = y; c1.x = b.x; c1.y = b.y;
    draw_point(O2,"black",E);  var r7 = dist(O2,t1);// draw_arc(O2,r7,0,6.29);
 
    draw_arc_color(O2,r7,0,2*3.15,"green");
-   DrawDottedLine(O2,t1,20);    DrawDottedLine(O2,t3,20);
+   DrawDottedLine2(O2,t1,20);    DrawDottedLine2(O2,t3,20);
 
    if ( draw_stage == 6 ) return;
    draw_arc(c,z,0,6.29);
@@ -154,7 +154,7 @@ c1.r = z; c1.x = c.x; c1.y = c.y;
    draw_point(O3,"black",E);  var r7 = dist(O3,t1); // draw_arc(O3,r7,0,6.29);
 
    draw_arc_color(O3,r7,0,2*3.15,"green");
-   DrawDottedLine(O3,t1,15);    DrawDottedLine(O3,t3,15);
+   DrawDottedLine2(O3,t1,15);    DrawDottedLine2(O3,t3,15);
 
 
   }
@@ -179,7 +179,7 @@ var height = 800;
   var ytop = 3.0;
   var ybottom = -3.0;
 
-  var point_radius = 0.01;      // ban kinh diem cu 0.025
+  var point_radius = 0.025;      // ban kinh diem cu 0.025
   var moving_point = null;
   var moving_pt_count = 0;
   var mouse_down_flag = false;
