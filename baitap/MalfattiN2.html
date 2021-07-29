@@ -96,10 +96,10 @@ var z = Math.sin(t)*Math.sin(t)*p;
 
     draw_arc(a,x,0,6.29);
     var L1 = new Object;   var L2 = new Object;   var c1 = new Object; var t1 = new Object; var t2 = new Object; 
-                                                                       t1.label="t1"
+                                                                       t1.label="M"
 L1.x1=a.x; L1.y1=a.y;  L1.x2=b.x; L1.y2=b.y;   L2.x1=a.x; L2.y1=a.y;  L2.x2=c.x; L2.y2=c.y; 
 c1.r = x; c1.x = a.x; c1.y = a.y;              
- line_circle(L1,c1,t1,t2);    draw_point(t1,"black",E);    var t3 = new Object; var t4 = new Object; t3.label="t3";
+ line_circle(L1,c1,t1,t2);    draw_point(t1,"black",E);    var t3 = new Object; var t4 = new Object; t3.label="N";
  line_circle(L2,c1,t4,t3);    draw_point(t3,"black",E);
 
     if ( draw_stage == 2 ) return;
@@ -240,12 +240,12 @@ var height = 800;
           chúng có thể dựng được bằng compa và thước kẻ. </b>  <br>  <br>
       </div>
       <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0">  Bắt đầu: cho tam giác ABC.<br>
-      <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ cung tròn tâm A bán kính bằng <em> x. </em> Nó cắt các cạnh tam giác tại  <em> t1, t3. </em>  <br> (Các đoạn
+      <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ cung tròn tâm A bán kính bằng <em> x. </em> Nó cắt các cạnh tam giác tại  <em> M, N. </em>  <br> (Các đoạn
       thẳng  <em> x, y, z </em> có độ dài được tính theo các công thức (4)-(7), xem <br> trong bài <a style="text-decoration: none" href="MalfattiCach2.pdf" target="_blank" style="color: black;">
         Cách thứ hai dựng các đường tròn Malfatti</a>) <br>
       <input type="radio" name="step" onclick="ddraw(3)" value="3"> 2. Vẽ các đường vuông góc với các cạnh tam giác tại <em> t1, t3. </em> <br>
       <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Các đường vuông góc này cắt nhau tại <em> O1. </em> Vẽ đường tròn tâm <em> O1, </em> bán kính
-      <em> o1t1. </em> Đây là đường tròn Malfatti thứ nhất.<br>
+      <em> o1M. </em> Đây là đường tròn Malfatti thứ nhất.<br>
       <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ cung tròn tâm B bán kính bằng <em> y. </em><br>
       <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Tương tự ta dựng đường tròn Malfatti thứ hai tâm <em> o2. </em>. <br>
       <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Vẽ cung tròn tâm C bán kính bằng <em> z. </em> <br>
