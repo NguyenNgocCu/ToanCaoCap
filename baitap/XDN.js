@@ -198,6 +198,52 @@ chrome_flag = false;
            ctx.stroke(); 
         }
 
+function draw_p2(pt,color,offset)   // Vẽ điểm với độ đậm giảm hơn
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.003;      // Vẽ điểm với độ đậm 0.003
+    ctx.arc(pt.x,pt.y,point_radius/2,0,2*Math.PI,true);                 // Chia đôi bán kính điểm, vì thế điểm sẽ bé đi
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
+
+	ctx.stroke();
+  }
+
+
+  function DrawDottedLine2(pt,qt,dotCount){                    // Ứng với function draw_p2 ở bên trên
+          var dx = qt.x-pt.x;
+          var dy = qt.y-pt.y;
+          var spaceX = dx/(dotCount-1);
+          var spaceY = dy/(dotCount-1);
+          var newX = pt.x;
+          var newY = pt.y;
+          var mm = new Object; mm.x = newX; mm.y = newY;
+          for (var i=0; i < dotCount; i++){
+                  draw_p2(mm,"black");
+                  newX = newX + spaceX;
+                  newY = newY + spaceY;  
+                  mm.x = newX; 
+                  mm.y = newY;            
+           }
+           ctx.stroke(); 
+        }
+
 
   function draw_segment(pt,qt, color="black")
   {
