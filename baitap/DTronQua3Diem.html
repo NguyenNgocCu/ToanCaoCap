@@ -197,7 +197,32 @@ draw_segment(a,b);
 
 
 // Them vao 
+function draw_p1(pt,color,offset)   
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+	ctx.fillStyle=color;
+    ctx.lineWidth = 0.003;      
+    ctx.arc(pt.x,pt.y,point_radius-0.01,0,2*Math.PI,true); // Point_radius - 0.01 để điểm ... bé hơn, không to quá
+    ctx.fill();
+	ctx.stroke();
+	
+	ctx.beginPath();
+chrome_flag = false;
+	if ( chrome_flag )
+	{
+      ctx.strokeStyle="black";
+	  ctx.lineWidth = 0.005;
+	  ctx.strokeText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);		
+	}
+	else 
+	{
+	  ctx.fillStyle="black";
+      ctx.fillText(pt.label,pt.x+offx[offset],pt.y+offy[offset]);
+	}
 
+	ctx.stroke();
+  }
 
 // ket thuc pham ma them vao
 
