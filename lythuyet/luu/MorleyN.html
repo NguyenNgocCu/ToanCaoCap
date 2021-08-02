@@ -33,7 +33,7 @@
  
   
 
-   var a = new Object;  a.x = -2.6; a.y = 1.5 ; a.label = "A";
+  var a = new Object;  a.x = -2.6; a.y = 1.5 ; a.label = "A";
    var b = new Object;  b.x = 3.0; b.y = 0.0 ; b.label = "B";
 
    var c = new Object;  c.x = 0.0; c.y = -2.7 ;  c.label = "C"; // Nếu thay đổi tọa độ các điểm A, B, C ở đây thì phải thay ở function reset!
@@ -84,8 +84,8 @@
     calc_points();
 	
     draw_point(a,"red",N);
-    draw_point(b,"red",S);
-    draw_point(c,"red",S);
+    draw_point(b,"red",N);
+    draw_point(c,"red",E);
     draw_segment(a,b);
     draw_segment(a,c);
     draw_segment(c,b);
@@ -154,9 +154,9 @@ line_line(L2,L3,p);  draw_point(p,"black",N);
 if ( draw_stage == 3 ) return;
 
 var t2=new Object; t2.x=0;t2.y=0; t2.label=" ";
- t2.x=p.x+5*t1.x; t2.y=p.y+5*t1.y;     draw_segment(p,t2,"white");
- t1.x=m.x-a.x; t1.y=m.y-a.y; t2.x=p.x+5*t1.x; t2.y=p.y+5*t1.y;     draw_segment(p,t2,"white");
-
+ t2.x=p.x+5*t1.x; t2.y=p.y+5*t1.y;     draw_segmentX(p,t2,"white");
+ t1.x=m.x-a.x; t1.y=m.y-a.y; t2.x=p.x+5*t1.x; t2.y=p.y+5*t1.y;     draw_segmentX(p,t2,"white");
+ draw_point(p,"black",N); //   Vẽ lại điểm X cho có màu đen
     if ( draw_stage == 4 ) return;
 
    ve3goc(a,b,c); // draw_point(m,"red",N); draw_point(n,"red",N);
@@ -165,7 +165,7 @@ var t2=new Object; t2.x=0;t2.y=0; t2.label=" ";
    var L5 = new Object;
     L5.x1 = b.x; L5.y1 = b.y; L5.x2 = m.x; L5.y2 = m.y;
     var q = new Object; q.x=0, q.y=0; q.label = "y";
-line_line(L4,L5,q);  draw_point(q,"black",S);
+line_line(L4,L5,q);  draw_point(q,"black",N);
 
 
 
@@ -192,23 +192,25 @@ g2=g1-g/3;
     L6.x1 = b.x; L6.y1 = b.y; L6.x2 = n.x; L6.y2 = n.y;
     var r = new Object; r.x=0, r.y=0; r.label = "z";
 line_line(L6,L1,r);  draw_point(r,"black",N);
-draw_ray(b,r);
+draw_ray(b,r);  // draw_point(r,"red",N);
 
     if ( draw_stage == 5 ) return;
-
+ 
    
 draw_segment(p,q,"red");draw_segment(p,r,"red"); draw_segment(r,q,"red");
 
 if ( draw_stage == 6 ) return;
 
 var t2=new Object; t2.x=0;t2.y=0; t2.label=" ";
- t2.x=r.x+5*t3.x; t2.y=r.y+5*t3.y;     draw_segment(r,t2,"white");
+ t2.x=r.x+5*t3.x; t2.y=r.y+5*t3.y;     draw_segmentX(r,t2,"white");
  
 
- t1.x=n.x-b.x; t1.y=n.y-b.y; t2.x=r.x-5*t1.x; t2.y=r.y-5*t1.y;  draw_segment(r,t2,"white");
-
+ t1.x=n.x-b.x; t1.y=n.y-b.y; t2.x=r.x-5*t1.x; t2.y=r.y-5*t1.y;  draw_segmentX(r,t2,"white");
+            // draw_point(q,"red",N);
+ t2.x=5*q.x-4*b.x; t2.y=5*q.y-4*b.y; draw_segmentX(q,t2,"white");  // Điểm t2 lấy ra xa về phía vô cùng
+ t2.x=5*q.x-4*a.x; t2.y=5*q.y-4*a.y; draw_segmentX(q,t2,"white");
+ draw_point(q,"black",N);   draw_point(r,"black",N); //   Vẽ lại điểm Z,Y cho có màu đen
   }
-
 
 
 
@@ -307,6 +309,26 @@ var t2=new Object; t2.x=0;t2.y=0; t2.label=" ";
     p2.y = a.y + aa/d*(b.y-a.y) + h/d*(b.x-a.x);
       
   }    
+
+  function phangiac(a,b,c,L)  // Vẽ phân giác 
+{var d1=Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y)); var q5 = new Object; q5.x=0, q5.y=0;
+    q5.x=(a.x-b.x)/d1; q5.y=(a.y-b.y)/d1;
+  var d2=Math.sqrt((c.x-b.x)*(c.x-b.x) + (c.y-b.y)*(c.y-b.y));   var q6 = new Object; q6.x=0, q6.y=0;
+  q6.x=(c.x-b.x)/d2; q6.y=(c.y-b.y)/d2;
+  var q7 = new Object; q7.x=0, q7.y=0;  q7.x=b.x+q5.x+q6.x; q7.y=b.y+q5.y+q6.y;  
+  L.x1 = b.x; L.y1 = b.y; L.x2 = q7.x; L.y2 = q7.y; 
+
+
+
+
+
+}
+
+
+
+
+
+
 
   function perp_to_line(a,b,L)  // perp at point a; b is other point on line; L is output line
   {
@@ -437,6 +459,15 @@ chrome_flag = false;
     ctx.stroke();
   }
 
+  function draw_segmentX(pt,qt, color="white")
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    ctx.lineWidth = 0.03;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
 
  function draw_line(pt,qt) // to beyond boundaries of canvas; point-point version
  { var y_right;
@@ -599,9 +630,6 @@ chrome_flag = false;
 
 
 
-
-
-
   function ddraw(stage) { draw_stage = stage; draw(); }
   
 /*****************************************************************************************************/
@@ -715,7 +743,7 @@ chrome_flag = false;
  <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ dần các nửa đường thẳng chia 3 góc B. Vẽ giao điểm Y, Z. <br>
  <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Tam giác XYZ là tam giác đều.<br>
 
- <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Xóa bớt. <br>
+ <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Xóa bớt các nửa đường thẳng dư ra cho dễ nhìn. <br>
 
 
  <br>
