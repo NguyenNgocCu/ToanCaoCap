@@ -254,7 +254,18 @@ chrome_flag = false;
     ctx.lineTo(qt.x,qt.y);
     ctx.stroke();
   }
+
+ function draw_segmentX(pt,qt, color="white")
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    ctx.lineWidth = 0.03;    //   Đoạn thẳng dày đậm hơn. Dùng để che lấp cái khác 
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
   
+
   function draw_segmentWh(pt,qt, color="white")   // Để che các đoạn thẳng đã có trước
   {
 
