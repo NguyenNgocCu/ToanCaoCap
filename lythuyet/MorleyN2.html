@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ 
+	
+<title> Vẽ hình bài toán Morley. </title>
+	
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="../baitap/XDN.js"></script>
+
+
+
+
+ <script>
+
+  
+
+
+
+
+
+
+
+
+  // Point objects, fields x,y,label
+ 
+  
+  var a = new Object;  a.x = -1.5; a.y = 0.0 ; a.label = "A";
+   var b = new Object;  b.x = 3.0; b.y = 0.0 ; b.label = "B";
+
+   var c = new Object;  c.x = 0.0; c.y = -2.5 ;  c.label = "C"; // Nếu thay đổi tọa độ các điểm A, B, C ở đây thì phải thay ở function reset!
+
+  var m = new Object;  m.x = 0.0; m.y = 0.0 ; m.label = "m";
+  var n = new Object;  n.x = 0.0; n.y = 0.0 ; n.label = "n";
+ 
+
+  var c1 = new Object;  // circles
+  var c2 = new Object;
+
+
+
+
+  
+  function calc_points()
+  { var r;
+
+
+  }
+  
+  function reset()
+  { a.x = -1.5; a.y = 0.0;
+    b.x = 3.0; b.y = 0.0;
+    c.x = 0.0; c.y = -2.5;    // Có thể thay đổi tọa độ các điểm A, B, C ở đây!
+   
+  }
+	
+
+
+
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+  
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+    
+   //ctx.font="0.15px Verdana";
+     ctx.font="0.5px Verdana";
+    //ctx.fillText("A", a.x, a.y);  
+	
+    calc_points();
+	
+    draw_point(a,"red",N);
+    draw_point(b,"red",N);
+    draw_point(c,"red",E);
+    draw_segment(a,b);
+    draw_segment(a,c);
+    draw_segment(c,b);
+    
+
+   
+   
+
+    if ( draw_stage == 0 ) return;
+
+
+
+    if ( draw_stage == 1 ) return;
+    
+    var h = (-c.x+b.x)*(a.x-c.x)+(-c.y+b.y)*(a.y-c.y);
+       var   m1 = Math.sqrt((-c.x+b.x)*(-c.x+b.x)+(c.y-b.y)*(c.y-b.y))*Math.sqrt((a.x-c.x)*(a.x-c.x)+(a.y-c.y)*(a.y-c.y));
+        var  g = Math.acos(h/m1);
+     
+
+       var g1 = Math.atan((b.y-c.y)/(b.x-c.x));  var g2 = g1 + g/3; 
+
+    
+   m.x = c.x + Math.cos(g2); m.y = c.y + Math.sin(g2);
+    draw_ray(c,m);
+ 
+     //var L2 = new Object; L2.x1 = c.x; L2.y1 = c.y; L2.x2 = n.x; L2.y2 = n.y;
+    
+     
+     var L1 = new Object;
+     L1.x1 = c.x; L1.y1 = c.y; L1.x2 = m.x; L1.y2 = m.y;    var t3=new Object; t3.x=m.x-c.x; t3.y=m.y-c.y;
+
+var n = new Object; n.x = c.x + Math.cos(g1+2*g/3); n.y = c.y + Math.sin(g1+2*g/3);
+
+draw_ray(c,n); 
+var L2 = new Object;
+L2.x1 = c.x; L2.y1 = c.y; L2.x2 = n.x; L2.y2 = n.y;
+
+var t1=new Object;
+t1.x=n.x-c.x; t1.y=n.y-c.y;
+
+//t1.x = n.x; t1.y=n.y;
+
+    if ( draw_stage == 2 ) return;
+
+    
+     h = (c.x-a.x)*(b.x-a.x)+(c.y-a.y)*(b.y-a.y);
+          m1 = Math.sqrt((c.x-a.x)*(c.x-a.x)+(c.y-a.y)*(c.y-a.y))*Math.sqrt((b.x-a.x)*(b.x-a.x)+(b.y-a.y)*(b.y-a.y));
+          g = Math.acos(h/m1);
+     
+
+        g1 = Math.atan((c.y-a.y)/(c.x-a.x));   g2 = g1 + g/3; 
+
+    
+   m.x = a.x + Math.cos(g2); m.y = a.y + Math.sin(g2);
+    draw_ray(a,m);
+
+    var L3 = new Object;
+     L3.x1 = a.x; L3.y1 = a.y; L3.x2 = m.x; L3.y2 = m.y;
+
+    n.x = a.x + Math.cos(g1+2*g/3); n.y = a.y + Math.sin(g1+2*g/3);   draw_ray(a,n);// draw_point(n,"red",N);
+    var L4 = new Object;
+    L4.x1 = a.x; L4.y1 = a.y; L4.x2 = n.x; L4.y2 = n.y;
+    var p = new Object; p.x=0, p.y=0; p.label = "x";
+line_line(L2,L3,p);  draw_point(p,"black",N);
+
+if ( draw_stage == 3 ) return;
+
+var t2=new Object; t2.x=0;t2.y=0; t2.label=" ";
+ t2.x=p.x+5*t1.x; t2.y=p.y+5*t1.y;     draw_segmentX(p,t2,"white");
+ t1.x=m.x-a.x; t1.y=m.y-a.y; t2.x=p.x+5*t1.x; t2.y=p.y+5*t1.y;     draw_segmentX(p,t2,"white");
+ draw_point(p,"black",N); //   Vẽ lại điểm X cho có màu đen
+    if ( draw_stage == 4 ) return;
+
+   ve3goc(a,b,c); // draw_point(m,"red",N); draw_point(n,"red",N);
+  
+   
+   var L5 = new Object;
+    L5.x1 = b.x; L5.y1 = b.y; L5.x2 = m.x; L5.y2 = m.y;
+    var q = new Object; q.x=0, q.y=0; q.label = "y";
+line_line(L4,L5,q);  draw_point(q,"black",N);
+
+
+
+   
+    h = (a.x-b.x)*(c.x-b.x)+(a.y-b.y)*(c.y-b.y);
+          m1 = Math.sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y))*Math.sqrt((c.x-b.x)*(c.x-b.x)+(c.y-b.y)*(c.y-b.y));
+          g = Math.acos(h/m1);
+     
+
+         g1 = Math.atan((c.y-b.y)/(c.x-b.x));  g2 = g1 - 2*g/3; 
+
+    
+   m.x = b.x + Math.cos(g2); m.y = b.y + Math.sin(g2);
+   // draw_ray(b,m);
+
+
+g2=g1-g/3;
+
+
+
+
+    n.x = b.x + Math.cos(g2); n.y = b.y + Math.sin(g2);  // draw_ray(b,n);
+    var L6 = new Object;
+    L6.x1 = b.x; L6.y1 = b.y; L6.x2 = n.x; L6.y2 = n.y;
+    var r = new Object; r.x=0, r.y=0; r.label = "z";
+line_line(L6,L1,r);  draw_point(r,"black",N);
+draw_ray(b,r);  // draw_point(r,"red",N);
+
+    if ( draw_stage == 5 ) return;
+ 
+   
+draw_segment(p,q,"red");draw_segment(p,r,"red"); draw_segment(r,q,"red");
+
+if ( draw_stage == 6 ) return;
+
+var t2=new Object; t2.x=0;t2.y=0; t2.label=" ";
+ t2.x=r.x+5*t3.x; t2.y=r.y+5*t3.y;     draw_segmentX(r,t2,"white");
+ 
+
+ t1.x=n.x-b.x; t1.y=n.y-b.y; t2.x=r.x-5*t1.x; t2.y=r.y-5*t1.y;  draw_segmentX(r,t2,"white");
+            // draw_point(q,"red",N);
+ t2.x=5*q.x-4*b.x; t2.y=5*q.y-4*b.y; draw_segmentX(q,t2,"white");  // Điểm t2 lấy ra xa về phía vô cùng
+ t2.x=5*q.x-4*a.x; t2.y=5*q.y-4*a.y; draw_segmentX(q,t2,"white");
+ draw_point(p,"black",N); draw_point(q,"black",N);   draw_point(r,"black",N); //   Vẽ lại điểm X,Z,Y cho có màu đen
+ 
+
+
+
+ if ( draw_stage == 7 ) return;
+ var u = new Object;  u.x = 0.0; u.y = 0.0 ; u.label = "U";
+   var v = new Object;  v.x = 0.0; v.y = 0.0 ; v.label = "V";
+ var c1 = new Object;  // circles
+  var c2 = new Object;
+c1.r = dist(p,c); c1.x = c.x; c1.y = c.y;
+	c2.r = dist(p,c); c2.x = p.x; c2.y = p.y;
+
+	circle_circle(c1,c2,v,u); // draw_point(u,"black",N);
+  L5.x1 = c.x; L5.y1 = c.y; L5.x2 = u.x; L5.y2 = u.y;
+
+  c1.r = dist(p,a); c1.x = a.x; c1.y = a.y;
+	c2.r = dist(p,a); c2.x = p.x; c2.y = p.y;
+
+	circle_circle(c1,c2,v,u); // draw_point(v,"black",N);
+  L6.x1 = a.x; L6.y1 = a.y; L6.x2 = v.x; L6.y2 = v.y; p.label="1";
+  line_line(L6,L5,p);  draw_point(p,"black",N);
+DrawDottedLine2(c,p,15); DrawDottedLine2(a,p,15);
+
+var s = new Object; s.x = 0.0; s.y = 0.0 ; s.label = " ";
+s.x=(6*c.x-b.x)/5; s.y=(6*c.y-b.y)/5; draw_segment(c,s);  
+  s.x=-0.5+c.x;s.y=c.y-0.05; draw_segment(c,s);  // thêm tọa độ điểm s để vẽ cạnh BC kéo dài và vẽ góc/3
+
+
+
+  if ( draw_stage == 8 ) return;
+  c1.r = dist(q,a); c1.x = a.x; c1.y = a.y;
+	c2.r = dist(q,a); c2.x = q.x; c2.y = q.y;
+
+	circle_circle(c1,c2,v,u); // draw_point(u,"black",N); 
+  c1.r = dist(q,b); c1.x = b.x; c1.y = b.y;
+  c2.r = dist(q,b); c2.x = q.x; c2.y = q.y;   var t = new Object; 	circle_circle(c1,c2,v,t); // draw_point(v,"black",N);
+  L5.x1 = a.x; L5.y1 = a.y; L5.x2 = u.x; L5.y2 = u.y;
+
+
+//circle_circle(c1,c2,v,u);  draw_point(v,"black",N);
+L6.x1 = b.x; L6.y1 = b.y; L6.x2 = v.x; L6.y2 = v.y; q.label="2";
+line_line(L6,L5,q);  draw_point(q,"black",N);
+
+DrawDottedLine2(b,q,18); DrawDottedLine2(a,q,20);
+
+if ( draw_stage == 9 ) return;
+  c1.r = dist(r,b); c1.x = b.x; c1.y = b.y;
+	c2.r = dist(r,b); c2.x = r.x; c2.y = r.y;
+
+	circle_circle(c1,c2,v,u); // draw_point(u,"black",N);
+   L5.x1 = b.x; L5.y1 = b.y; L5.x2 = u.x; L5.y2 = u.y;
+  c1.r = dist(r,c); c1.x = r.x; c1.y = r.y;
+  c2.r = dist(r,c); c2.x = c.x; c2.y = c.y;   	circle_circle(c1,c2,t,u);  //draw_point(u,"black",N);
+ 
+L6.x1 = c.x; L6.y1 = c.y; L6.x2 = u.x; L6.y2 = u.y; r.label="3";
+line_line(L6,L5,r);  draw_point(r,"black",N);
+
+DrawDottedLine2(c,r,18); DrawDottedLine2(b,r,16);
+
+if ( draw_stage == 10 ) return;
+
+draw_segment(p,q,"red");draw_segment(p,r,"red"); draw_segment(r,q,"red");
+
+}
+
+
+
+
+
+// Them vao 
+
+
+
+// var height = 600; 
+  var height = 800; 
+  var width  = 700; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, -0.05, -0.15, -0.17, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  // Distance between two points
+  
+// ket thuc pham ma them vao
+
+
+
+
+
+  </script>
+
+
+</head>
+<body>
+  <hr>
+	<div   id="banner">   
+   <br>   <br>  <br>   <br>  <br>   <br> <br>   <br>  <br>
+   <span style="font-size: 25px"> <font color="yellow">  <marquee scrollamount="10" direction="right"> VẼ HÌNH – ĐỊNH LÍ MORLEY </marquee> </font> </span>
+   </div> 
+	                          <!--  <div id="banner"/>
+	                            <img src="Dunghinh3.png"/>    </div>    -->
+	<hr>    <hr>
+ <br>
+ <H3> &emsp; &emsp; Dựng hình<br>
+  &emsp; &emsp; Vẽ hình bài toán Morley.  </H3>
+
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="800"></canvas>
+  <td style="vertical-align:top">
+  <table>
+ 
+
+    <body style="margin: 0px;">
+      <div>
+          <p style="margin:25px;font-size: 30px;font-style: bold;font-weight: bold;">Đề bài</p>
+      </div>
+      Định lí Morley có 2  khẳng định, thứ nhất: <br>  <br>
+ <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"> Cho tam giác ABC.<br>
+ <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ 2 nửa đường thẳng chia góc C thành 3 góc bằng nhau.<br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="3">  2. Vẽ 2 nửa đường thẳng chia 3 góc A. Vẽ giao điểm X. <br>
+ <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Xóa bớt cho đỡ rối. <br>
+ <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ dần các nửa đường thẳng chia 3 góc B. Vẽ giao điểm Y, Z. <br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Tam giác XYZ là tam giác đều.<br>
+
+ <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Xóa bớt các nửa đường thẳng cho dễ nhìn. <br>
+ <br>
+ Khẳng định thứ 2: xét các nửa đường thẳng khác cũng xuất phát từ đỉnh tam giác ABC. Các tia này cắt nhau tại các điểm 1,2,3 như hình bên. Khi đó tam giác 123 cũng 
+  là tam giác đều. <br> <br>
+
+
+ <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Từ mỗi đỉnh tam giác ABC vẽ các nửa đường thẳng
+ chia <em>góc ngoài tam giác</em> thành 3 góc bằng nhau. Các nửa đường thẳng thích hợp xuất phát từ A và C cắt nhau tại điểm 1. Xem hình vẽ.<br>
+ <input type="radio" name="step" onclick="ddraw(9)" value="4"  id="start"> 8. Tương tự như trên ta có điểm 2.<br>
+ <input type="radio" name="step" onclick="ddraw(10)" value="4"  id="start"> 9. Cũng như vậy tiếp, ta có điểm 3.<br>
+ <input type="radio" name="step" onclick="ddraw(11)" value="4"  id="start"> 10. Tam giác 123 là tam giác đều.<br>
+
+
+ <br>
+
+ 
+
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+
+</script>
+
+<div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"><a target="_blank" title="www.susqu.edu" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/">Susquehanna University</a> assumes no responsibility for the content of this personal website.  Please read the <a target="_blank" title="http://www.susqu.edu//about-su/policies#disclaimer" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/about-su/policies#disclaimer">disclaimer</a>.</div></body>
+</html>
+	
+	
+<style>
+			
+		  body {background-color: #FFFFFF;}
+			
+		HR{ clear: both;
+			border-bottom : 2px solid #666666;
+			border-left : 0px none #656565;
+			border-right : 0px none #656565;
+			border-top : 2px solid #FFFFFF;
+			margin : 5px 0px 5px 0px;
+			padding : 0px 0px 0px 0px;
+			height : 4px; 
+		}
+			
+		/*        #banner {background: white ;
+		          height: auto;
+			  width:auto;  }   */
+		#banner img{
+		width: 1350px;
+		  }
+		
+	    #banner {background-image:url(../../baitap/Dunghinh5.png);
+	          height: 190px; width: 1350px;
+		
+      }
+
+		</style>
