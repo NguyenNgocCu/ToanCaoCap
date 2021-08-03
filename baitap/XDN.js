@@ -56,7 +56,26 @@ function phangiac(a,b,c,L)  // Vẽ phân giác
   L.x1 = b.x; L.y1 = b.y; L.x2 = q7.x; L.y2 = q7.y; 
 }
 
+function ve3goc(b,c,a){
+    var h = (-c.x+b.x)*(a.x-c.x)+(-c.y+b.y)*(a.y-c.y);
+       var   m1 = Math.sqrt((-c.x+b.x)*(-c.x+b.x)+(c.y-b.y)*(c.y-b.y))*Math.sqrt((a.x-c.x)*(a.x-c.x)+(a.y-c.y)*(a.y-c.y));
+        var  g = Math.acos(h/m1);
+     
 
+       var g1 = Math.atan((b.y-c.y)/(b.x-c.x));  var g2 = g1 + g/3; 
+
+    
+  var u = new Object; u.x = c.x - Math.cos(g2); u.y = c.y - Math.sin(g2);
+    draw_ray(c,u);   m = u;
+   
+     //L1.x1 = c.x; L1.y1 = c.y; L1.x2 = m.x; L1.y2 = m.y;
+
+     var v = new Object; v.x = c.x - Math.cos(2*g/3); v.y = c.y - Math.sin(2*g/3);
+     n.x=Math.cos(2*g/3); n.y=Math.sin(2*g/3);
+     //L2.x1 = c.x; L2.y1 = c.y; L2.x2 = n.x; L2.y2 = n.y;
+    // draw_ray(c,v);    n = v;
+          
+        }
   function line_line(a,b,p)
   {
     det = (a.x1-a.x2)*(b.y2-b.y1) - (a.y1-a.y2)*(b.x2-b.x1);
