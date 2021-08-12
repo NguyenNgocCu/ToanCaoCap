@@ -47,7 +47,7 @@ body {
 	#footer {
         background-color: #f1f1f1;  color: #356283;
 	  width: 1200px;
-	  height: 50px;
+	  height: 25px;     /* 50px;   Trang chính cũ */
       float: left;
      text-align: center;
 clear: left;
