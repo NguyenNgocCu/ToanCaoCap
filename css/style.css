@@ -79,7 +79,7 @@ margin-bottom: 20px;
 
 
 #main #right .menu_right ul{
-	  margin-top: 10px;    /* cu 0pt*/
+	  margin-top: 0px;    /* cu 0pt*/
           padding: 0px; font-size: 14px; }
 
  #main #right .menu_right ul li {
@@ -99,7 +99,7 @@ font-size: 14px;
 #main #right .menu_right h3 {
 background: blue;
 	margin-right: 10px;
-	  margin-top: 10px;  /* cu 0pt*/
+	  margin-top: 0px;  /* cu 0pt*/
 	  height: 40px;
       font-size: 20px;
      text-align: center;   color: #FFF; line-height:40px;        }
