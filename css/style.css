@@ -175,8 +175,8 @@ width: 290px;
  .dropdown:hover .nut_dropdown {background-color: #00bfff;}
 
 
-#main {  background-color: #fff;  float: left;
- width: 1200px; }
+#main {  background-color: #fff; 
+}
 
 #main ul {  background-color: #fff;
  float: left;  padding-right:40px;
