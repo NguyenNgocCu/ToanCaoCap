@@ -175,7 +175,7 @@ width: 290px;
  .dropdown:hover .nut_dropdown {background-color: #00bfff;}
 
 
-#main {  background-color: #fff; 
+#main {  background-color: #fff; border-bottom:1px solid #ccc;  
 }
 
 #main ul {  background-color: #fff;
