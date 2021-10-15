@@ -64,7 +64,7 @@ padding: 0px;
 }
      #main #left ul li {
 list-style: none;
-/* border-bottom:2px solid #ccc;               Bỏ các dòng kẻ ngang ở 4 mục đầu trang: giáo trình cơ bản, bài tập ...     */
+ border-bottom:2px solid #ccc;             /*  Bỏ các dòng kẻ ngang ở 4 mục đầu trang: giáo trình cơ bản, bài tập ... nếu bỏ lệnh này    */
 clear: left;
 padding-bottom: 20px;
 }
