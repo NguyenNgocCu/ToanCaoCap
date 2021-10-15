@@ -64,7 +64,7 @@ padding: 0px;
 }
      #main #left ul li {
 list-style: none;
- border-bottom:2px solid #ccc; 
+/* border-bottom:2px solid #ccc; */
 clear: left;
 padding-bottom: 20px;
 }
