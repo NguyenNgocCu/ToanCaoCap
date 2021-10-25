@@ -17,8 +17,8 @@ body {
            margin: 0px auto; text-align: justify;
 	}
 	
-
-	#banner {background: url(../css/Banner2.png);
+	/* #banner {background: url(../css/Banner2.png);   */
+	#banner {background: url(../css/Bann.png);
           height: auto;
 	  width:1200px;  }
 	
