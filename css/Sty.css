@@ -19,7 +19,7 @@ body {
 	
 	/* #banner {background: url(../css/Banner2.png);   */
 	#banner {background: url(../css/Bann.png);
-          height: auto;
+          height:  320px;   /* auto; */
 	  width:1200px;  }
 	
 
