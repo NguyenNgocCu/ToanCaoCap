@@ -273,7 +273,15 @@ chrome_flag = false;
     ctx.lineTo(qt.x,qt.y);
     ctx.stroke();
   }
-
+function draw_segmentB(pt,qt, color="blue")
+  {
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    ctx.lineWidth = 0.01;
+    ctx.moveTo(pt.x,pt.y);
+    ctx.lineTo(qt.x,qt.y);
+    ctx.stroke();
+  }
  function draw_segmentX(pt,qt, color="white")
   {
     ctx.beginPath();
