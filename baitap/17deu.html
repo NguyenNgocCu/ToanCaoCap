@@ -309,6 +309,7 @@ var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
       </div>
 	<input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"> Ta bắt đầu bằng việc dựng đường tròn đơn vị tâm O (gốc tọa độ). Nó cắt trục tung tại A(0,1) và trục hoành tại B(1,0). Dựng điểm C trên OB, sao cho OB=4OC.<br>
   <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Dựng đường tròn tâm C, bán kính CA, nó cắt trục hoành tại các điểm D và E. <br>
+	 <input type="radio" name="step" onclick="ddraw(3)" value="3">  2. Dựng tiếp đường tròn tâm D bán kính DA, nó cắt trục hoành tại F (xem hình dưới). <br>
 <table>
 <tr>
 <td> 
@@ -320,7 +321,7 @@ var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
     <body style="margin: 30px;">
     
 
- <input type="radio" name="step" onclick="ddraw(3)" value="3">  2. Đường tròn tâm D, bán kính DA cắt trục hoành tại F. <br>
+
 
  <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Đường tròn tâm E, bán kính EA cắt trục hoành tại G. <br>
   
