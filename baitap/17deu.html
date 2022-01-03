@@ -51,11 +51,11 @@
  
   
 
-   var o = new Object;  o.x = 3.0; o.y = 0.0 ; o.label = "O"; var a = new Object;  a.x = 3.0; a.y = -2.5 ; a.label = "A";
-   var b = new Object;  b.x = 5.5; b.y = 0.0 ; b.label = "B";
+   var o = new Object;  o.x = 3.0-0.6; o.y = 0.0 ; o.label = "O"; var a = new Object;  a.x = 3.0-0.6; a.y = -2.5 ; a.label = "A";
+   var b = new Object;  b.x = 5.5-0.6; b.y = 0.0 ; b.label = "B";
    var b1 = new Object;  b1.x = -6.0; b1.y = 0.0;  var b2 = new Object;  b2.x = 7.0; b2.y = 0.0; 
 
-   var c = new Object;  c.x = 3+2.5/4; c.y = 0.0 ;  c.label = "C"; 
+   var c = new Object;  c.x = 3+2.5/4-0.6; c.y = 0.0 ;  c.label = "C"; 
  
 
   var c1 = new Object;  var d1 = new Object; var e1 = new Object; var h1 = new Object; var j1 = new Object;              // circles
@@ -70,8 +70,8 @@
   }
   
   function reset()
-  {  o.x = 3.0; o.y = 0.0 ; a.x = 3.0; a.y = -2.5;
-    b.x = 5.5; b.y = 0.0; c.x = 2.5/4+3; c.y = 0.0;    
+  {  o.x = 3.0-0.6; o.y = 0.0 ; a.x = 3.0-0.6; a.y = -2.5;
+    b.x = 5.5; b.y = 0.0; c.x = 2.5/4+3-0.6; c.y = 0.0;    
   
   }
 	
@@ -165,7 +165,7 @@ if ( draw_stage == 7 ) return;
 
 t.label="2";
 var v2=new Object; v2.r = dist(k,l); v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N); 
-var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
+var bb = new Object;  bb.x = 5.5-0.6; bb.y = 0.0 ; bb.label = "1";
  draw_point(bb,"red",S);
 
 
@@ -236,7 +236,7 @@ td.x = t.x; td.y = -t.y;  td.label="10";   draw_point(td,"red",SW);       draw_s
 
 tt.label=" 17";  draw_point(tt,"red",SW);
 var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
- draw_point(bb,"red",S); 
+// draw_point(bb,"red",S); 
   }
 
 
@@ -306,7 +306,7 @@ var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
 <table>
 <tr>
 <td> 
-    <canvas id="myCanvas" width="950" height="450"></canvas>
+    <canvas id="myCanvas" width="900" height="550"></canvas>
   <td style="vertical-align:top">
   <table>
  
