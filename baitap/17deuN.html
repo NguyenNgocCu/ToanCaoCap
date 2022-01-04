@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	
+	<!-- Cái dòng dưới đây làm cho font đẹp hơn giống như fonr Courier    -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<title> Bài toán Malfatti. </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript" src="../baitap/XDN.js"></script>
+
+ <script>
+
+// Point objects, fields x,y,label
+ 
+  
+
+   var o = new Object;  o.x = 3.0-0.6; o.y = 0.0 ; o.label = "O"; var a = new Object;  a.x = 3.0-0.6; a.y = -2.5 ; a.label = "A";
+   var b = new Object;  b.x = 5.5-0.6; b.y = 0.0 ; b.label = "B";
+   var b1 = new Object;  b1.x = -6.0; b1.y = 0.0;  var b2 = new Object;  b2.x = 7.0; b2.y = 0.0; 
+
+   var c = new Object;  c.x = 3+2.5/4-0.6; c.y = 0.0 ;  c.label = "C"; 
+ 
+
+  var c1 = new Object;  var d1 = new Object; var e1 = new Object; var h1 = new Object; var j1 = new Object;              // circles
+
+  var o1 = new Object ;  
+  var v = new Object ;    
+  
+  function calc_points()
+  { var r;
+
+
+  }
+  
+  function reset()
+  {  o.x = 3.0-0.6; o.y = 0.0 ; a.x = 3.0-0.6; a.y = -2.5;
+    b.x = 5.5-0.6; b.y = 0.0; c.x = 2.5/4+3-0.6; c.y = 0.0;    
+  
+  }
+	
+
+
+
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+  
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+    
+   //ctx.font="0.15px Verdana";
+     ctx.font="0.5px Verdana";
+    //ctx.fillText("A", a.x, a.y);  
+	
+    calc_points();
+    draw_point(a,"black",N);
+    draw_point(b,"red",E);
+    draw_point(o,"black",S);
+    draw_point(c,"black",S);
+    //draw_line(o,b);  
+     draw_segment(b1,b2);
+    draw_segment(a,o);
+    
+    draw_arc(o,dist(o,a),0,6.29);
+    o1.r=dist(o,a); o1.x=o.x; o1.y=o.y;
+
+   
+   
+
+    if ( draw_stage == 0 ) return;
+
+
+
+    if ( draw_stage == 1 ) return;
+    draw_arc(c,dist(c,a),0,6.29);
+   
+    var d=new Object; d.x=0.0;d.y=0.0; d.label="D";  var e=new Object; e.x=0.0;e.y=0.0; e.label="E"; 
+    var m=new Object; m.x1=o.x; m.y1=o.y; m.x2=b.x; m.y2=b.y;   // trục hoành
+    c1.r = dist(c,a); c1.x = c.x; c1.y = c.y; line_circle(m,c1,d,e);
+    draw_point(d,"black",N);  draw_point(e,"black",N); 
+
+    if ( draw_stage == 2 ) return;
+    var f=new Object; f.x=0.0;f.y=0.0; f.label="F";  var f1=new Object; f1.x=0.0;f1.y=0.0; f1.label="F"; 
+    draw_arc_color(c,dist(c,a),0,6.29,"white");
+    draw_arc(d,dist(d,a),3,4.8);
+    d1.r = dist(d,a); d1.x = d.x; d1.y = d.y; line_circle(m,d1,f1,f);   draw_point(f,"black",N); 
+
+if ( draw_stage == 3 ) return;
+var g=new Object; g.x=0.0;g.y=0.0; g.label="G";  var g1=new Object; g1.x=0.0;g1.y=0.0; g1.label="G"; 
+   // draw_arc_color(c,dist(c,a),0,6.29,"white");
+    draw_arc(e,dist(e,a),3,5.8);
+    e1.r = dist(e,a); e1.x = e.x; e1.y = e.y; line_circle(m,e1,g1,g);   draw_point(g,"black",N); 
+    draw_point(e,"black",N);             // Vẽ lại E
+
+    if ( draw_stage == 4 ) return;
+    draw_arc_color(d,dist(d,a),3,4.8,"white");  draw_arc_color(e,dist(e,a),3,5.8,"white");
+
+    var h=new Object; h.x=(b.x+f.x)/2;h.y=(b.y+f.y)/2; h.label="H";     // draw_point(h,"black",N);
+    var n=new Object; n.x1=o.x; n.y1=o.y; n.x2=a.x; n.y2=a.y; // trục tung
+    var j=new Object; j.x=0.0;j.y=0.0; j.label="J";  var j1=new Object; j1.x=0.0;j1.y=0.0; g1.label="J"; 
+    h1.r = dist(h,b); h1.x = h.x; h1.y = h.y; line_circle(n,h1,j1,j);   draw_point(j,"black",N); 
+    draw_arc(h,dist(h,b),3,6.8);
+
+    if ( draw_stage == 5 ) return;
+    var k=new Object; k.x=(o.x+g.x)/2;k.y=(o.y+g.y)/2; k.label="K";  draw_point(k,"black",SW);
+
+    j1.r = dist(k,o); j1.x = j.x; j1.y = j.y; 
+    draw_arc(j,dist(k,o),2.3,3);
+    var l=new Object; l.x=0.0;l.y=0.0; l.label=" L";  var l1=new Object; l1.x=0.0;l1.y=0.0; l1.label="L"; 
+     line_circle(m,j1,l1,l);   draw_point(l,"black",SW); 
+
+
+if ( draw_stage == 6 ) return;
+draw_arc_color(h,dist(h,b),3,6.8,"white");
+var t=new Object; t.x=0.0;t.y=0.0; t.label="1'";  var t1=new Object; t1.x=0.0;t1.y=0.0; t1.label="1'"; 
+v.r = dist(k,l); v.x = b.x; v.y = b.y; circle_circle(v,o1,t1,t);   draw_point(t,"black",W); 
+                        
+   draw_point(f,"black",N); // Vẽ lại F
+   draw_point(b,"red",E); // Vẽ lại B
+
+
+if ( draw_stage == 7 ) return;
+
+t.label="2";
+var v2=new Object; v2.r = dist(k,l); v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N); 
+var bb = new Object;  bb.x = 5.5-0.6; bb.y = 0.0 ; bb.label = "1";
+ draw_point(bb,"red",S);
+
+
+if ( draw_stage == 8 ) return;
+
+
+var td=new Object;td.x = t.x; td.y = -t.y; td.label="";    draw_point(td,"red",N);  
+
+var tt=new Object; tt=td; // Lưu lại điểm 17
+
+draw_segmentB(b,t); draw_segmentB(b,td); 
+
+if ( draw_stage == 9 ) return;
+var dd=new Object; dd=dist(b,t);     var tp=new Object;   tp.x=t.x;    tp.y=t.y;    
+t.label="3";
+var v2=new Object; v2.r = dist(b,t); v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N); 
+
+draw_segmentB(tp,t);
+
+if ( draw_stage == 10 ) return;
+
+
+var td=new Object;td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N); //td.label="16"; 
+draw_segmentB(tt,td); 
+
+if ( draw_stage == 11 ) return; 
+
+ t.label="4";
+
+ tp.x=t.x;    tp.y=t.y; // lưu lại điểm 3 để vẽ cạnh 34
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);   draw_segmentB(tp,t); // Vẽ cạnh 34
+td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+
+
+
+t.label="";
+
+
+tp.x=t.x;    tp.y=t.y;
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);      draw_segmentB(tp,t);
+
+
+
+
+td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+
+
+tp.x=t.x;    tp.y=t.y;
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);            draw_segmentB(tp,t);
+td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+
+
+tp.x=t.x;    tp.y=t.y;
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);            draw_segmentB(tp,t);
+td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+
+
+tp.x=t.x;    tp.y=t.y;
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);           draw_segmentB(tp,t);
+td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+
+
+tp.x=t.x;    tp.y=t.y;
+t.label="9";
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",W);           draw_segmentB(tp,t);
+
+td.x = t.x; td.y = -t.y;  td.label="10";   draw_point(td,"red",SW);       draw_segmentB(td,t);  // Cạnh nối 9 với 10
+
+tt.label=" 17";  draw_point(tt,"red",SW);
+var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
+// draw_point(bb,"red",S); 
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 700; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.02,  0.05,  0.07,  0.05, -0.05, -0.35, -0.37, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.4,  0.4,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+
+
+// ket thuc pham ma them vao
+
+
+
+
+
+  </script>
+
+
+</head>
+
+
+<body>
+  <hr>
+	<div   id="banner">   
+   <br>   <br>  <br>   <br>  <br>   <br> <br>   <br>  <br>
+   <span style="font-size: 25px"> <font color="yellow">  <marquee scrollamount="10" direction="right"> DỰNG ĐA GIÁC ĐỀU 17 CẠNH </marquee> </font> </span>
+   </div> 
+	
+	<hr>    <hr>
+ <br>
+ <H3> &emsp;  Dựng đa giác đều 17 cạnh<br>
+  &emsp; Sử dụng compa và thước kẻ  </H3>
+<br>
+  
+  Mặc dù được mệnh danh là ông vua toán học bởi các phát minh toán học vĩ đại cống hiến cho nhân loại, Gauss luôn tự hào về việc giải bài toán sơ cấp dựng  đa giác đều 17 cạnh bằng compa và thước kẻ. Thậm chí ông di chúc lại: hãy khắc hình 17 cạnh đều lên bia mộ ông.
+  <br>  Ông cũng là người đưa ra điều kiện cần và đủ về số cạnh của đa giác đều mà ta có thể dựng bằng compa và thước kẻ. Theo đó các đa giác đều với số cạnh 7, 9, 11, 13, 19,… không thể dựng bằng compa và thước kẻ. Các đa giác đều với số cạnh là số nguyên tố Fermat 3, 5,  17, 257 luôn có thể dựng bằng compa và thước kẻ.
+  
+  <br>
+	  <div>
+          <p style="margin:25px;font-size: 30px;font-style: bold;font-weight: bold;">Cách dựng của Gauss</p>
+        <b> Dựng đa giác đều 17 cạnh nội tiếp trong đường tròn đơn vị tâm O, gốc của hệ trục tọa độ Descartes </b>  <br>  <br>
+      </div>
+	<input type="radio" name="step" onclick="reset(); ddraw(0)" value="0"> Ta bắt đầu bằng việc dựng đường tròn đơn vị tâm O (gốc tọa độ). Nó cắt trục tung tại A(0,1) và trục hoành tại B(1,0). Dựng điểm C trên OB, sao cho OB=4OC.<br>
+  <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Dựng đường tròn tâm C, bán kính CA, nó cắt trục hoành tại các điểm D và E. <br>
+	 <input type="radio" name="step" onclick="ddraw(3)" value="3">  2. Dựng tiếp đường tròn tâm D bán kính DA, nó cắt trục hoành tại F (xem hình dưới). <br>
+
+<table>
+<tr>
+<td> 
+    <canvas id="myCanvas" width="900" height="550"></canvas>
+  <td style="vertical-align:top">
+  <table>
+ 
+
+    <body style="margin: 30px;">
+    
+
+
+
+ <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Đường tròn tâm E, bán kính EA cắt trục hoành tại G. <br>
+  
+ <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4.   Đường tròn đường kính FB cắt trục tung tại J.  <br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Dựng trung điểm K của OG. Đường tròn tâm J, bán kính OK cắt trục hoành tại L.
+ Khi đó KL <br> <b> chính là độ dài cạnh của đa giác đều 34 cạnh nội tiếp đường tròn đơn vị. </b> <br>
+ <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Dựng điểm 1’ trên đường tròn (O) sao cho B1’=KL. <br>
+ <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Dựng điểm 2 trên đường tròn (O) sao cho 21’=KL. Khi đó, B và 2 là các đỉnh của đa giác đều 17 cạnh cần dựng. 
+   Ta kí hiệu đỉnh B là 1.<br>
+ 
+ <input type="radio" name="step" onclick="ddraw(9)" value="4"  id="start"> 8. Dựng điểm đối xứng với 2 qua trục hoành, nó cũng là đỉnh của đa giác đều 17 cạnh. <br>
+ <input type="radio" name="step" onclick="ddraw(10)" value="4"  id="start"> 9. Dựng đỉnh tiếp theo, đỉnh 3, trên (O) sao cho độ dài đoạn 23 bằng độ dài đoạn 21. <br>
+ 
+
+ <input type="radio" name="step" onclick="ddraw(11)" value="4"  id="start"> 10. Dựng điểm đối xứng với 3 qua trục hoành. <br>
+ <input type="radio" name="step" onclick="ddraw(12)" value="4"  id="start"> 11. Cứ thế tiếp tục ta sẽ dựng được các đỉnh còn lại của đa giác đều 17 cạnh.<br>  <br>
+
+ <br>
+
+ 
+
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+<a> &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Nhấn vào đây để xem <a href="../baitap/17canh.pdf" target="_blank" style="color: blue;">  <em> chứng minh tính đúng đắn của cách dựng trên. </em> </a>
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+
+</script>
+
+
+ </div>
+ <div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"> <a   style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: bold; font-size: 11px; font-style: normal; text-decoration: none;">Nguyễn Ngọc Cừ - Bộ Môn Toán ĐHXD (NUCE)</a>.
+</div>  </body>
+</html>
+
+
+<style>
+		
+
+		HR{ clear: both;
+			border-bottom : 2px solid #666666;
+			border-left : 0px none #656565;
+			border-right : 0px none #656565;
+			border-top : 2px solid #FFFFFF;
+			margin : 5px 0px 5px 0px;
+			padding : 0px 0px 0px 0px;
+			height : 4px; 
+		}
+			
+		/*        #banner {background: white ;
+		          height: auto;
+			  width:auto;  }   */
+		#banner img{
+		width: 1350px;
+		  }
+		
+	    #banner {background-image:url(../baitap/Dunghinh5.png);
+	          height: 190px; width: 1350px;
+</style>
+
