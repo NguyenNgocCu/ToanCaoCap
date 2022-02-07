@@ -109,12 +109,12 @@ var g=new Object; g.x=0.0;g.y=0.0; g.label="G";  var g1=new Object; g1.x=0.0;g1.
     draw_arc(h,dist(h,b),3,6.8);
 
     if ( draw_stage == 5 ) return;
-    var k=new Object; k.x=(o.x+g.x)/2;k.y=(o.y+g.y)/2; k.label="K";  draw_point(k,"black",SW);
+    var k=new Object; k.x=(o.x+g.x)/2;k.y=(o.y+g.y)/2; k.label="K";  draw_point(k,"yellow",SW);
 
     j1.r = dist(k,o); j1.x = j.x; j1.y = j.y; 
     draw_arc(j,dist(k,o),2.3,3);
     var l=new Object; l.x=0.0;l.y=0.0; l.label=" L";  var l1=new Object; l1.x=0.0;l1.y=0.0; l1.label="L"; 
-     line_circle(m,j1,l1,l);   draw_point(l,"black",SW); 
+     line_circle(m,j1,l1,l);   draw_point(l,"yellow",SW); 
 
 
 if ( draw_stage == 6 ) return;
