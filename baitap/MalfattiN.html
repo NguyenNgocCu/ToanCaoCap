@@ -83,8 +83,7 @@
     if ( draw_stage == 0 ) return;
 
 
-
-    if ( draw_stage == 1 ) return;
+if ( draw_stage == 1 ) return;
 
 phangiac(a,c,b,z6); phangiac(b,a,c,z7); line_line(z6,z7,O);
 
@@ -148,6 +147,9 @@ var T2=new Object;
 off_perp_to_line(O3,z5,z4); line_line(z4,z5,T2); 
 draw_arc_color(O3,dist(O3,T2),0,6.29,"blue");
 
+var Th2=new Object;  Th2.x=0;Th2.y=0;    z5.x1 = E2.x; z5.y1 = E2.y; z5.x2 = U.x; z5.y2 = U.y;  
+off_perp_to_line(O3,z5,z4); line_line(z4,z5,Th2); 
+draw_point(Th2,"yellow");
 
 
 if ( draw_stage == 6 ) return;
@@ -170,13 +172,32 @@ z5.x1 = c.x; z5.y1 = c.y; z5.x2 = a.x; z5.y2 = a.y;
 z4.x1 = E3.x; z4.y1 = E3.y; z4.x2 = U.x; z4.y2 = U.y; var n=new Object; n.label="n";
 line_line(z4,z5,n); draw_point(n,"blue",W);
 
+
+var Th3=new Object;  Th3.x=0;Th3.y=0; 
+off_perp_to_line(O1,z4,z5); line_line(z4,z5,Th3); 
+draw_point(Th3,"yellow");
+
 if ( draw_stage == 8 ) return;
+
+
 
 phangiac(a,b,c,z6);; phangiac(b,E3,U,z7); line_line(z6,z7,O2);
 z5.x1 = b.x; z5.y1 = b.y; z5.x2 = a.x; z5.y2 = a.y;  var T3=new Object;
 off_perp_to_line(O2,z5,z4); line_line(z4,z5,T3); 
 draw_arc_color(O2,dist(O2,T3),0,6.29,"blue");    draw_point(O2,"blue",N);
 
+
+c1.r = dist(K3,E3); c1.x = K3.x; c1.y = K3.y;
+    c2.r = dist(K3,E2)/2; c2.x = (K3.x+E2.x)/2; c2.y = (K3.y+E2.y)/2;
+circle_circle(c1,c2,V,U);  draw_point(U,"black",N);  
+
+
+ c1.r = dist(O3,Th2); c1.x = O3.x; c1.y = O3.y;    // draw_arc_color(O3,dist(O3,Th2),0,6.29,"red");
+ c2.r = dist(O2,Th3)+0.001; c2.x = O2.x; c2.y = O2.y;    //  Thêm 0.001 vào bán kính để hiện lên gần đúng tiếp điểm.
+ 
+ // circle_circle(c1,c2,V,U);
+
+  var h1=new Object;  h1.x=0;h1.y=0; h2=new Object;  h2.x=0;h2.y=0;  circle_circle(c1,c2,h1,h2); draw_point(h1,"yellow");
 
 	  
 if ( draw_stage == 9 ) return;
