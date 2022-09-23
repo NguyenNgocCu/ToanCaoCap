@@ -273,7 +273,7 @@ chrome_flag = false;
     ctx.lineTo(qt.x,qt.y);
     ctx.stroke();
   }
-function draw_segmentB(pt,qt, color="blue")
+function draw_segmentB(pt,qt, color="yellow")    //draw_segmentB(pt,qt, color="blue")   thay đoạn thẳng màu xanh bằng màu vàng trong bài dựng đa giác đều 17 cạnh
   {
     ctx.beginPath();
     ctx.strokeStyle=color;
