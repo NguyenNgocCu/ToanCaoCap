@@ -277,7 +277,7 @@ function draw_segmentB(pt,qt, color="yellow")    //draw_segmentB(pt,qt, color="b
   {
     ctx.beginPath();
     ctx.strokeStyle=color;
-    ctx.lineWidth = 0.01;
+    ctx.lineWidth = 0.02;
     ctx.moveTo(pt.x,pt.y);
     ctx.lineTo(qt.x,qt.y);
     ctx.stroke();
