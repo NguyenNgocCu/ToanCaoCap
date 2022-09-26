@@ -155,7 +155,8 @@ if ( draw_stage == 10 ) return;
 
 var td=new Object;td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N); //td.label="16"; 
 draw_segmentB(tt,td); 
-
+//moi them
+var i6=new Object;  i6.x=td.x;i6.y=td.y; i6.label=""; // draw_point(i6,"green",N); // dinh so 16
 if ( draw_stage == 11 ) return; 
 
  t.label="4";
@@ -164,7 +165,8 @@ if ( draw_stage == 11 ) return;
 v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);   draw_segmentB(tp,t); // Vẽ cạnh 34
 td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
 
-
+//moi them
+var i5=new Object;  i5.x=td.x;i5.y=td.y; i5.label=""; // draw_point(i5,"green",N); dinh so 15
 
 t.label="";
 
@@ -176,28 +178,34 @@ v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"re
 
 
 td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
-
-
-tp.x=t.x;    tp.y=t.y;
-v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);            draw_segmentB(tp,t);
-td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
-
+//moi them
+var i4=new Object;  i4.x=td.x;i4.y=td.y; i4.label=""; // draw_point(i4,"green",N);   // dinh so 14
 
 tp.x=t.x;    tp.y=t.y;
 v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);            draw_segmentB(tp,t);
 td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+//moi them
+var i3=new Object;  i3.x=td.x;i3.y=td.y; i3.label=""; // draw_point(i3,"green",N);   // dinh so 13
 
+tp.x=t.x;    tp.y=t.y;
+v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);            draw_segmentB(tp,t);
+td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
+//moi them
+var i2=new Object;  i2.x=td.x;i2.y=td.y; i2.label=""; // draw_point(i2,"green",N);   // dinh so 12
 
 tp.x=t.x;    tp.y=t.y;
 v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",N);           draw_segmentB(tp,t);
 td.x = t.x; td.y = -t.y;  td.label="";   draw_point(td,"red",N);
-
+//moi them
+var i1=new Object;  i1.x=td.x;i1.y=td.y; i1.label=""; // draw_point(i1,"green",N);   // dinh so 11
 
 tp.x=t.x;    tp.y=t.y;
 t.label="9";
 v2.r = dd; v2.x = t.x; v2.y = t.y; circle_circle(v2,o1,t1,t);   draw_point(t,"red",W);           draw_segmentB(tp,t);
 
 td.x = t.x; td.y = -t.y;  td.label="10";   draw_point(td,"red",SW);       draw_segmentB(td,t);  // Cạnh nối 9 với 10
+	  draw_segmentB(i1,td); draw_segmentB(i1,i2); draw_segmentB(i3,i2); draw_segmentB(i3,i4); draw_segmentB(i5,i4); draw_segmentB(i5,i6);    // moi them
+
 
 tt.label=" 17";  draw_point(tt,"red",SW);
 var bb = new Object;  bb.x = 5.5; bb.y = 0.0 ; bb.label = "1";
