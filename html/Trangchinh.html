@@ -26,6 +26,12 @@
     <hr>
 <div id="main">
     <div id="left">  
+	    <script language="javascript" type="text/javascript"> 
+		dayName = new Array ("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy") 
+		monName = new Array ("1","2","3","4","5","6","7","8","9","10","11","12") 
+		now = new Date 
+		document.write("<b>" +dayName[now.getDay()]+ ", " +now.getDate()+ "/" +monName[now.getMonth()]+ "/" +now.getFullYear()+ "</b>") 
+		</script>  <!--   Đoạn code nằm trong script trên hiển thị ngày tháng   -->
         <ul>
             <li>
               <img src="xacsuat.png" width="105" height="145"  />
