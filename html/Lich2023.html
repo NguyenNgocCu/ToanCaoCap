@@ -26,7 +26,11 @@
 var tt=convertSolar2Lunar(dd, mm, yy,7);
 return tt;
                             }
-    
+	  
+    function x(dd, mm, yy)  {
+var tt=convertSolar2Lunar(dd, mm, yy,7);
+return tt;
+                            }
     
         dayName = new Array ("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy") 
         monName = new Array ("1","2","3","4","5","6","7","8","9","10","11","12") 
@@ -37,7 +41,7 @@ return tt;
         
      
     
-        x4=xx(x1,x2,x3);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
+        x4=x(x1,x2,x3);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
         x5=x4[0]; x6=x4[1]; x7=x4[2];
      
         document.write("     &emsp; (<b>"+x5+ "/" +x6+ "/" +x7+" âm lịch</b>)"); 
@@ -85,12 +89,23 @@ return tt;
  document.getElementById("x3").innerHTML = at3; 
 
 
-x4=xx(at1,at2,at3);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
+x4=x(at1,at2,at3);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
         x5=x4[0]; x6=x4[1]; x7=x4[2];
 	   var z = jdFromDate(at1,at2,at3)-2415013;  
   x8 = dayName[z%7];
  
- document.getElementById('A').value = "Ngày âm lịch: " +x5+ "/" +x6+ "/" +x7+" "+x8;
+z1=jdToDate(jdFromDate(at1,at2,at3)-x5-1);h1=z1[0];h2=z1[1];h3=z1[2]; p2=x(h1,h2,h3)[1];
+// z1=jdToDate(jdFromDate(at1,at2,at3)-30);h1=z1[0];h2=z1[1];h3=z1[2]; p3=x(h1,h2,h3)[1];
+// z1=jdToDate(jdFromDate(at1,at2,at3)-27);h1=z1[0];h2=z1[1];h3=z1[2]; p4=x(h1,h2,h3)[1];
+
+if (p2 == x6) {
+            te = "(Nhuận tháng " + x6 + ")";
+            
+          } else {
+            te= "";
+          }
+
+  document.getElementById('A').value = " " + x5 + "/" +x6+ "/" +x7+"  "+ x8 +" " + te;
 
   }  
 
