@@ -26,6 +26,11 @@
 var tt=convertSolar2Lunar(dd, mm, yy,7);
 return tt;
                             }
+	  
+	                 function x(dd, mm, yy)  {
+var tt=convertSolar2Lunar(dd, mm, yy,7);
+return tt;
+                            }
     
     
         dayName = new Array ("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy") 
@@ -82,7 +87,7 @@ return tt;
  document.getElementById("x2").innerHTML = at2; 
  document.getElementById("x3").innerHTML = at3; 
 
- x4=xx(at1,at2,at3); 
+ x4=x(at1,at2,at3); 
 //x4=ConvertSolar2Lunar(at1,at2,at3,7);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
         x5=x4[0]; x6=x4[1]; x7=x4[2];
 
