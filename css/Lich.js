@@ -159,7 +159,10 @@
 var tt=convertSolar2Lunar(dd, mm, yy,7);
 return tt;
                             }
-              
+                 function x(dd, mm, yy)  {
+var tt=convertSolar2Lunar(dd, mm, yy,7);
+return tt;
+                            }
     
        // dayName = new Array ("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy") 
        // monName = new Array ("1","2","3","4","5","6","7","8","9","10","11","12") 
