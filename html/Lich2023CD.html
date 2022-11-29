@@ -19,10 +19,10 @@
 
     </div> 
 <HR>
- <br> <br> <H1> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;   Lịch năm 2023 và  chuyển đổi ngày dương sang ngày âm  </H3>
+ <br> <br> <H1> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;    Lịch năm 2023 và  chuyển đổi ngày dương sang ngày âm  </H3>
 
   <br>
-
+<!--
   <script language="javascript" type="text/javascript"> 
 
     
@@ -46,8 +46,32 @@
     
     
         </script>   
+  -->  
+
+	 <script language="javascript" type="text/javascript"> 
+
     
 
+    
+    
+        dayName = new Array ("chủ nhật","fhứ hai","fhứ ba","fhứ tư","fhứ năm","fhứ sáu","fhứ bảy") 
+        monName = new Array ("1","2","3","4","5","6","7","8","9","10","11","12") 
+        now = new Date 
+        x1=now.getDate(); x2=1+now.getMonth(); x3=now.getFullYear(); 
+     
+        document.write("   &emsp; &emsp; &emsp;     " + "<b> Hôm nay là </b>   " +"<b>   " +dayName[now.getDay()]+ " ngày " +now.getDate()+ "/" +monName[now.getMonth()]+ "/" +now.getFullYear()+ "</b>");
+        
+        
+    
+        x4=xx(x1,x2,x3);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
+        x5=x4[0]; x6=x4[1]; x7=x4[2];
+     
+         document.write("  &emsp; (<b>tức ngày "+x5+ "/" +x6+ "/" +x7+" âm lịch</b>)"); 
+    
+    
+    
+        </script>   
+	
 <br> <br> <br>
 
 
