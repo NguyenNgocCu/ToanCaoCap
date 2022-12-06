@@ -29,7 +29,8 @@
 	now = new Date       
 	x1=now.getDate(); x2=1+now.getMonth(); x3=now.getFullYear();   
 	document.write("   &emsp; &emsp; &emsp;     " + "<b> Hôm nay là </b>   " +"<b>   " +dayName[now.getDay()]+ " ngày " +now.getDate()+ "/" +monName[now.getMonth()]+ "/" +now.getFullYear()+ "</b>");                    
-	x4=xx(x1,x2,x3);  //x4=convertSolar2Lunar(x1,x2,x3,7);          x5=x4[0]; x6=x4[1]; x7=x4[2];   
+	x4=xx(x1,x2,x3);  //x4=convertSolar2Lunar(x1,x2,x3,7);    
+	x5=x4[0]; x6=x4[1]; x7=x4[2];   
 	x8=canName[(x7+6) % 10]; x9=chiName[(x7+8) % 12];              document.write("     &emsp; (<b>tức ngày "+x5+ "/" +x6+ "/" +x7 + " năm "+x8 + " "+x9 +"</b>)");  
 	// document.write("  &emsp; (<b>tức ngày "+x5+ "/" +x6+ "/" +x7+" âm lịch</b>)");         
 	</script>   
@@ -39,7 +40,7 @@
 
 
 
-<br>  <h3> CHUYỂN ĐỔI LỊCH  </h3>
+<br>  <h3> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  CHUYỂN ĐỔI LỊCH  </h3>
 
 <h3> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Hãy điền ngày tháng năm (dương lịch) theo thứ tự vào các ô bên dưới</h3>    
 
