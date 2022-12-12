@@ -4,9 +4,46 @@
   var chrome_flag = false; // Chrome doesn't do filltext
   
  
+function convertLunar2Solar(lunarDay, lunarMonth, lunarYear, lunarLeap, timeZone)  {
+var k, a11, b11, off, leapOff, leapMonth, monthStart, nh;
+if (lunarMonth < 11) {
+	a11 = getLunarMonth11(lunarYear-1, timeZone);
+	b11 = getLunarMonth11(lunarYear, timeZone);
+} else {
+	a11 = getLunarMonth11(lunarYear, timeZone);
+	b11 = getLunarMonth11(lunarYear+1, timeZone);
+}
+k = Math.floor(0.5 + (a11 - 2415021.07699869) / 29.530588853);
+off = lunarMonth - 11;
+if (off < 0) {
+	off = off + 12;
+}
+if (b11 - a11 > 365) {
+	leapOff = getLeapMonthOffset(a11, timeZone);
+	leapMonth = leapOff - 2;
+	if (leapMonth < 0) {
+		leapMonth = leapMonth + 12;
+	}
+	if (lunarLeap != 0 && lunarMonth != leapMonth) {
+		return new Array(0, 0, 0);
+	} else if (lunarLeap != 0 || off >= leapOff) {
+		off = off + 1;
+	}
+}
 
+monthStart = getNewMoonDay(k+off, timeZone);
+//let R = ["a","b","c"];
 
-    
+//R = jdToDate(monthStart + lunarDay - 1); 
+//return DateSerial(R(2), R(1), R(0));
+
+return jdToDate(monthStart+lunarDay-1);
+}
+
+function kk(dd, mm, yy)  {
+var tt=convertLunar2Solar(dd, mm, yy,nh,7);
+return tt;
+                            }
 
 
  function jdFromDate(dd,mm,yy){ 
