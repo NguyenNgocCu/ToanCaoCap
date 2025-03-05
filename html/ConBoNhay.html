@@ -32,9 +32,26 @@
 	 <span style="font-size: 14px"> <font color="white"> 
 		
 		 <script language="javascript" type="text/javascript"> 
-		
+		 canName = new Array ("Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Quý")
+    
+        chiName = new Array ("Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi")
+    
+        dayName = new Array ("chủ nhật","thứ hai","thứ ba","thứ tư","thứ năm","thứ sáu","thứ bảy") 
+        monName = new Array ("1","2","3","4","5","6","7","8","9","10","11","12") 
+        now = new Date 
+        x1=now.getDate(); x2=1+now.getMonth(); x3=now.getFullYear(); 
+     
+        document.write("   &emsp; &emsp; &emsp;     " + "<b> Hôm nay là </b>   " +"<b>   " +dayName[now.getDay()]+ " ngày " +now.getDate()+ "/" +monName[now.getMonth()]+ "/" +now.getFullYear()+ "</b>");
+        
+        
+    
+        x4=xx(x1,x2,x3);  //x4=convertSolar2Lunar(x1,x2,x3,7);  
+        x5=x4[0]; x6=x4[1]; x7=x4[2];
+        x8=canName[(x7+6) % 10]; x9=chiName[(x7+8) % 12];
+     
+         document.write("     &emsp; (<b>tức ngày "+x5+ "/" +x6+ "/" +x7 + " năm "+x8 + " "+x9 +"</b>)"); 
 
-		dayName = new Array ("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy") 
+	<!--	dayName = new Array ("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy") 
 		monName = new Array ("1","2","3","4","5","6","7","8","9","10","11","12") 
 		now = new Date 
 		x1=now.getDate(); x2=1+now.getMonth(); x3=now.getFullYear(); 
@@ -48,6 +65,7 @@
 		//document.write(x4);
 		//document.write("  (<b>"+convertSolar2Lunar(x1,x2,x3,7)+" AL</b>)");  
 		document.write("     &emsp; (<b>"+x5+ "/" +x6+ "/" +x7+" âm lịch</b>)"); 	
+	-->		 
 		</script>
 	</font> </span>
 	
