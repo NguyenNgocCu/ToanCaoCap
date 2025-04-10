@@ -221,13 +221,13 @@ draw_point(t1,"black",N); draw_point(t2,"black",N);
 
 if ( draw_stage == 8 ) return;  
 
-DtronColor(t1,t2,c);  
+DtronColorGre(t1,t2,c);  
    var o = new Object; o.x=t.x;o.y=t.y;o.label="O"; 
 draw_point(o,"black",N);
 
 if ( draw_stage == 9 ) return;  
 
-draw_arc_color(o,dist(o,c)-0.3,0,2*3.14,"green");                          draw_arc_color(o,dist(o,c),0,6.29,"white");
+draw_arc_color(o,dist(o,c)-0.3,0,2*3.14,"red");                          draw_arc_color(o,dist(o,c),0,6.29,"white");
 
 draw_segment(a,o); draw_segment(b,o); draw_segment(c,o);
 
