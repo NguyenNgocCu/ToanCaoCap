@@ -511,7 +511,28 @@ var bk = dist(ta,pt1);
           draw_arc_color(ta,bk,0,2*3.14,"red");
            ctx.stroke(); t=ta;
         }
+  function DtronColorGre(pt1,pt2,pt3)
+  {
 
+    var m1 = new Object;
+    var m2 = new Object;
+    var ta = new Object; ta.x = 0.0; ta.y = 0.0 ; ta.label = " "; // để trống tên của tâm d tròn
+    //var dt1 = new Object; dt1.x1 = pt1.x; dt1.y1 = pt1.y; dt1.x2 = pt2.x; dt1.y2 = pt2.y;
+var td1 = new Object; td1.x = (pt1.x+pt2.x)/2;  td1.y = (pt1.y+pt2.y)/2;
+perp_to_line(td1,pt1,m1);
+
+//var dt2 = new Object; dt2.x1 = pt1.x; dt2.y1 = pt1.y; dt2.x2 = pt3.x; dt2.y2 = pt3.y;
+var td2 = new Object; td2.x = (pt1.x+pt3.x)/2;  td2.y = (pt1.y+pt3.y)/2;
+perp_to_line(td2,pt1,m2);
+  
+
+line_line(m1,m2,ta);
+draw_point(ta,"black",N);
+
+var bk = dist(ta,pt1);
+          draw_arc_color(ta,bk,0,2*3.14,"green");
+           ctx.stroke(); t=ta;
+        }
         function DtronColorWhite(pt1,pt2,pt3)
   {
 
