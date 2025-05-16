@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	
+	<!-- Cái dòng dưới đây làm cho font đẹp hơn giống như fonr Courier    -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<title> Bài toán dựng hình 15 cạnh đều. </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript"     src="G:/web1/XDN_Style/XDN.js"></script>    	<!-- src="../baitap/XDN.js"></script>  -->
+
+ <script>
+
+  // Point objects, fields x,y,label
+
+
+  var a = new Object;  a.x = -2.0; a.y = 0.0 ; a.label = " A";
+   var b = new Object;  b.x = 4.0; b.y = 0.0 ; b.label = " B";
+
+   var o = new Object;  o.x = 1.0; o.y = 0.0 ; o.label = "O";
+
+ 
+ // var e = new Object;  e.x = 3.0; e.y = 0.0 ; e.label = "5";
+ 
+ var r = new Object;     // ban kinh duong tron
+  var r2 = new Object;  // cac canh tam giac
+  var r3 = new Object;
+  var p = new Object;   // nua chu vi
+
+var i = new Object;  i.x = -1.0; i.y = 0.0 ;
+
+  
+  function calc_points()
+  { r = dist(o,a); // r2 = dist(a,c); r3 = dist(b,a); p=(r1+r2+r3)/2;
+  //  c1.r = r; c1.x = a.x; c1.y = a.y;
+//	c2.r = r; c2.x = b.x; c2.y = b.y;
+//	circle_circle(c1,c2,c,d)
+  }
+  
+  function reset()
+  { a.x = -2.0; a.y = 0.0;
+    b.x = 4.0; b.y = 0.0;
+    o.x = 1.0; o.y = 0.0
+   
+  }
+	
+
+
+
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+  
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+    
+   //ctx.font="0.15px Verdana";
+     ctx.font="0.5px Verdana";
+    //ctx.fillText("A", a.x, a.y);  
+	
+    calc_points();
+	
+    draw_point(a,"red",N);
+    draw_point(b,"red",N);
+    draw_point(o,"red",N);
+    draw_segment(a,b);   // draw_segment(a,c);    draw_segment(c,b);
+    
+     draw_arc(o,3,0,6.3);   
+
+    if ( draw_stage == 0 ) return;
+
+    //draw_segment(a,b);  
+
+   // if ( draw_stage == 1 ) return;
+
+
+    // draw_arc(o,3,0,6.3);          
+    var v1 = new Object;   var v2 = new Object;   var v3 = new Object; 
+    var x = (Math.sqrt(5)-1)*r/2;   //  v2 = Math.asin(Math.sqrt(r2/p));     v3 = Math.asin(Math.sqrt(r3/p));
+
+  
+   // var u = new Object;   var v = new Object;   var t = new Object; 
+  // u=(v2+v3-v1)/2;  v=(v1+v3-v2)/2;  t=(v2+v1-v3)/2;
+
+//var x = Math.sin(u)*Math.sin(u)*p;
+//var y = Math.sin(v)*Math.sin(v)*p;
+//var z = Math.sin(t)*Math.sin(t)*p;
+
+    if ( draw_stage == 1 ) return;
+
+    draw_arc(a,x,0,6.29);
+    //var L1 = new Object;   var L2 = new Object;  
+    
+
+    if ( draw_stage == 2 ) return;
+
+ var c1 = new Object; c1.r = x; c1.x = a.x; c1.y = a.y;   
+  var t1 = new Object;   t1.label=" ";  t1.x = 0.0; t1.y = 0.0;  var t2 = new Object;  t2.label="m"; //  t2.x = 0.0; t2.y = 0.0;
+         var c2 = new Object;   c2.r = 3.0; c2.x = o.x; c2.y = o.y;                                                             
+//L1.x1=a.x; L1.y1=a.y;  L1.x2=b.x; L1.y2=b.y;   L2.x1=a.x; L2.y1=a.y;  L2.x2=c.x; L2.y2=c.y; 
+         
+ circle_circle(c2,c1,t1,t2);    draw_point(t1,"black",E);   
+ //line_circle(L2,c1,t4,t3);  
+   draw_point(t2,"black",E);
+
+   // var L3 = new Object;   var L4 = new Object;  var O1 = new Object; O1.label="o1";
+   // perp_to_line(t1,a,L3) ;// L3.x1=t1.x; L3.y1=t1.y; L3.x2=t1.x+(a.y-t1.y); L3.y2=t1.y+(t1.x-a.x);
+  // perp_to_line(t3,a,L4) ; line_line(L3,L4,O1); 
+// draw_ray(t1,O1);    draw_ray(t3,O1);
+//draw_segment(c,b);
+ draw_arc_color(a,x,0,6.29,"silver"); 
+
+    if ( draw_stage == 3 ) return;
+
+    var c3 = new Object; c3.r = x; c3.x = b.x; c3.y = b.y;   
+  var t4 = new Object;   t4.label=" ";   var t3 = new Object;  t3.label="C"; //  t2.x = 0.0; t2.y = 0.0;
+       //  var c2 = new Object;   c2.r = 3.0; c2.x = o.x; c2.y = o.y;                                                             
+//L1.x1=a.x; L1.y1=a.y;  L1.x2=b.x; L1.y2=b.y;   L2.x1=a.x; L2.y1=a.y;  L2.x2=c.x; L2.y2=c.y; 
+         
+ circle_circle(c2,c3,t3,t4);    draw_point(t3,"black",E);   
+ //line_circle(L2,c1,t4,t3);  
+   draw_point(t4,"black",E);
+
+   // draw_point(O1,"black",E);  var r7 = dist(O1,t1);   // draw_arc(O1,r7,0,6.29);
+
+   // draw_arc_color(O1,r7,0,2*3.15,"green");
+
+    if ( draw_stage == 4 ) return;
+    var y = Math.sqrt(3)*r; 
+    draw_arc(t3,y,0,6.29);
+               
+ //line_circle(L1,c1,t2,t1);    draw_point(t1,"black",E);    var t3 = new Object; var t4 = new Object; t3.label=" ";
+ //line_circle(L2,c1,t4,t3);    draw_point(t3,"black",E);
+
+ if ( draw_stage == 5 ) return;
+
+ var c4 = new Object; c4.r = y; c4.x = t3.x; c4.y = t3.y;  var t5 = new Object;   var t6 = new Object;   t6.label="2"; 
+
+ circle_circle(c2,c4,t6,t5);    draw_point(t6,"black",W);   
+ //line_circle(L2,c1,t4,t3); 
+
+  draw_arc_color(t3,y,0,6.29,"silver"); 
+
+   //draw_point(O2,"black",E);  var r7 = dist(O2,t1);// draw_arc(O2,r7,0,6.29);
+  //draw_arc_color(O2,r7,0,2*3.15,"green");
+   //DrawDottedLine2(O2,t1,20);    DrawDottedLine2(O2,t3,20);
+
+   if ( draw_stage == 6 ) return;
+//a.label ="1 ";
+a.label = "1 ";
+ draw_point(a,"yellow",W); draw_point(t6,"yellow"); 
+a.label = " A";  draw_point(a,"yellow",N);
+ draw_segmentB(a,t6);  
+
+
+
+     if ( draw_stage == 7 ) return;
+//a.label ="1 ";
+//a.label = "1=A  ";
+ var i6 = new Object;  i6.x = t6.x;    i6.y = -t6.y;  i6.label ="15";
+  draw_point(i6,"yellow",W);  draw_segmentB(a,i6);
+
+
+ if ( draw_stage == 8 ) return;
+
+var d = new Object; d = dist(a,t6);     var t = new Object;   t.x = 0.0;    t.y = 0.0;    
+t.label = "3";         var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 0.0;
+var v2 = new Object; v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);   draw_point(t,"red",N); 
+draw_point(t,"yellow"); 
+draw_segmentB(t6,t);
+
+
+ var i7 = new Object;  i7.x = t.x;    i7.y = -t.y;  i7.label ="14";
+  draw_point(i6,"yellow",W);  draw_segmentB(i7,i6);  draw_point(i7,"yellow",S); 
+
+
+ if ( draw_stage == 9 ) return;
+    t6 = t; //t6.x = t.x; t6.y = t.y;
+    var t = new Object;   t.x = 0.0;    t.y = 0.0;    t.label = "4"; 
+    //    var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 1.0;
+var v2 = new Object; v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);   draw_point(t,"red",N); 
+draw_point(t,"yellow",N); 
+draw_segmentB(t6,t);
+ i6.x = t.x;    i6.y = -t.y;  i6.label =""; draw_point(i6,"yellow"); draw_segmentB(i7,i6);
+
+ if ( draw_stage == 10 ) return;
+
+ t6 = t; //t6.x = t.x; t6.y = t.y;
+    var t = new Object;   t.x = 0.0;    t.y = 0.0;    t.label = "5"; 
+    //    var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 1.0;
+var v2 = new Object; v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);   draw_point(t,"red",N); 
+draw_point(t,"yellow"); 
+draw_segmentB(t6,t);
+
+i7.x = t.x;    i7.y = -t.y;  i7.label =""; draw_point(i7,"yellow"); draw_segmentB(i7,i6);
+
+  
+
+ t6 = t; //t6.x = t.x; t6.y = t.y;
+    var t = new Object;   t.x = 0.0;    t.y = 0.0;  t.label = ""; 
+    //    var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 1.0; var v2 = new Object;
+ v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);   draw_point(t,"red",N); 
+draw_point(t,"yellow"); 
+draw_segmentB(t6,t);
+
+ i6.x = t.x;    i6.y = -t.y;  i6.label =""; draw_point(i6,"yellow"); draw_segmentB(i7,i6); // draw_point(i6,"white");
+  var i1 = new Object; i1 = i6; i1.x = i6.x; i1.y = i6.y;
+                                              //  draw_point(i6,"white"); 
+//if ( draw_stage == 11 ) return;
+  t6 = t; //t6.x = t.x; t6.y = t.y;
+    var t = new Object;   t.x = 0.0;    t.y = 0.0;  t.label = ""; 
+    //    var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 1.0; var v2 = new Object;
+ v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);  // draw_point(t,"red",N); 
+draw_point(t,"yellow"); 
+draw_segmentB(t6,t);  //draw_point(t,"yellow"); 
+
+
+
+ i6.x = t.x;    i6.y = -t.y;  i6.label ="";  // draw_point(i6,"white");// draw_segmentB(i5,i6);
+
+ var i7 = new Object; i7 = i6; // draw_point(i7,"black",N);  // draw_segmentB(i1,i6);
+ i = i7;    i.x = i7.x; i.y = i7.y;  
+//if ( draw_stage == 12 ) return;
+
+ t6 = t; //t6.x = t.x; t6.y = t.y;
+    var t = new Object;   t.x = 0.0;    t.y = 0.0;  t.label = ""; 
+    //    var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 1.0; var v2 = new Object;
+ v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);   
+draw_point(t,"yellow");
+draw_segmentB(t6,t);    draw_point(i,"yellow"); // draw_segment(a,i); 
+ i6.x = t.x;    i6.y = -t.y;  i6.label =""; draw_point(i6,"yellow");  draw_segmentB(t,i6); //
+
+v2.r = d; v2.x = i6.x; v2.y = i6.y; circle_circle(v2,o1,t,t1);   
+
+   draw_segmentB(t,i6); i7.x = t.x;    i7.y = t.y;  i7.label =""; 
+  
+   v2.r = d; v2.x = i7.x; v2.y = i7.y; circle_circle(v2,o1,t,t1); 
+  
+    draw_segmentB(t,i7);
+
+
+
+  }
+
+
+
+//draw_arc_color(ta,bk,0,2*3.14,"white");
+
+
+
+
+// Them vao 
+// var height = 600; 
+var height = 700; 
+  var width  = 800; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;  // ban kinh diem cu  0.025
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, -0.05, -0.15, -0.37, -0.13];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.05];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+ 
+
+
+// ket thuc pham ma them vao
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <hr>
+	<div   id="banner">   
+   <br>   <br>  <br>   <br>  <br>   <br> <br>   <br>  <br>
+   <span style="font-size: 25px"> <font color="yellow">  <marquee scrollamount="10" direction="right"> DỰNG HÌNH 15 CẠNH ĐỀU </marquee> </font> </span>
+   </div> 
+	                          <!--  <div id="banner"/>
+	                            <img src="Dunghinh3.png"/>    </div>    -->
+	<hr>    <hr>
+ <br>
+ <H3> &emsp; &emsp; Dựng hình<br>
+ </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="750" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+ 
+
+    <body style="margin: 0px;">
+      <div>
+          <p style="margin:25px;font-size: 24px;font-style: bold;font-weight: bold;">Dựng  hình 15 cạnh đều</p>
+        <b> Cách này dựa vào các biểu thức biểu diễn độ dài các đoạn thẳng mà
+          chúng có thể dựng được bằng compa và thước kẻ. </b>  <br>  <br>
+      </div>
+      <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0">  Bắt đầu: dựng đường tròn tâm O, đường kính AB=2R.<br>
+      <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ cung tròn tâm A bán kính <em> x=(sqrt{5}-1)*R/2. </em>   <br> 
+      (Lưu ý rằng 
+      <em> x/(2R)=(sqrt{5}-1)/4</em> là sin góc 18 độ.)  <br>
+      <input type="radio" name="step" onclick="ddraw(3)" value="3"> 2. Cung vừa vẽ cắt đường tròn (O) tại m, khi đó cung Am có số do 36 độ.<br>
+      <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Dựng điểm C đối xứng với m qua trung trực của AB.<br>
+      <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ cung tròn tâm C bán kính <em> y=R*sqrt{3}.  </em><br>
+      <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Nó cắt đường tròn (O) tại điểm <m>2.</m> <br>
+      <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Khi đó cung tròn A2 trên (O) bằng 24 độ. Vậy dây cung A2 là 
+      cạnh đa giác đều 15 đỉnh nội tiếp (O). Ta kí hiệu đỉnh A là 1. Gọi <em>z</em> là độ dài cạnh đa giác đều. <br>
+      <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Dựng đỉnh cuối cùng của đa giác đều, đỉnh 15
+      đối xứng với 2 qua AB. <br>
+      <input type="radio" name="step" onclick="ddraw(9)" value="4"  id="start"> 8.  Dựng đỉnh 3 và 14 theo cạnh <em>z</em> của đa giác đều. <br>
+      <input type="radio" name="step" onclick="ddraw(10)" value="4"  id="start"> 9.  Tương tự với 2 đỉnh tiếp theo.  <br>
+     
+       <input type="radio" name="step" onclick="ddraw(11)" value="4"  id="start"> 10. Và các đỉnh còn lại của đa giác đều 15 cạnh.  <br>
+
+    
+
+ <br>
+
+
+
+ <tr><td> 
+
+
+
+
+</table>
+</table>
+	
+</table>
+&emsp; &emsp; &emsp; <br> <br> <br> <br>
+
+
+<br>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(13);
+</script>
+</body>
+</html>
+
+<style>
+		
+  body {background-color: #c0c0c0;}
+  
+HR{ clear: both;
+  border-bottom : 2px solid #666666;
+  border-left : 0px none #656565;
+  border-right : 0px none #656565;
+  border-top : 2px solid #FFFFFF;
+  margin : 5px 0px 5px 0px;
+  padding : 0px 0px 0px 0px;
+  height : 4px; 
+}
+  
+/*        #banner {background: white ;
+          height: auto;
+    width:auto;  }   */
+#banner img{
+width: 1350px;
+  }
+
+ 
+
+    #banner {background-image:url(G:/web1/XDN_Style/Dunghinh5.png);
+          height: 190px; width: 1350px;
+	   }   
+
+	</style>
+
