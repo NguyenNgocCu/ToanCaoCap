@@ -329,14 +329,19 @@ var height = 700;
         <b> Cách này dựa vào các biểu thức biểu diễn độ dài các đoạn thẳng mà
           chúng có thể dựng được bằng compa và thước kẻ. </b>  <br>  <br>
       </div>
-      <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0">  Bắt đầu: dựng đường tròn tâm O, đường kính AB=2R.<br>
-      <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ cung tròn tâm A bán kính <em> x=(sqrt{5}-1)*R/2. </em>   <br> 
+       <input type="radio" name="step" onclick="reset(); ddraw(0)" value="0">  Bắt đầu: dựng đường tròn tâm O, đường kính AB=2R.<br>
+      <input type="radio" name="step" onclick="ddraw(2)" value="2"> 1. Vẽ cung tròn tâm A bán kính <em> x=(&radic;5-1)*R/2. </em>   <br> 
       (Lưu ý rằng 
-      <em> x/(2R)=(sqrt{5}-1)/4</em> là sin góc 18 độ.)  <br>
-      <input type="radio" name="step" onclick="ddraw(3)" value="3"> 2. Cung vừa vẽ cắt đường tròn (O) tại m, khi đó cung Am có số đo 36 độ.<br>
+      <em> x/(2R)=(&radic;5-1)/4</em> = sin<math xmlns=”http://www.w3.org/1998/Math/MathML”><msup>  <mi>18</mi> <mn>0</mn> </msup>  </math>.)  <br>
+      <input type="radio" name="step" onclick="ddraw(3)" value="3"> 2. Cung vừa vẽ cắt đường tròn (O) tại m, khi đó cung Am có số đo 
+      <math xmlns=”http://www.w3.org/1998/Math/MathML”><msup>  <mi>36</mi> <mn>0 </mn> </msup>  </math>.
+<br>
       <input type="radio" name="step" onclick="ddraw(4)" value="4"  id="start"> 3. Dựng điểm C đối xứng với m qua trung trực của AB.<br>
-      <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ cung tròn tâm C bán kính <em> y=R*sqrt{3}.  </em><br>
-      <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Nó cắt đường tròn (O) tại điểm <m>2.</m> Cung 2C có số đo 120 độ. <br>
+      <input type="radio" name="step" onclick="ddraw(5)" value="4"  id="start"> 4. Vẽ cung tròn tâm C bán kính <em>y=R&radic;3.</em> <br>
+      <input type="radio" name="step" onclick="ddraw(6)" value="4"  id="start"> 5. Nó cắt đường tròn (O) tại điểm <m>2.</m> Cung 2C có số đo 
+      <math xmlns=”http://www.w3.org/1998/Math/MathML”><msup>  <mi>120</mi> <mn>0 </mn> </msup>  </math>. <br>
+      <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Khi đó cung tròn A2 trên (O) bằng <math xmlns=”http://www.w3.org/1998/Math/MathML”><msup>  <mi>24</mi> <mn>0 </mn> </msup>  </math>. Vậy dây cung A2 là 
+      cạnh đa giác đều 15 đỉnh nội tiếp (O). Ta kí hiệu đỉnh A là 1. Gọi <em>z</em> là độ dài cạnh đa giác đều. <br>
       <input type="radio" name="step" onclick="ddraw(7)" value="4"  id="start"> 6. Do đó cung tròn A2 trên (O) bằng 24 độ. Vậy dây cung A2 là 
       cạnh đa giác đều 15 đỉnh nội tiếp (O). Ta kí hiệu đỉnh A là 1. Gọi <em>z</em> là độ dài cạnh đa giác đều. <br>
       <input type="radio" name="step" onclick="ddraw(8)" value="4"  id="start"> 7. Dựng đỉnh cuối cùng của đa giác đều, đỉnh 15
