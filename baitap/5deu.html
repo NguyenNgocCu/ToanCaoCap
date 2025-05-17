@@ -15,9 +15,9 @@
 	 
   // Point objects, fields x,y,label
 
+ var a = new Object;  a.x = -1.5; a.y = 0.0 ; a.label = " A"; // a.x = -2.0; a.y = 0.0 ; a.label = " A";
+   var b = new Object;  b.x = 3.5; b.y = 0.0 ; b.label = " B"; // b.x = 4.0; b.y = 0.0 ; b.label = " B";
 
-  var a = new Object;  a.x = -2.0; a.y = 0.0 ; a.label = " A";
-   var b = new Object;  b.x = 4.0; b.y = 0.0 ; b.label = " B";
 
    var o = new Object;  o.x = 1.0; o.y = 0.0 ; o.label = "O";
 
@@ -40,8 +40,8 @@ var i = new Object;  i.x = -1.0; i.y = 0.0 ;
   }
   
   function reset()
-  { a.x = -2.0; a.y = 0.0;
-    b.x = 4.0; b.y = 0.0;
+  { a.x = -1.5; a.y = 0.0;      // a.x = -2.0; a.y = 0.0;
+    b.x = 3.5; b.y = 0.0;          // 4.0; b.y = 0.0;
     o.x = 1.0; o.y = 0.0
    
   }
@@ -72,7 +72,7 @@ var i = new Object;  i.x = -1.0; i.y = 0.0 ;
     draw_point(o,"red",N);
     draw_segment(a,b);   // draw_segment(a,c);    draw_segment(c,b);
     
-     draw_arc(o,3,0,6.3);   
+     draw_arc(o,2.5,0,6.3);   
 
     if ( draw_stage == 0 ) return;
 
@@ -103,7 +103,7 @@ var i = new Object;  i.x = -1.0; i.y = 0.0 ;
 
  var c1 = new Object; c1.r = x; c1.x = a.x; c1.y = a.y;   
   var t1 = new Object;   t1.label=" ";  t1.x = 0.0; t1.y = 0.0;  var t2 = new Object;  t2.label="m"; //  t2.x = 0.0; t2.y = 0.0;
-         var c2 = new Object;   c2.r = 3.0; c2.x = o.x; c2.y = o.y;                                                             
+         var c2 = new Object;   c2.r = 2.5; c2.x = o.x; c2.y = o.y;                                                             
 //L1.x1=a.x; L1.y1=a.y;  L1.x2=b.x; L1.y2=b.y;   L2.x1=a.x; L2.y1=a.y;  L2.x2=c.x; L2.y2=c.y; 
          
  circle_circle(c2,c1,t1,t2);    draw_point(t1,"black",E);   
@@ -171,7 +171,7 @@ a.label = " A";  draw_point(a,"yellow",N);
  if ( draw_stage == 8 ) return;
 
 var d = new Object; d = dist(a,t6);     var t = new Object;   t.x = 0.0;    t.y = 0.0;    
-t.label = "3";         var o1 = new Object; o1.r = 3; o1.x = 1.0; o1.y = 0.0;
+t.label = "3";         var o1 = new Object; o1.r = 2.5; o1.x = 1.0; o1.y = 0.0;
 var v2 = new Object; v2.r = d; v2.x = t6.x; v2.y = t6.y; circle_circle(v2,o1,t,t1);   draw_point(t,"red",N); 
 draw_point(t,"yellow"); 
 draw_segmentB(t6,t);
