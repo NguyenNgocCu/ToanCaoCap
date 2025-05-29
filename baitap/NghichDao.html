@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  	<!-- Cái dòng dưới đây làm cho font đẹp hơn giống như fonr Courier    -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<title> Dựng điểm nghịch đảo </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript"     src="G:/web1/XDN_Style/XDN.js"></script>  
+
+
+
+ <script>
+
+
+
+
+   var o = new Object;  o.x = 0.0; o.y = 0.0 ; o.label = "O";
+
+var a = new Object;  a.x = 2.5; a.y = 0.0 ; a.label = "A"; 
+ var b = new Object;  b.x = 0.0; b.y = 0.0 ; b.label = "B"; 
+ var c = new Object;  c.x = 0.0; c.y = 0.0 ; c.label = "C"; 
+var d = new Object; var d1 = new Object; 
+
+
+  
+  function calc_points()
+  { r = dist(a,o);  
+    d.r = 1.5; d.x = o.x; d.y = o.y;
+	draw_arc(d,1.5,0,6.3);
+
+  d1.r = r; d1.x = a.x; d1.y = a.y;
+	
+	circle_circle(d1,d,c,b);
+
+  
+  }
+
+  
+	
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+
+    ctx.font = "0.50px Verdana"; 
+
+    
+    
+   // ctx.font="0.15px Verdana";
+	
+    calc_points();
+	
+    draw_point(a,"red",S);  draw_point(o,"red", W);
+  
+    
+   
+    
+   
+   
+
+   // if ( draw_stage == 0 ) return;
+
+
+    
+  if ( draw_stage == 1 ) return;
+draw_arc(d1,2.5,3.14-1.9,3.14+1.9)
+
+if ( draw_stage == 2 ) return;
+
+      draw_point(b,"red",S);
+
+      draw_point(c,"red",S);
+
+if ( draw_stage == 3 ) return;
+
+draw_arc(b,dist(b,o),2*3.14/4-0.4,2*3.14/4+0.4);
+
+
+if ( draw_stage == 4 ) return;
+
+
+draw_arc(c,dist(c,o),6*3.14/4-0.5,6*3.14/4+0.5);
+
+//DrawDottedLine(c,a,20);
+//DrawDottedLine(c,b,20);
+   // DrawDottedLine(a,c,20);
+    //draw_segment(a,c,20);
+  //  draw_point(c,"black",N);
+
+if ( draw_stage == 4 ) return;
+var a1 = new Object;  a1.x = 0.0; a1.y = 0.0 ; a1.label = "A'"; 
+d.r=dist(b,o); d.x=b.x; d.y=b.y;
+  d1.r=dist(b,o); d1.x=c.x; d1.y=c.y;
+circle_circle(d1,d,o,a1);
+draw_point(a1,"red",N);
+   if ( draw_stage == 5 ) return;
+
+//draw_arc(d,r,3.14/3-0.2,3.14/3+0.2);
+//draw_arc(b,r,-0.2,0.2);
+
+DrawDottedLine(o,a,25); draw_point(o,"red", W);
+
+//DrawDottedLine(e,b,20);
+ //draw_point(e,"red",S);
+    
+  
+
+
+
+
+
+  
+  }
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 600; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, 0.06, -0.15, -0.45, -0.23];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.27,  0.15,  0.05, -0.15];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+  // swap coordinates of points
+  function swap(d,e)
+  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
+  
+ 
+  function dist(pt,qt)
+  { return Math.sqrt((pt.x-qt.x)*(pt.x-qt.x)+(pt.y-qt.y)*(pt.y-qt.y));
+  }
+  
+ 
+
+  
+  
+
+
+  
+
+  function ddraw(stage) { draw_stage = stage; draw(); }
+  
+/*****************************************************************************************************/
+
+  function handleMouseDown(event)
+  {
+    var rect = canvas.getBoundingClientRect();
+    if ( event.button == 0 ) // left button
+    {
+	  // Translate to world coordinates
+      var x = (event.clientX-rect.left)/scale - xtrans;
+      var y = (event.clientY-rect.top)/scale - ytrans;
+
+	  // see if mouse is sufficiently near one of the movable points
+	  moving_point = null;
+	  for ( var n = 0 ; n < movable_pts.length ; n++ )
+	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
+		  { moving_point = movable_pts[n];
+	        mouse_down_flag = true;
+	        break;
+		  }	  
+	  }
+     
+    }
+    else if ( event.button == 2 )  // right button
+    {
+    }
+  }
+/*****************************************************************************************************/
+
+ function handleMouseUp(event)
+ {
+   mouse_down_flag = false;
+ }
+/*************************************************************************************************/
+
+  function handleMouseMove(event)   // event.target is the canvas.
+  {
+
+    if (!mouse_down_flag || moving_point==null)
+    {
+      return;
+    }
+
+    var rect = canvas.getBoundingClientRect();
+	
+	// Translate to world coordinates
+    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
+    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
+
+ 
+    draw();
+ }
+
+// ket thuc pham ma them vao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+<H3>&ensp; &ensp; Dựng hình chỉ dùng Compass<br>
+&ensp; &ensp; Dựng điểm nghịch đảo.  </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+  <tr>
+  <td>
+    <p class="bold"> Chỉ dùng compa ta có thể dựng ảnh nghịch đảo của một điểm với đường tròn.</p>
+    
+ <input type="radio" name="step" onclick="ddraw(1)" value="0"> 1.  Cho trước đường tròn tâm O và một điểm A.<br>
+ <input type="radio" name="step" onclick="ddraw(2)" value="0"> 2. Dựng cung tròn tâm A bán kính AO. <br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="0"  id="start"> 3. Nó cắt đường tròn tâm O tại B và C.<br>
+ <input type="radio" name="step" onclick="ddraw(4)" value="0"  id="start"> 4. Dựng cung tròn tâm B bán kính BO.<br>
+ <input type="radio" name="step" onclick="ddraw(5)" value="0"  id="start"> 5. Dựng cung tròn tâm C bán kính CO. <br>
+ Hai cung vừa dựng cắt nhau tại A'.
+ 
+ <br>
+
+ 
+ 
+
+<input type="radio" name="step" onclick="ddraw(7)" value="0"  id="start"> 6. Dễ dàng chỉ ra A' là ảnh nghịch đảo của A với đường tròn (O). <br>
+
+ <br>
+ 
+
+
+
+ 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+
+</script>
+
+
+<div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"><a target="_blank" title="www.susqu.edu" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/">Susquehanna University</a> assumes no responsibility for the content of this personal website.  Please read the <a target="_blank" title="http://www.susqu.edu//about-su/policies#disclaimer" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/about-su/policies#disclaimer">disclaimer</a>.</div></body>
+</html>
