@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  	<!-- Cái dòng dưới đây làm cho font đẹp hơn giống như fonr Courier    -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<title> Dựng giao điểm của 2 đường thẳng bằng compass </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script type="text/javascript"     src="G:/web1/XDN_Style/XDN.js"></script>  
+
+
+
+ <script>
+
+
+
+
+   var o = new Object;  o.x = 0.0; o.y = 0.0 ; o.label = "O";
+
+var a = new Object;  a.x = -1.5; a.y = -2.0 ; a.label = "A"; 
+ var b = new Object;  b.x = 1.0; b.y = -0.5 ; b.label = "B"; 
+ var c = new Object;  c.x = -0.4; c.y = 1.2 ; c.label = "C"; 
+
+var d = new Object; d.x = 0.9; d.y = 0.7 ; d.label = "D"; 
+var r = new Object; r = 1.8;                                    // Bán kính dtròn (O)
+var k = new Object; var k1 = new Object; var k2 = new Object;  // lần lượt là các dtròn (O), dtròn qua A', B', O và C', D', O.
+  
+ 
+
+	
+  function draw()
+  {  
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+   // ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //  ctx.fillStyle = "black";
+
+    ctx.scale(scale,scale);  // keep y going down so text is right side up
+    ctx.translate(xtrans,ytrans);
+
+    ctx.font = "0.50px Verdana"; 
+    
+
+   
+	
+   
+  
+    
+   
+    
+   
+   
+
+   // if ( draw_stage == 0 ) return;
+
+
+    
+ 
+
+if ( draw_stage == 1 ) return;
+
+   draw_point(a,"red",W);  draw_point(b,"red",N);
+draw_point(c,"red",W);  draw_point(d,"red",S);
+ if ( draw_stage == 2 ) return;
+k.r = r; k.x = 0.0; k.y = 0.0;
+	draw_arc(k,r,0,6.3);
+//draw_arc(d1,2.5,3.14-1.9,3.14+1.9)
+draw_point(o,"black",W); 
+if ( draw_stage == 3 ) return;
+
+var a1 = new Object;  a1.x = r*r*a.x/(a.x*a.x+a.y*a.y); a1.y = r*r*a.y/(a.x*a.x+a.y*a.y) ; a1.label = "A'"; draw_point(a1,"black",S);
+
+
+
+//var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="M'"; t2.x=0;t2.y=0;t2.label="N'";
+//inversion(m2,c3,t1); inversion(k1,c3,t2); 
+
+// draw_point(t1,"black",N); draw_point(t2,"black",N);
+
+if ( draw_stage == 4 ) return;
+
+
+var b1 = new Object;  b1.x = r*r*b.x/(b.x*b.x+b.y*b.y); b1.y = r*r*b.y/(b.x*b.x+b.y*b.y) ; b1.label = "B'"; draw_point(b1,"black",S);
+
+
+
+//DrawDottedLine(c,a,20);
+//DrawDottedLine(c,b,20);
+   // DrawDottedLine(a,c,20);
+    //draw_segment(a,c,20);
+  //  draw_point(c,"black",N);
+
+if ( draw_stage == 5 ) return;
+
+ //var u = new Object; u.x = 0.0; u.y = 0.0;// u.label = " "; //var v = new Object; v=3. ; draw_point(u,"black",N);
+ 
+var pt1 = new Object; pt1 = a1; var pt2 = new Object; pt2 = b1;  var pt3 = new Object; pt3 = o; // 11 dòng bên dưới để vẽ đường tròn qua 3 điểm A', B' và O
+
+
+
+
+
+var m1 = new Object;
+    var m2 = new Object;
+    var ta = new Object; ta.x = 0.0; ta.y = 0.0 ; ta.label = " "; 
+
+    //var dt1 = new Object; dt1.x1 = pt1.x; dt1.y1 = pt1.y; dt1.x2 = pt2.x; dt1.y2 = pt2.y;
+var td1 = new Object; td1.x = (pt1.x+pt2.x)/2;  td1.y = (pt1.y+pt2.y)/2;
+perp_to_line(td1,pt1,m1);
+
+//var dt2 = new Object; dt2.x1 = pt1.x; dt2.y1 = pt1.y; dt2.x2 = pt3.x; dt2.y2 = pt3.y;
+var td2 = new Object; td2.x = (pt1.x+pt3.x)/2;  td2.y = (pt1.y+pt3.y)/2;
+perp_to_line(td2,pt1,m2);
+  
+
+line_line(m1,m2,ta);
+//draw_point(ta,"white",N);
+//t.x = ta.x; t.y = ta.y;// draw_point(t,"black");
+var bk = dist(ta,pt1);
+          draw_arc_color(ta,bk,0,2*3.14,"red");
+
+
+//var u = new Object; u.x = 0.0; u.y = 0.0; u.label = "T"; // var v = new Object; v.x = 0.0; v.y = 0.0; v.label = "T'";
+k1.r = bk; k1.x = ta.x; k1.y = ta.y; // circle_circle(k,k1,u,v); draw_point(u,"red",W); draw_point(v,"red",E);
+
+
+
+
+
+
+
+
+
+
+ //DtronTamBk(a1,o,b1,u);  draw_point(u,"red");
+ //var c1 = new Object; c1=DtronColor(a1,b1,o); 
+
+   if ( draw_stage == 6 ) return;
+
+var c1 = new Object;  c1.x = r*r*c.x/(c.x*c.x+c.y*c.y); c1.y = r*r*c.y/(c.x*c.x+c.y*c.y) ; c1.label = "C'"; draw_point(c1,"black",S);
+
+
+var d1 = new Object;  d1.x = r*r*d.x/(d.x*d.x+d.y*d.y); d1.y = r*r*d.y/(d.x*d.x+d.y*d.y) ; d1.label = "D'"; draw_point(d1,"black",S);
+
+    if ( draw_stage == 7 ) return;
+var pt1 = new Object; pt1 = c1; var pt2 = new Object; pt2 = d1;  
+
+var ta1 = new Object; ta1.x = 0.0; ta1.y = 0.0 ; ta1.label = " "; 
+
+     td1.x = (pt1.x+pt2.x)/2;  td1.y = (pt1.y+pt2.y)/2;
+perp_to_line(td1,pt1,m1);
+
+var td2 = new Object; td2.x = (pt1.x+pt3.x)/2;  td2.y = (pt1.y+pt3.y)/2;
+perp_to_line(td2,pt1,m2);
+  
+
+line_line(m1,m2,ta1);
+//draw_point(ta,"white",N);
+//t.x = ta.x; t.y = ta.y;// draw_point(t,"black");
+var bk1 = dist(ta1,pt1);
+          draw_arc_color(ta1,bk1,0,2*3.14,"red");
+
+
+   if ( draw_stage == 8 ) return;
+
+var u = new Object; u.x = 0.0; u.y = 0.0; u.label = "T";  var v = new Object; v.x = 0.0; v.y = 0.0; v.label = "T";
+k2.r = bk1; k2.x = ta1.x; k2.y = ta1.y; // circle_circle(k,k1,u,v); draw_point(u,"red",W); draw_point(v,"red",E);
+
+circle_circle(k2,k1,u,v); draw_point(v,"red",W);// draw_point(v,"red",E);
+
+c1.label = " "; draw_point(c1,"silver",S);
+
+  if ( draw_stage == 9 ) return;
+var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="E"; t2.x=0;t2.y=0;t2.label="N'";
+inversion(v,k,t1); //inversion(k1,c3,t2); 
+draw_point(t1,"red",S);
+    if ( draw_stage == 10 ) return;
+
+DrawDottedLine(a,t1,32);  DrawDottedLine(c,t1,20);
+  }
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+// Them vao 
+// var height = 600; 
+  var height = 800; 
+  var width  = 600; 
+  var scale = 100;  // scale factor world-to-pixel
+  var xtrans = 3;   // translation for origin
+  var ytrans = 3;
+  // canvas world bounds
+  var xright = 3.0;
+  var xleft = -3.0;
+  var ytop = 3.0;
+  var ybottom = -3.0;
+
+  var point_radius = 0.025;
+  var moving_point = null;
+  var moving_pt_count = 0;
+  var mouse_down_flag = false;
+  var draw_stage = 100;
+  
+  // Point label offset choices
+  //           N      NE      E     SE     S      SW      W     NW
+  var offx = [-0.04,  0.05,  0.07,  0.05, 0.06, -0.15, -0.45, -0.23];
+  var offy = [-0.15,  -0.05,  0.05,  0.15,  0.37,  0.15,  0.05, -0.15];
+  var N = 0;
+  var NE = 1;
+  var E = 2;
+  var SE = 3;
+  var S = 4;
+  var SW = 5;
+  var W = 6;
+  var NW = 7;
+  
+  
+  // swap coordinates of points
+  function swap(d,e)
+  { var tx = d.x; d.x = e.x; e.x = tx; tx = d.y; d.y = e.y; e.y = tx; }
+  
+ 
+  function dist(pt,qt)
+  { return Math.sqrt((pt.x-qt.x)*(pt.x-qt.x)+(pt.y-qt.y)*(pt.y-qt.y));
+  }
+  
+ 
+
+  
+  
+
+
+  
+
+  function ddraw(stage) { draw_stage = stage; draw(); }
+  
+/*****************************************************************************************************/
+
+  function handleMouseDown(event)
+  {
+    var rect = canvas.getBoundingClientRect();
+    if ( event.button == 0 ) // left button
+    {
+	  // Translate to world coordinates
+      var x = (event.clientX-rect.left)/scale - xtrans;
+      var y = (event.clientY-rect.top)/scale - ytrans;
+
+	  // see if mouse is sufficiently near one of the movable points
+	  moving_point = null;
+	  for ( var n = 0 ; n < movable_pts.length ; n++ )
+	  { if ( (x-movable_pts[n].x)*(x-movable_pts[n].x) + (y-movable_pts[n].y)*(y-movable_pts[n].y) < 2*point_radius*point_radius )
+		  { moving_point = movable_pts[n];
+	        mouse_down_flag = true;
+	        break;
+		  }	  
+	  }
+     
+    }
+    else if ( event.button == 2 )  // right button
+    {
+    }
+  }
+/*****************************************************************************************************/
+
+ function handleMouseUp(event)
+ {
+   mouse_down_flag = false;
+ }
+/*************************************************************************************************/
+
+  function handleMouseMove(event)   // event.target is the canvas.
+  {
+
+    if (!mouse_down_flag || moving_point==null)
+    {
+      return;
+    }
+
+    var rect = canvas.getBoundingClientRect();
+	
+	// Translate to world coordinates
+    moving_point.x = (event.clientX-rect.left)/scale - xtrans;
+    moving_point.y = (event.clientY-rect.top)/scale - ytrans;
+
+ 
+    draw();
+ }
+
+// ket thuc pham ma them vao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+<H3>&ensp; &ensp; Dựng hình chỉ dùng Compass<br>
+&ensp; &ensp; Dựng giao điểm của 2 đường thẳng.  </H3>
+
+<table>
+<tr>
+<td>
+    <canvas id="myCanvas" width="700" height="600"></canvas>
+  <td style="vertical-align:top">
+  <table>
+  <tr>
+  <td>
+    <p class="bold"> Chỉ dùng compa ta có thể dựng giao điểm của 2 đường thẳng.</p>
+    
+ <input type="radio" name="step" onclick="ddraw(2)" value="0"> 1.  Cho trước 4 điểm A, B, C, D. Ta sẽ dựng giao điểm của 2 đường thẳng AB và CD.<br>
+ <input type="radio" name="step" onclick="ddraw(3)" value="0"> 2. Vẽ một đường tròn tâm O bất kì. Các phép nghịch đảo nhắc đến sau đây đều ứng với đường tròn này.  <br>
+ <input type="radio" name="step" onclick="ddraw(4)" value="0"  id="start"> 3. Dựng điểm nghịch đảo A' của A.<br>
+ <input type="radio" name="step" onclick="ddraw(5)" value="0"  id="start"> 4. Dựng điểm nghịch đảo B' của B.<br>
+ <input type="radio" name="step" onclick="ddraw(6)" value="0"  id="start"> 5. Dựng đường tròn đi qua các điểm O, A', B'. <br>
+ Xem cách dựng chỉ bẳng compass đường tròn đi qua 3 điểm.
+ 
+ <br>
+
+ 
+ 
+
+<input type="radio" name="step" onclick="ddraw(7)" value="0"  id="start"> 6. Tương tự dựng ảnh nghịch đảo C', D' của C và D. <br>
+
+ <br>
+ 
+
+<input type="radio" name="step" onclick="ddraw(8)" value="0"  id="start"> 7. Dựng đường tròn đi qua các điểm O, C', D'. <br>
+
+ <br>
+ 
+
+<input type="radio" name="step" onclick="ddraw(9)" value="0"  id="start"> 8. Hai đường tròn vừa dựng cắt nhau tại T. <br>
+
+ <br>
+ 
+
+<input type="radio" name="step" onclick="ddraw(10)" value="0"  id="start"> 9. Dựng điểm nghịch đảo E của T. <br>
+
+
+<input type="radio" name="step" onclick="ddraw(11)" value="0"  id="start"> 10. Dễ dàng chỉ ra T là giao điểm cần dựng của 2 đường thẳng AB và CD. <br>
+
+ <br>
+ 
+ <br>
+ 
+ 
+
+
+
+
+</table>
+</table>
+
+<script>
+
+   document.getElementById("start").checked = true;
+   canvas = document.getElementById('myCanvas');
+   
+   canvas.onmousedown = handleMouseDown;
+   document.onmouseup = handleMouseUp;
+   document.onmousemove = handleMouseMove;
+
+   // Browser detection, since Chrome seems not to do filltext
+   chrome_flag = (navigator.userAgent.indexOf("Chrome") > -1) || (navigator.userAgent.indexOf("Safari") > -1);
+
+   ctx = canvas.getContext('2d');
+   draw(10);
+
+</script>
+
+
+<div style="background-color: #FFFFFF; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 11px; font-size-adjust: none; font-stretch: normal; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-decoration: none; text-indent: 0; text-transform: none; white-space: normal; word-spacing: normal; cursor: auto; border-collapse: collapse; border-spacing: 0; direction: ltr; empty-cells: show; list-style-image: none; list-style-position: outside; list-style-type: disc; orphans: 2; page: auto; page-break-inside: auto; quotes: none; text-align: center; widows: 2; position: relative; z-index: 999999; bottom: 0px; top: auto; left: auto; right: auto; display: block; visibility: visible; clear: both; margin: 6px auto 0px auto; border: dotted #808080 1px; padding: 3px;"><a target="_blank" title="www.susqu.edu" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/">Susquehanna University</a> assumes no responsibility for the content of this personal website.  Please read the <a target="_blank" title="http://www.susqu.edu//about-su/policies#disclaimer" style="font:inherit; color: #000000; background-color: #FFFFFF; font-weight: normal; font-style: normal; text-decoration: underline;" href="http://www.susqu.edu/about-su/policies#disclaimer">disclaimer</a>.</div></body>
+</html>
