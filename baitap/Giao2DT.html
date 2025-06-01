@@ -179,6 +179,17 @@ draw_point(t1,"red",S);
     if ( draw_stage == 10 ) return;
 
 DrawDottedLine(a,t1,32);  DrawDottedLine(c,t1,20); draw_point(t1,"red",S);
+
+	  
+
+   if ( draw_stage == 11 ) return;
+
+ var e = new Object; e.x = 0.0; e.y = 6.0 ; e.label = "1";
+var h = new Object; h.x = -1.5; h.y = 4.0 ; h.label = "2"; 
+
+   circle_circle(k,k1,e,h); 
+draw_point(e,"black",W); draw_point(h,"black",E);
+
   }
 
 
@@ -330,12 +341,12 @@ DrawDottedLine(a,t1,32);  DrawDottedLine(c,t1,20); draw_point(t1,"red",S);
 <table>
 <tr>
 <td>
-    <canvas id="myCanvas" width="700" height="600"></canvas>
+    <canvas id="myCanvas" width="700" height="800"></canvas>
   <td style="vertical-align:top">
   <table>
   <tr>
   <td>
-    <p class="bold"> Chỉ dùng compa ta có thể dựng giao điểm của 2 đường thẳng đi qua các điểm cho trước.</p>
+    <p> <font color="blue"> Chỉ dùng compa ta có thể dựng giao điểm của 2 đường thẳng.</font> </p>
     
  <input type="radio" name="step" onclick="ddraw(2)" value="0"> 1.  Cho trước 4 điểm A, B, C, D. Ta sẽ dựng giao điểm của 2 đường thẳng AB và CD.<br>
  <input type="radio" name="step" onclick="ddraw(3)" value="0"> 2. Vẽ một đường tròn tâm O bất kì. Các phép nghịch đảo nhắc đến sau đây đều ứng với đường tròn này.  <br>
@@ -369,9 +380,17 @@ DrawDottedLine(a,t1,32);  DrawDottedLine(c,t1,20); draw_point(t1,"red",S);
 
 <input type="radio" name="step" onclick="ddraw(11)" value="0"  id="start"> 10. Dễ dàng chỉ ra E là giao điểm cần dựng của 2 đường thẳng AB và CD. <br>
 
- <br>
+<br>
  
- <br>
+ <br>  <br>
+ 
+
+
+ <p> <font color="blue"> Chỉ dùng compa ta có thể dựng giao điểm của đường thẳng và đường tròn.</font> </p>
+<input type="radio" name="step" onclick="ddraw(12)" value="0"  id="start"> 11. Nhận xét rằng giao điểm 1, 2 của đường tròn tâm O và
+đường tròn đi qua  O, A', B' cũng chính là giao điểm của AB với đường tròn (O). Bằng cách như vậy
+ta đã dựng được  giao điểm của đường tròn (O) với đường thẳng AB. <br>
+
  
  
 
