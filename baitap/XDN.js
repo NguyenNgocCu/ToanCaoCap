@@ -263,6 +263,23 @@ chrome_flag = false;
            ctx.stroke(); 
         }
 
+function DrawDottedLine3(pt,qt,dotCount){                   
+          var dx = qt.x-pt.x;
+          var dy = qt.y-pt.y;
+          var spaceX = dx/(dotCount-1);
+          var spaceY = dy/(dotCount-1);
+          var newX = pt.x;
+          var newY = pt.y;
+          var mm = new Object; mm.x = newX; mm.y = newY;
+          for (var i=0; i < dotCount; i++){
+                  draw_p2(mm,"white");
+                  newX = newX + spaceX;
+                  newY = newY + spaceY;  
+                  mm.x = newX; 
+                  mm.y = newY;            
+           }
+           ctx.stroke(); 
+        }
 
   function draw_segment(pt,qt, color="black")
   {
