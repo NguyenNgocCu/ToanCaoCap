@@ -72,7 +72,7 @@ if ( draw_stage == 3 ) return;
 
 var a1 = new Object;  a1.x = r*r*a.x/(a.x*a.x+a.y*a.y); a1.y = r*r*a.y/(a.x*a.x+a.y*a.y) ; a1.label = "A'"; draw_point(a1,"black",S);
 
-DrawDottedLine2(a,a1,8);  DrawDottedLine2(o,a1,8);
+DrawDottedLine2(a,a1,16);  DrawDottedLine2(o,a1,16);
 
 //var t1 = new Object; var t2 = new Object; t1.x=0;t1.y=0;t1.label="M'"; t2.x=0;t2.y=0;t2.label="N'";
 //inversion(m2,c3,t1); inversion(k1,c3,t2); 
@@ -84,7 +84,7 @@ if ( draw_stage == 4 ) return;
 
 var b1 = new Object;  b1.x = r*r*b.x/(b.x*b.x+b.y*b.y); b1.y = r*r*b.y/(b.x*b.x+b.y*b.y) ; b1.label = "B'"; draw_point(b1,"black",S);
 
-DrawDottedLine2(b,b1,8);  DrawDottedLine2(o,b,6); 
+DrawDottedLine2(b,b1,16);  DrawDottedLine2(o,b,15); 
 
 //DrawDottedLine(c,a,20);
 //DrawDottedLine(c,b,20);
@@ -94,7 +94,7 @@ DrawDottedLine2(b,b1,8);  DrawDottedLine2(o,b,6);
 
 if ( draw_stage == 5 ) return;
 
-  DrawDottedLine3(b,b1,8);  DrawDottedLine3(o,b,6); DrawDottedLine3(a,a1,8);  DrawDottedLine3(o,a1,8);
+  DrawDottedLine3(b,b1,16);  DrawDottedLine3(o,b,15); DrawDottedLine3(a,a1,16);  DrawDottedLine3(o,a1,16);
  
 var pt1 = new Object; pt1 = a1; var pt2 = new Object; pt2 = b1;  var pt3 = new Object; pt3 = o; // 11 dòng bên dưới để vẽ đường tròn qua 3 điểm A', B' và O
 
